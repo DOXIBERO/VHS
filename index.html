@@ -9,12 +9,26 @@
       {
         "imports": {
           "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
           "cannon-es": "https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js"
         }
       }
     </script>
   </head>
   <body>
+    <!-- Part 0151-0180 Loading Overlay Screen -->
+    <div id="loading-screen" class="loading-overlay">
+      <div class="loading-content">
+        <div class="loading-badge">🎮 A0 DEUTSCH-RUN</div>
+        <h1 class="loading-logo">WACKEL-BEANS</h1>
+        <p class="loading-sub">Lerne Deutsch im Fall-Guys-Style!</p>
+        <div class="progress-bar-container">
+          <div id="loading-bar-fill" class="progress-bar-fill"></div>
+        </div>
+        <div id="loading-text" class="loading-text">Loading... 0%</div>
+      </div>
+    </div>
+
     <canvas id="game-canvas"></canvas>
     <script type="module" src="/src/main.js"></script>
   </body>
