@@ -13,8 +13,9 @@ html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #000;
+  background-color: #87CEEB;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  touch-action: none;
 }
 
 #game-canvas {
@@ -23,11 +24,117 @@ html, body {
   display: block;
 }
 
+/* Touch Controls Layer */
+#touch-controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Left Bottom Joystick */
+#joystick-zone {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  touch-action: none;
+}
+
+#joystick-base {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.28);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+#joystick-knob {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFD700 30%, #E6B800 100%);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  transition: transform 0.05s ease-out;
+}
+
+/* Right Bottom Jump Action Button */
+#action-zone {
+  position: absolute;
+  bottom: 30px;
+  right: 28px;
+  pointer-events: auto;
+}
+
+#jump-btn {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FF3366, #CC0033);
+  border: 3px solid #FFFFFF;
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(255, 51, 102, 0.45);
+  cursor: pointer;
+  touch-action: none;
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+
+#jump-btn:active {
+  transform: scale(0.92);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+#jump-btn small {
+  font-size: 20px;
+  margin-top: -2px;
+}
+
+/* On-Screen Instructions Badge */
+#controls-hint {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  z-index: 99;
+  letter-spacing: 0.3px;
+}
+
+/* Debug Overlay */
 #debug-overlay {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.8);
   color: #00ff88;
   font-family: monospace;
   font-size: 12px;
