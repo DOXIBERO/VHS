@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
@@ -8,7 +8,42 @@
   </head>
   <body>
     <canvas id="game-canvas"></canvas>
-    <div id="controls-hint">🕹️ Touch Joystick / WASD to Move • Tap/Space to Jump • Drag to Orbit Camera</div>
+
+    <!-- Top Target & Score HUD Banner -->
+    <div id="target-banner">
+      <div id="gate-badge">TOR 1 / 3</div>
+      <div id="target-word-container">
+        <span id="target-word-text">👉 FINDE: <span class="highlight-word">ROT</span> 🔴</span>
+        <button id="audio-replay-btn" title="Klicke für deutsche Aussprache">🔊</button>
+      </div>
+      <div id="score-badge">⭐ 0</div>
+    </div>
+
+    <!-- Controls Hint -->
+    <div id="controls-hint">🕹️ Joystick / WASD to Move • Tap/Space to Jump • Drag to Orbit Camera</div>
+
+    <!-- Start Race Overlay -->
+    <div id="start-overlay">
+      <div class="overlay-card">
+        <h1>🇩🇪 WACKEL-BEANS 🦘</h1>
+        <p class="arabic-sub">اسمع الكلمة بالألمانية وجري فالباب الصحيحة!</p>
+        <p class="german-desc">Höre das Wort &amp; rase durch die richtige Tür!</p>
+        <button id="start-btn">🚀 ابدأ السباق (START)</button>
+      </div>
+    </div>
+
+    <!-- Victory Modal -->
+    <div id="victory-modal" style="display: none;">
+      <div class="modal-card">
+        <h2>🏆 GEWONNEN! 🏆</h2>
+        <p class="arabic-congrats">مبروك! وصلتي لخط النهاية وربحتي التاج الذهبي!</p>
+        <div class="score-display">PUNKTE: <span id="final-score">0 PTS</span></div>
+        <div class="learned-header">📚 الكلمات لي تعلمتي اليوم:</div>
+        <div id="words-learned-list"></div>
+        <button id="restart-btn">🔄 إلعب من جديد (NOCHMAL)</button>
+      </div>
+    </div>
+
     <div id="debug-overlay"></div>
     <script type="module" src="/src/main.js"></script>
   </body>

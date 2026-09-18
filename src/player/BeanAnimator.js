@@ -1,11 +1,32 @@
-﻿export class BeanAnimator {
+export class BeanAnimator {
   constructor(bean) {
     this.bean = bean;
     this.time = 0;
+    this.isVictory = false;
+  }
+
+  setVictory(isVictory = true) {
+    this.isVictory = isVictory;
   }
 
   update(dt, isMoving, isGrounded) {
     this.time += dt;
+
+    // Celebration / Victory Animation
+    if (this.isVictory) {
+      const victorySpeed = 10;
+      // High jump celebration arms
+      this.bean.leftArm.rotation.z = 2.4;
+      this.bean.rightArm.rotation.z = -2.4;
+      this.bean.leftArm.rotation.x = Math.sin(this.time * victorySpeed) * 0.4;
+      this.bean.rightArm.rotation.x = -Math.sin(this.time * victorySpeed) * 0.4;
+
+      // Excited spin & hop
+      this.bean.torso.position.y = 0.85 + Math.abs(Math.sin(this.time * 8)) * 0.45;
+      this.bean.torso.rotation.y = this.time * 4;
+      this.bean.head.rotation.z = Math.sin(this.time * 12) * 0.15;
+      return;
+    }
 
     if (!isGrounded) {
       // Jump / Airborne pose
@@ -14,12 +35,13 @@
       this.bean.rightLeg.rotation.x = 0.6;
       this.bean.leftArm.rotation.z = 1.2;
       this.bean.rightArm.rotation.z = -1.2;
-      this.bean.torso.scale.set(0.9, 1.15, 0.9); // Stretch
+      this.bean.torso.scale.set(0.9, 1.15, 0.9); // Squash & Stretch
       return;
     }
 
     // Reset scale
     this.bean.torso.scale.set(1, 1, 1);
+    this.bean.torso.rotation.y = 0;
 
     if (isMoving) {
       // RUN Animation (Part 0251)

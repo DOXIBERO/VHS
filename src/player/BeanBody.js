@@ -1,9 +1,18 @@
-﻿import * as THREE from 'three';
+import * as THREE from 'three';
 
 export class BeanBody {
-  constructor(scene, initialPosition = [0, 0, 0]) {
+  constructor(scene, initialPosition = [0, 0, 0], options = {}) {
+    this.scene = scene;
+    this.options = {
+      skinColor: options.skinColor || 0xFFD700, // Default Fall Guy Yellow
+      capColor: options.capColor || 0x333333,   // Default Berlin Flat Cap Gray
+      shoeColor: options.shoeColor || 0xFF3333, // Default Red Shoes
+      hasChain: options.hasChain !== undefined ? options.hasChain : true,
+      name: options.name || 'PlayerBean'
+    };
+
     this.group = new THREE.Group();
-    this.group.name = 'BeanPlayer';
+    this.group.name = this.options.name;
     this.position = this.group.position;
     this.rotation = this.group.rotation;
 
@@ -21,20 +30,20 @@ export class BeanBody {
   }
 
   initModel() {
-    // Shared Materials
-    const yellowMat = new THREE.MeshStandardMaterial({
-      color: 0xFFD700, // Bright Fall Guy Yellow
+    // Materials
+    const skinMat = new THREE.MeshStandardMaterial({
+      color: this.options.skinColor,
       roughness: 0.35,
       metalness: 0.05
     });
 
-    const handYellowMat = new THREE.MeshStandardMaterial({
-      color: 0xE6C200, // Slightly darker yellow
-      roughness: 0.4
+    const handMat = new THREE.MeshStandardMaterial({
+      color: this.options.skinColor,
+      roughness: 0.45
     });
 
-    const redShoeMat = new THREE.MeshStandardMaterial({
-      color: 0xFF3333, // Cute Red Shoes
+    const shoeMat = new THREE.MeshStandardMaterial({
+      color: this.options.shoeColor,
       roughness: 0.4
     });
 
@@ -47,8 +56,8 @@ export class BeanBody {
       color: 0x111111
     });
 
-    const capGrayMat = new THREE.MeshStandardMaterial({
-      color: 0x333333, // Dark Berlin Flat Cap
+    const capMat = new THREE.MeshStandardMaterial({
+      color: this.options.capColor,
       roughness: 0.8
     });
 
@@ -60,20 +69,20 @@ export class BeanBody {
 
     // 1. Torso Capsule (Part 0201)
     const torsoGeo = new THREE.CapsuleGeometry(0.5, 0.7, 8, 16);
-    this.torso = new THREE.Mesh(torsoGeo, yellowMat);
+    this.torso = new THREE.Mesh(torsoGeo, skinMat);
     this.torso.position.y = 0.85;
     this.torso.castShadow = true;
     this.group.add(this.torso);
 
     // 2. Belly Bump (Part 0202)
     const bellyGeo = new THREE.SphereGeometry(0.52, 16, 16);
-    this.belly = new THREE.Mesh(bellyGeo, yellowMat);
+    this.belly = new THREE.Mesh(bellyGeo, skinMat);
     this.belly.position.set(0, -0.05, 0.12);
     this.torso.add(this.belly);
 
     // 3. Head (Part 0203)
     const headGeo = new THREE.SphereGeometry(0.38, 16, 16);
-    this.head = new THREE.Mesh(headGeo, yellowMat);
+    this.head = new THREE.Mesh(headGeo, skinMat);
     this.head.position.set(0, 0.55, 0);
     this.torso.add(this.head);
 
@@ -111,11 +120,11 @@ export class BeanBody {
     // Left Arm
     this.leftArm = new THREE.Group();
     this.leftArm.position.set(-0.55, 0.15, 0);
-    const leftArmMesh = new THREE.Mesh(armGeo, yellowMat);
+    const leftArmMesh = new THREE.Mesh(armGeo, skinMat);
     leftArmMesh.rotation.z = 0.4;
     leftArmMesh.position.y = -0.15;
     this.leftArm.add(leftArmMesh);
-    const leftHand = new THREE.Mesh(handGeo, handYellowMat);
+    const leftHand = new THREE.Mesh(handGeo, handMat);
     leftHand.position.set(-0.1, -0.32, 0);
     this.leftArm.add(leftHand);
     this.torso.add(this.leftArm);
@@ -123,11 +132,11 @@ export class BeanBody {
     // Right Arm
     this.rightArm = new THREE.Group();
     this.rightArm.position.set(0.55, 0.15, 0);
-    const rightArmMesh = new THREE.Mesh(armGeo, yellowMat);
+    const rightArmMesh = new THREE.Mesh(armGeo, skinMat);
     rightArmMesh.rotation.z = -0.4;
     rightArmMesh.position.y = -0.15;
     this.rightArm.add(rightArmMesh);
-    const rightHand = new THREE.Mesh(handGeo, handYellowMat);
+    const rightHand = new THREE.Mesh(handGeo, handMat);
     rightHand.position.set(0.1, -0.32, 0);
     this.rightArm.add(rightHand);
     this.torso.add(this.rightArm);
@@ -139,10 +148,10 @@ export class BeanBody {
     // Left Leg
     this.leftLeg = new THREE.Group();
     this.leftLeg.position.set(-0.22, -0.45, 0);
-    const leftLegMesh = new THREE.Mesh(legGeo, yellowMat);
+    const leftLegMesh = new THREE.Mesh(legGeo, skinMat);
     leftLegMesh.position.y = -0.1;
     this.leftLeg.add(leftLegMesh);
-    const leftShoe = new THREE.Mesh(shoeGeo, redShoeMat);
+    const leftShoe = new THREE.Mesh(shoeGeo, shoeMat);
     leftShoe.position.set(0, -0.25, 0.05);
     leftShoe.castShadow = true;
     this.leftLeg.add(leftShoe);
@@ -151,10 +160,10 @@ export class BeanBody {
     // Right Leg
     this.rightLeg = new THREE.Group();
     this.rightLeg.position.set(0.22, -0.45, 0);
-    const rightLegMesh = new THREE.Mesh(legGeo, yellowMat);
+    const rightLegMesh = new THREE.Mesh(legGeo, skinMat);
     rightLegMesh.position.y = -0.1;
     this.rightLeg.add(rightLegMesh);
-    const rightShoe = new THREE.Mesh(shoeGeo, redShoeMat);
+    const rightShoe = new THREE.Mesh(shoeGeo, shoeMat);
     rightShoe.position.set(0, -0.25, 0.05);
     rightShoe.castShadow = true;
     this.rightLeg.add(rightShoe);
@@ -162,21 +171,23 @@ export class BeanBody {
 
     // 8. Berlin Flat Cap (Part 0210)
     const capBaseGeo = new THREE.CylinderGeometry(0.28, 0.36, 0.12, 16);
-    this.cap = new THREE.Mesh(capBaseGeo, capGrayMat);
+    this.cap = new THREE.Mesh(capBaseGeo, capMat);
     this.cap.position.set(0, 0.36, 0.02);
-    this.cap.rotation.x = -0.2; // Tilted slightly forward
+    this.cap.rotation.x = -0.2; // Tilted forward
     const capBrimGeo = new THREE.BoxGeometry(0.28, 0.03, 0.18);
-    const capBrim = new THREE.Mesh(capBrimGeo, capGrayMat);
+    const capBrim = new THREE.Mesh(capBrimGeo, capMat);
     capBrim.position.set(0, -0.04, 0.2);
     this.cap.add(capBrim);
     this.head.add(this.cap);
 
     // 9. Gold Chain Accessory (Part 0221)
-    const chainGeo = new THREE.TorusGeometry(0.32, 0.025, 8, 24);
-    this.chain = new THREE.Mesh(chainGeo, goldMat);
-    this.chain.position.set(0, 0.3, 0.1);
-    this.chain.rotation.x = Math.PI / 2.8;
-    this.torso.add(this.chain);
+    if (this.options.hasChain) {
+      const chainGeo = new THREE.TorusGeometry(0.32, 0.025, 8, 24);
+      this.chain = new THREE.Mesh(chainGeo, goldMat);
+      this.chain.position.set(0, 0.3, 0.1);
+      this.chain.rotation.x = Math.PI / 2.8;
+      this.torso.add(this.chain);
+    }
   }
 
   jump() {
@@ -186,24 +197,33 @@ export class BeanBody {
     }
   }
 
-  update(dt, inputVector, cameraAngle = 0) {
-    // 1. Movement Physics
-    if (inputVector && (inputVector.x !== 0 || inputVector.y !== 0)) {
-      // Calculate world movement direction relative to camera angle
-      const angle = Math.atan2(inputVector.x, inputVector.y) + cameraAngle;
-      
-      const moveX = Math.sin(angle) * this.moveSpeed;
-      const moveZ = Math.cos(angle) * this.moveSpeed;
+  reset(x = 0, y = 0, z = 0) {
+    this.group.position.set(x, y, z);
+    this.velocity.set(0, 0, 0);
+    this.group.rotation.set(0, Math.PI, 0);
+    this.isGrounded = true;
+  }
 
-      this.group.position.x += moveX * dt;
-      this.group.position.z += moveZ * dt;
+  update(dt, inputVector, cameraAngle = 0) {
+    // 1. Movement Physics relative to Camera Angle
+    if (inputVector && (inputVector.x !== 0 || inputVector.y !== 0)) {
+      // theta = 0 means camera is at +Z looking towards -Z.
+      // input.y = 1 (forward) -> worldDirZ = -1 (moving into track)
+      const worldDirX = inputVector.x * Math.cos(cameraAngle) - inputVector.y * Math.sin(cameraAngle);
+      const worldDirZ = -inputVector.x * Math.sin(cameraAngle) - inputVector.y * Math.cos(cameraAngle);
+
+      this.group.position.x += worldDirX * this.moveSpeed * dt;
+      this.group.position.z += worldDirZ * this.moveSpeed * dt;
+
+      // Restrict bean to track width (-10 to +10)
+      this.group.position.x = Math.max(-10.2, Math.min(10.2, this.group.position.x));
 
       // Smooth rotation toward movement direction
-      const targetRotation = angle;
+      const targetRotation = Math.atan2(worldDirX, worldDirZ);
       let diff = targetRotation - this.group.rotation.y;
       while (diff < -Math.PI) diff += Math.PI * 2;
       while (diff > Math.PI) diff -= Math.PI * 2;
-      this.group.rotation.y += diff * 0.18;
+      this.group.rotation.y += diff * 0.22;
     }
 
     // 2. Vertical Physics (Gravity & Jump)
