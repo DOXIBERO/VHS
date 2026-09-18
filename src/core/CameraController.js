@@ -1,4 +1,4 @@
-﻿import * as THREE from 'three';
+import * as THREE from 'three';
 
 export class CameraController {
   constructor(camera, domElement) {
@@ -7,14 +7,14 @@ export class CameraController {
     this.target = new THREE.Vector3(0, 0.8, 0);
 
     // Spherical coordinates for smooth orbit
-    this.radius = 8;
+    this.radius = 8.5;
     this.theta = 0; // Horizontal angle
-    this.phi = Math.PI / 4; // Vertical angle (45 deg)
+    this.phi = Math.PI / 2.8; // ~64 deg for perfect Fall Guys 3rd person chase view
 
     this.minPhi = 0.1;
     this.maxPhi = Math.PI / 2 - 0.05;
     this.minRadius = 3;
-    this.maxRadius = 20;
+    this.maxRadius = 22;
 
     this.isDragging = false;
     this.previousMousePosition = { x: 0, y: 0 };
@@ -100,6 +100,6 @@ export class CameraController {
     const z = this.target.z + this.radius * Math.sin(this.phi) * Math.cos(this.theta);
 
     this.camera.position.set(x, y, z);
-    this.camera.lookAt(this.target.x, this.target.y + 0.5, this.target.z);
+    this.camera.lookAt(this.target.x, this.target.y + 1.2, this.target.z - 3);
   }
 }
