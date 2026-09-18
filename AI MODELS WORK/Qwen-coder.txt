@@ -1,0 +1,279 @@
+MASTER NARRATIVE BIBLE: "Ein Neues Leben in Deutschland"
+Project Status: Pre-Production / Design Phase
+Document Type: Comprehensive Story Bible & Pedagogical Architecture
+Target Audience: Narrative Designers, Curriculum Directors, World-Builders
+1. THE PROTAGONIST’S NARRATIVE ARC: "THE BLANK SLATE"
+Identity & Origin
+The player character is not a pre-defined hero with a tragic backstory or a specific name. They are "Der Ankömmling" (The Arrival). This is a deliberate design choice to maximize player projection. The character is a vessel for the user’s own curiosity and anxiety.
+Visual Customization: The game begins in a void of white light before fading into the first scene. The player constructs their avatar not just visually, but linguistically. Every clothing item chosen introduces a noun (das Hemd, die Hose, die Schuhe). Every color chosen introduces an adjective (rot, blau, gestreift).
+The "Why": The narrative reason for being in Germany is left intentionally vague in Act I to allow the player to project their own motivation (study, work, love, escape). By Act III, the player’s choices in dialogue (e.g., accepting a job offer vs. enrolling in university) solidify their specific backstory, retroactively defining why they came.
+The Emotional Journey:
+Start: Confusion, sensory overload, reliance on instinct. The world is loud, fast, and unintelligible.
+Middle: Frustration turning into competence. The realization that mistakes are survivable. The joy of a successful transaction without help.
+End: Belonging. The city is no longer a maze of obstacles but a home filled with friends, routines, and personal history. The player stops translating in their head and starts thinking in German.
+The Driving Force
+The protagonist is driven by the universal human need for connection and autonomy. Initially, the drive is biological survival (hunger, shelter). Later, it becomes social survival (friendship, reputation, career). The narrative arc is the transition from being a passive observer of life to an active participant who can influence the world around them through language.
+2. THE COMPANION / ASSISTANT DOSSIER: "LEO"
+Character Profile
+Name: Leo (Short for Leonhard, meaning "brave lion," though he is gentle).
+Age: 28.
+Occupation: Freelance Illustrator and part-time community guide. He works from home often, which explains his availability, but he also has a life that intersects with the game world.
+Appearance: Warm, approachable. Wears layered, practical clothing (cardigans, scarves). Always carries a sketchbook. He looks like someone you could trust with your keys.
+Voice: Calm, clear, slightly slower than native speed in early phases, but never condescending. He uses standard High German (Hochdeutsch) but occasionally points out when someone on the street uses a dialect word.
+Psychological Profile & Arc
+Leo is empathetic but professionally bound to a code of "fading assistance." He genuinely cares about the protagonist but knows that hovering prevents growth. His internal conflict is knowing when to step in. He fears the player failing too hard, but fears crippling their independence more.
+Phase 1 (The Shadow): Leo is omnipresent. He stands slightly behind the player’s shoulder (visually represented by a soft glow or semi-transparency). He translates signs instantly. If the player stares at a door for more than 5 seconds, Leo says, "Das ist die Tür. Wir müssen sie öffnen." (That is the door. We must open it.) He is the safety net.
+Phase 2 (The Scaffold): Leo steps back physically. He stands by the side of the room. He no longer translates automatically. He waits. If the player fails to order coffee, Leo doesn’t speak for them; he whispers a hint: "Vielleicht möchtest du fragen: 'Haben Sie Milch?'" (Maybe you want to ask: 'Do you have milk?'). He intervenes only when the situation reaches a "critical failure state" (e.g., the shopkeeper is getting angry, or the player is completely lost).
+Phase 3 (The Peer): Leo meets the player at a café as a friend. He sits opposite them. He speaks at normal native speed. He uses idioms. If the player struggles, Leo laughs kindly and rephrases naturally, modeling correction without breaking immersion. "Ach so, du meinst..." (Ah, I see, you mean...). He is no longer a guide; he is a benchmark of fluency.
+Interaction Rules & Graduation
+The "Help" Button: In-game, asking for help summons Leo.
+A0-A1: Leo solves the problem immediately.
+A2-B1: Leo gives a grammatical hint or vocabulary nudge.
+B2-C1: Leo asks a Socratic question to lead the player to the answer themselves.
+Graduation Moment: Occurs at the start of Act IV. The player receives a letter from Leo: "Ich habe heute einen Termin in der Galerie. Du schaffst das alleine. Wir sehen uns später zum Bier." (I have an appointment at the gallery today. You’ll manage alone. See you later for a beer.) From this moment, the UI hint system disappears completely.
+3. THE ANATOMY OF A TYPICAL DAY: MICRO-LEVEL BREAKDOWN
+The game does not use "Levels." It uses "Moments." A single day contains 40–60 distinct interactive moments. Here is the excruciatingly detailed breakdown of two pivotal days.
+DAY 1: "Das Erwachen" (The Awakening) – A0 Survival
+Theme: Sensory Overload & Basic Identification.
+Goal: Survive the morning, find food, understand the immediate environment.
+MORGEN (Morning) [07:00 – 09:00]
+07:00 - The Alarm: The screen is black. Sound of a digital beeping. Text appears: Es klingelt. Player must tap the alarm clock.
+Micro-Task: Turn off alarm. Vocabulary: der Wecker, ausmachen, schlafen.
+07:01 - Opening Eyes: The view fades in. Blurry vision clearing up. The ceiling is white. A crack in the plaster.
+Micro-Task: Focus on objects. Vocabulary: die Decke, weiß, das Zimmer.
+07:05 - Sitting Up: Physics interaction. Pulling back the duvet (die Bettdecke). Feeling the cold air.
+Micro-Task: Stand up. Grammar: Imperativ (Steh auf!).
+07:06 - The Floor: Feet touching the cold wooden floor (der Holzboden).
+Micro-Task: Find slippers (die Hausschuhe).
+07:10 - The Mirror: Walking to the bathroom. Looking in the mirror.
+Micro-Task: Identify body parts. Das Gesicht, die Augen, die Haare. Leo appears: "Das bist du." (That is you.)
+07:15 - Brushing Teeth: Picking up the toothbrush (die Zahnbürste). Applying paste (die Zahnpasta).
+Micro-Task: Mimic brushing motion. Vocabulary: putzen, oben, unten, links, rechts.
+07:20 - The Shower: Turning knobs. Hot/Cold symbols.
+Micro-Task: Adjust temperature. Adjectives: heiß, kalt, warm.
+07:30 - Drying Off: Using the towel (das Handtuch).
+Micro-Task: Select correct item from rack.
+07:35 - Getting Dressed: Opening the wardrobe (der Schrank).
+Micro-Task: Choose outfit based on weather icon outside. Das T-Shirt, die Jeans, die Socken.
+07:45 - The Kitchen: Entering the kitchen. Smell of old coffee.
+Micro-Task: Open fridge (der Kühlschrank). Identify items: die Milch, das Ei, der Käse.
+07:50 - Breakfast Prep: Getting a bowl (die Schüssel) and spoon (der Löffel).
+Micro-Task: Pour cereal (die Cornflakes). Pour milk.
+07:55 - Eating: Sitting at the table.
+Micro-Task: Animation of eating. Verb: essen. Leo: "Schmeckt es?" (Does it taste good?)
+08:00 - Cleaning Up: Putting dishes in the sink (das Spülbecken).
+Micro-Task: Turn on tap (der Wasserhahn).
+08:10 - Checking the Door: Looking at the front door (die Haustür). Keys on the hook (der Schlüssel).
+Micro-Task: Take keys. Grammar: Nehmen (ich nehme).
+08:15 - Leaving: Opening the door. Stepping into the hallway.
+Micro-Task: Close door behind. Die Tür schließen.
+VORMITTAG (Mid-Morning) [09:00 – 12:00]
+09:00 - The Stairwell: Walking down stairs (die Treppe). Greeting a neighbor (silent nod for now).
+Micro-Task: Navigate stairs. Vocabulary: hoch, runter, das Stockwerk.
+09:05 - Outside Air: Exiting the building. The sound of traffic.
+Micro-Task: Observe weather. Die Sonne scheint. Es ist bewölkt.
+09:10 - The Street Name: Looking at the blue sign on the corner.
+Micro-Task: Read sign: Berliner Straße. Leo translates: "We are on Berliner Street."
+09:15 - The Bakery (Bäckerei): Approaching the window. Smelling bread.
+Micro-Task: Look at pastries. Das Brot, das Brötchen, der Kuchen.
+09:20 - Entering: The bell rings (Es klingelt).
+Micro-Task: Push door.
+09:21 - The Queue: Standing behind an old lady.
+Micro-Task: Wait mechanic. Patience meter.
+09:25 - The Baker: The baker looks at you. "Bitte?"
+Micro-Task: Point to item. Leo prompts: "Ein Brötchen, bitte."
+09:26 - The Transaction: Handing over coins.
+Micro-Task: Count money. Eins, zwei, Euro.
+09:27 - Receiving Change: Taking the coin.
+Micro-Task: Say "Danke."
+09:30 - Eating on Bench: Sitting on a public bench (die Bank).
+Micro-Task: Eat bread. Lecker.
+09:45 - People Watching: Observing passersby.
+Micro-Task: Identify clothing colors of NPCs. Der Mann trägt einen roten Mantel.
+10:00 - The Supermarket: Entering the Rewe/Edeka simulation.
+Micro-Task: Grab a basket (der Korb).
+10:05 - Aisle 1 (Drinks): Water, Juice, Soda.
+Micro-Task: Select das Wasser. Check label: mit Kohlensäure vs ohne.
+10:10 - Aisle 2 (Fruit): Apples, Bananas.
+Micro-Task: Weigh fruit (die Waage). Numbers: 1, 2, 3 Euro.
+10:15 - The Checkout: Conveyor belt (das Fließband).
+Micro-Task: Place items on belt.
+10:20 - Payment: Card terminal (das Terminal).
+Micro-Task: Insert card. Enter PIN (simulated numbers).
+10:25 - Bagging: Putting items in bag (die Tüte).
+Micro-Task: Organize heavy/light items.
+10:30 - Walking Home: Carrying bags. Weight mechanic slows movement.
+Micro-Task: Navigate back to apartment using landmarks.
+11:00 - Unpacking: Putting food away.
+Micro-Task: Match item to storage location (Milk -> Fridge, Bread -> Cupboard).
+11:30 - Rest: Sitting on the sofa (das Sofa).
+Micro-Task: Relax animation. Energy bar refills.
+11:45 - Phone Notification: A sound.
+Micro-Task: Check phone. Message from Leo: "Gut gemacht heute." (Well done today.)
+12:00 - Lunch Prep: Simple sandwich.
+Micro-Task: Slice bread (schneiden), add cheese (legen).
+(Note: The day continues with afternoon nap, evening walk, dinner preparation, washing dishes, watching TV, brushing teeth again, and sleeping. Total micro-events reach 55 by bedtime.)
+DAY 15: "Der erste Konflikt" (The First Conflict) – A1/A2 Transition
+Theme: Problem Solving & Past Tense Usage.
+Scenario: The player wakes up to find the washing machine is broken and leaking water.
+MORGEN (The Discovery)
+07:30 - Waking Up: Normal routine, but background sound of dripping water is louder.
+07:45 - Bathroom: Floor is wet.
+Micro-Task: Inspect puddle. Vocabulary: nass, das Wasser, der Boden.
+07:50 - The Machine: Opening the washing machine door. Smoke/Steam? No, just water.
+Micro-Task: Identify problem. Die Waschmaschine ist kaputt.
+07:55 - Panic: Leo appears, but stays silent, waiting for player reaction.
+Micro-Task: Express emotion. Oh nein! Was soll ich tun?
+08:00 - Cleanup: Getting towels.
+Micro-Task: Action sequence: Wipe floor. Aufwischen.
+08:15 - Finding Contact: Looking for landlord's number in the binder (der Ordner).
+Micro-Task: Scan text for "Hausmeister" or "Vermieter".
+08:20 - The Phone Call (Simulation): Dialing.
+Micro-Task: Dialogue tree selection.
+Option A: "Hallo." (Too vague)
+Option B: "Die Maschine ist kaputt." (Good)
+Option C: "Es gibt ein Problem mit der Waschmaschine. Das Badezimmer ist voll Wasser." (Perfect A2 target).
+08:25 - The Landlord's Response: Fast speech on phone.
+Micro-Task: Listening comprehension quiz. Did he say "Komme sofort" (Coming immediately) or "Morgen"?
+Result: He says "Morgen." Player must wait.
+VORMITTAG (The Laundromat)
+09:00 - Decision: Cannot wash clothes here. Must go to laundromat (die Waschanlage).
+Micro-Task: Pack dirty clothes into basket.
+09:15 - Navigation: Walking to laundromat (new map zone).
+Micro-Task: Follow map directions using prepositions: Geradeaus, dann links.
+09:30 - Arrival: Laundromat is busy.
+Micro-Task: Social observation. Count free machines.
+09:35 - Interaction: Asking a stranger if a machine is free.
+Micro-Task: Formulate question: "Ist diese Maschine frei?"
+09:40 - The Stranger's Reply: "Ja, aber sie ist noch schmutzig." (Yes, but it's still dirty.)
+Micro-Task: Understand adjective ending -ig. Wait for cleaning.
+09:50 - Loading: Putting clothes in.
+Micro-Task: Vocabulary: einwerfen, das Pulver, der Knopf.
+10:00 - Payment: Inserting coins.
+Micro-Task: Calculate cost. Wie viel kostet das?
+10:05 - Waiting: Sitting in laundromat. Reading a magazine found there.
+Micro-Task: Reading comprehension mini-game (simple sentences).
+10:30 - Small Talk: Stranger asks: "Wohnen Sie hier in der Nähe?"
+Micro-Task: Answer using Dative case: "Ja, ich wohne in der Nähe." / "Nein, ich komme aus..."
+10:45 - Unloading: Wet clothes.
+Micro-Task: Fold clothes (falten).
+11:00 - Return Trip: Walking home with clean laundry.
+Micro-Task: Narrative reflection (Internal monologue): "Heute war ein schwieriger Morgen." (Today was a difficult morning.) - Introduction of Perfekt tense context.
+(Day 15 continues with dealing with the landlord the next day, writing a formal message, and reflecting on the event in a diary entry, cementing the Past Tense grammar.)
+4. SPATIAL PROGRESSION MAP: ZONES & INTERACTIVE OBJECTS
+The world expands radially from the player's bed.
+ZONE 1: DIE WOHNUNG (The Apartment)
+Unlocked: Day 1 (Act I)
+Bedroom:
+Objects: Bed (sleep/save), Alarm Clock (time mechanic), Wardrobe (inventory/customization), Mirror (self-description triggers), Window (weather/day-cycle observation).
+Grammar Triggers: Articles (der/die/das), Colors, Reflexive verbs (sich anziehen, sich kämmen).
+Bathroom:
+Objects: Sink, Toilet, Shower, Towels, Toiletries (Toothbrush, Soap, Shampoo).
+Grammar Triggers: Body parts, Daily routine verbs, Imperatives (Putz deine Zähne!).
+Kitchen:
+Objects: Fridge (food storage), Stove (cooking minigames), Cupboards (categorization), Table (eating/social hub), Trash bin (waste separation mechanic - crucial for German culture!).
+Grammar Triggers: Food vocabulary, Separable verbs (aufstehen, einkaufen, kochen), Accusative case (direct objects of eating).
+Hallway:
+Objects: Front Door (transition trigger), Shoe Rack, Coat Hook, Mailbox (quest delivery).
+Grammar Triggers: Greetings/Goodbyes, Prepositions of place (an, auf, hinter).
+ZONE 2: DER KIEZ (The Neighborhood)
+Unlocked: Day 3 (Act I/II Transition)
+The Street (Straßen):
+Objects: Sidewalk, Crosswalk (traffic light logic), Street Signs (reading practice), Benches, Trash cans.
+Grammar Triggers: Directions, Traffic rules (Modal verbs: müssen, dürfen), Weather descriptions.
+Bäckerei (Bakery):
+Objects: Display Counter, Cash Register, Seating Area, Menu Board.
+Grammar Triggers: Ordering food, Numbers/Prices, Politeness forms (Ich hätte gern...).
+Supermarkt (Grocery Store):
+Objects: Shelves (categorized goods), Scales, Checkout Conveyor, Recycling Bottle Machine (Pfand system).
+Grammar Triggers: Quantities (ein Kilo, eine Flasche), Plurals, Negative articles (kein).
+Park:
+Objects: Trees, Paths, Dog walkers (NPC interactions), Playground.
+Grammar Triggers: Nature vocabulary, Present Continuous context, Casual small talk.
+ZONE 3: DIE STADT (The City Center)
+Unlocked: Day 10 (Act II)
+U-Bahn/Tram Station:
+Objects: Ticket Machines (complex UI), Maps, Turnstiles, Platforms, Trains.
+Grammar Triggers: Destinations, Time/Schedules, Modal Verbs (können, wollen), Two-way prepositions (in, an, zu).
+Bürgeramt (Registry Office):
+Objects: Waiting Number Dispenser, Forms (Anmeldung), Windows/Counters, Stamp pads.
+Grammar Triggers: Formal register (Sie), Official vocabulary (Unterlagen, Geburtsurkunde), Passive voice (Das Formular wird ausgefüllt).
+Doctor's Office:
+Objects: Reception Desk, Waiting Room Magazines, Examination Table.
+Grammar Triggers: Body ailments, Perfect tense (Ich habe mich verletzt), Advice (Sie sollten...).
+ZONE 4: DAS BERUFSLEBEN & KULTUR (Professional & Cultural Sphere)
+Unlocked: Day 40+ (Act III/IV)
+Office/University:
+Objects: Computers, Meeting Tables, Whiteboards, Coffee Machines (social hubs).
+Grammar Triggers: Professional email structure, Subjunctive II (Könnten Sie...), Complex sentence structures (weil, obwohl, dass).
+Restaurant/Bar:
+Objects: Menus, Wine lists, Bill folders.
+Grammar Triggers: Idioms, Cultural nuances (tipping, toast making), Abstract opinions.
+Lawyer/Contract Settings:
+Objects: Contracts, Pens, Legal texts.
+Grammar Triggers: Genitive case, Nominalization, Precise legal terminology.
+5. MASTER CURRICULUM MATRIX: THE PEDAGOGICAL ROADMAP
+This matrix maps the narrative progression directly to CEFR standards.
+ACT
+STORY PHASE
+ESTIMATED DAYS
+CEFR LEVEL
+CORE STORY EVENT
+PRIMARY GERMAN TARGET (Grammar & Vocab)
+MICRO-EVENT COUNT
+ACT I
+Das Erwachen
+(The Awakening)
+Days 1–10
+A0 ➔ A1
+Survival in the Flat.
+Learning to exist, eat, and sleep. First contact with neighbors.
+Nouns: Gender (Der/Die/Das), Plurals.
+Verbs: Sein, Haben, regular present tense.
+Vocab: House, Body, Food, Numbers 1-20.
+Phrase: "Was ist das?", "Ich heiße...", "Ich möchte..."
+50/day
+(High repetition of basic actions)
+ACT II
+Mein Kiez
+(My Neighborhood)
+Days 11–30
+A1 ➔ A2
+Logistics & Movement.
+Navigating the city, buying tickets, handling minor emergencies (broken items, lost keys).
+Grammar: Modal Verbs (können, müssen), Perfekt Tense (Past), Accusative/Dative Prepositions.
+Vocab: Transport, Shopping, Directions, Time/Dates.
+Skill: Asking questions, understanding fast speech.
+45/day
+(Varied interactions, introduction of failure states)
+ACT III
+Die Stadt & Ämter
+(City & Offices)
+Days 31–60
+A2 ➔ B1
+Bureaucracy & Relationships.
+Registering residence, job hunting, dating, resolving conflicts with landlords/friends.
+Grammar: Nebensätze (weil, dass, wenn), Präteritum (narrative past), Reflexive Verbs, Adjective Endings.
+Vocab: Official documents, Emotions, Work terms, Housing contracts.
+Skill: Writing emails, arguing politely, expressing opinions.
+40/day
+(Complex dialogue trees, multi-step quests)
+ACT IV
+Das Wahre Leben
+(Real Life)
+Days 61–90+
+B1 ➔ B2/C1
+Mastery & Nuance.
+Professional debates, understanding humor/sarcasm, handling legal disputes, deep cultural integration.
+Grammar: Konjunktiv II (Hypotheticals), Passive Voice, Genitive, Fixed Prepositions.
+Vocab: Idioms (Redewendungen), Abstract concepts, Politics, Culture, Dialect awareness.
+Skill: Persuasion, Negotiation, Storytelling.
+30/day
+(High density of linguistic nuance, less hand-holding)
+SPACED REPETITION MECHANIC: "THE ECHO SYSTEM"
+Day 1: Player learns der Apfel (the apple).
+Day 2: Player sees an apple in the kitchen. Leo asks: "Was ist das?" (Recall).
+Day 3: Player must buy an apple at the market. "Ich kaufe einen Apfel." (Case application).
+Day 5: Player tells a friend about what they ate yesterday. "Ich habe einen Apfel gegessen." (Tense application).
+Day 10: Player reads a news headline about apple prices. "Die Apfelpreise steigen." (Compound nouns/Abstract context).
+This system ensures that no vocabulary is ever learned in isolation. Every word is anchored in a physical space, a social interaction, and a temporal context, mimicking the natural acquisition of a child growing up in a German-speaking environment. The "boring" details of daily life become the very engine of fluency.

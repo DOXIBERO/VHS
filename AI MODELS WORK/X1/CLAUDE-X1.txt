@@ -1,0 +1,253 @@
+# ECHOKAMMER
+### *(The Echo Chamber)*
+
+---
+
+## THE STORY & LORE
+
+You wake up with no memory, standing in a stone antechamber lit by a single shaft of light. You are not human — you are made of soft clay-like material, faintly luminous, jointed like a puppet. Around your wrist is a cracked wooden tag with one word burned into it: **"Zeuge"** — *Witness.*
+
+A voice — layered, echoing, speaking in fragmented German — tells you this: long ago, a Sprachgeist (a "Language Ghost") lived in these chambers. It spoke every word that was ever spoken in this land, and when it died, its voice shattered into echoes that now haunt each room, repeating fragments of German endlessly, waiting for someone to *understand* them and set them free.
+
+You are a **Klangbildner** — a "Sound-Shaper" — a being sculpted from the residual clay of the Sprachgeist itself. Your body literally resonates with correctly spoken/matched German. Each room holds one trapped echo. To free it, you must reconstruct the meaning it lost — by physically building, matching, breathing, weighing, or sculpting the German concept back into existence using the boards and slots embedded in the walls.
+
+When an echo is freed, it doesn't just open a door — **it becomes a physical companion object** that floats behind you for the rest of the game (a tiny glowing rune-bird, a floating syllable-lantern, a humming number-cube), and these accumulate visibly on your body/orbit like a growing constellation of mastered language. By the final room, you are surrounded by a swarm of everything you've learned — a visual, physical representation of your entire A0 vocabulary orbiting you like a solar system.
+
+The final room reveals: **you are not trapped in the Sprachgeist's tomb — you ARE the reborn Sprachgeist**, rebuilt one word at a time by the player. The last act is you opening your mouth and speaking a full, complete German sentence for the first time — the chamber shatters into light, and you step out into a sunlit German village, fully "born."
+
+---
+
+## NUMBER OF ROOMS: **14 Rooms**
+
+Structured to cover the complete A0 curriculum in clean thematic clusters, each escalating in complexity:
+
+| # | Room | Core A0 Concept |
+|---|------|-----------------|
+| 1 | Der Spiegelsaal | Greetings & Introducing Yourself |
+| 2 | Die Zählkammer | Numbers 0–20 |
+| 3 | Der Farbgarten | Colors & Basic Adjectives |
+| 4 | Die Ahnenhalle | Family Members |
+| 5 | Der Körperbrunnen | Body Parts |
+| 6 | Die Speisekammer | Food & Drink |
+| 7 | Das Tierlabyrinth | Animals |
+| 8 | Der Artikelaltar | Der/Die/Das (Gendered Articles) |
+| 9 | Die Zeitmühle | Days, Months, Telling Time |
+| 10 | Der Richtungsturm | Prepositions & Directions |
+| 11 | Die Wettergrotte | Weather |
+| 12 | Der Verbmotor | Basic Verbs & Conjugation (sein/haben) |
+| 13 | Das Fragezelt | Question Words (W-Fragen) |
+| 14 | Der Klangthron | Final Synthesis — Full Sentence Construction |
+
+---
+
+## ROOM-BY-ROOM BREAKDOWN
+
+---
+
+### **ROOM 1 — Der Spiegelsaal** *(The Mirror Hall)*
+**Concept:** Greetings, "Ich heiße...", "Wie geht's?"
+
+**Wall Slots & Boards:**
+The back wall has a tall, cracked **mirror-shaped slot** — not a picture slot, but literally shaped like a standing mirror frame. Around it are five small circular slots containing partial reflections: a waving hand, a sun (morning), a moon (evening), a heart (goodbye), a question mark (how are you). Boards are circular glass-textured discs, each with a German greeting phrase etched in fogged glass ("Guten Morgen," "Guten Abend," "Wie geht's?", "Tschüss," "Ich heiße...").
+
+**🆕 UNIQUE MECHANIC: "The Breath Mirror"**
+The central mirror slot is empty — it shows YOUR character's reflection, but foggy and faceless. The player must **breathe onto the mirror** (a simple swipe-up gesture, like wiping condensation) which reveals a *specific time-of-day lighting* randomly generated each playthrough (morning gold light, evening blue light, etc.). Based on what lighting appears, the player must grab the CORRECT glass disc board (Guten Morgen vs. Guten Abend) and press it into the mirror slot — and as they do, **their character's clay face in the reflection actually forms a mouth and speaks the phrase aloud**, and the fog clears to reveal their own custom face for the first time.
+
+This is original because it ties German greeting-context (time-sensitive language) to an environmental, ever-changing puzzle rather than a static matching game — the mirror is *alive* and reactive, and mastering it means understanding *when* to use each greeting, not just what it means.
+
+**Room Transformation:** As each disc locks in, the mirror's crack heals slightly. On the final correct phrase ("Ich heiße...") the player's clay reflection speaks their name (auto-filled from profile), the entire mirror wall swings outward like a door, and shards of mirror-glass rain upward (reverse gravity, Fall-Guys bounce-physics) to form a glittering arch to Room 2.
+
+---
+
+### **ROOM 2 — Die Zählkammer** *(The Counting Chamber)*
+**Concept:** Numbers 0–20
+
+**Wall Slots & Boards:**
+The room is a circular pit with a **suspended stone pendulum/scale** hanging from the ceiling. The walls have 21 small square slots in a spiral going upward (0 to 20), each currently dark. Boards are heavy-looking stone cubes, each stamped with a numeral AND the German word (e.g., "7 — sieben"), stored in a rack at the entrance.
+
+**🆕 UNIQUE MECHANIC: "Gravity Counting"**
+This is not a matching game — it's a **physical weight-balancing puzzle**. The giant pendulum/scale in the center has two platforms. The room periodically drops a cluster of bouncing physical objects (glowing pebbles, Fall-Guys-style squishy and bouncy) onto one platform — say, 12 pebbles land with a clatter. The player must physically run to the number rack, grab the stone cube labeled **"zwölf"** (not "12" — they must recognize the WORD, since the numeral is small and secondary), and carry it (weighted, slows their run slightly, adding tactile physicality) to slot it into the spiral wall at the correct position. Placing it correctly causes the pendulum to rebalance and swing, launching the player character (ragdoll bounce-physics) up to the next spiral platform to await the next number drop.
+
+This reinvents number-learning as a live physical counting-and-carrying task under mild time pressure, using scale/weight/gravity as the whole mechanic — completely different from digit-matching or flashcards.
+
+**Room Transformation:** At "zwanzig" (20), the pendulum achieves perfect balance, freezes mid-air, and the whole spiral staircase of numbers lights up sequentially like a countdown, blasting the ceiling open into Room 3.
+
+---
+
+### **ROOM 3 — Der Farbgarten** *(The Color Garden)*
+**Concept:** Colors, basic adjectives (groß/klein, schön/hässlich)
+
+**Wall Slots & Boards:**
+An indoor "garden" of stone flower stems jut from the floor, each topped with an EMPTY flower-shaped slot (colorless, grey, wilted-looking). The walls have circular "paint pool" slots. Boards are small floating orbs of pure pigment (literally colored light-globes) drifting slowly around the room, each labeled with the German color word.
+
+**🆕 UNIQUE MECHANIC: "Petal Painting via Slingshot"**
+The player uses a **cute bouncy slingshot mechanic** (pull-back-and-release, physical arc trajectory) to catch a drifting color-orb and launch it at a wilted grey flower. But here's the twist: each flower has a small German adjective plaque beside it ("groß" / big, "klein" / small, "schön" / pretty) — the SIZE of the flower stem determines which color orb will physically fit and "bloom" it (small orbs bounce off big flowers; only correctly-sized orb+flower combos stick). The player must read "eine große rote Blume" (a big red flower) spoken by an ambient garden-ghost voice, then identify BOTH the correct color orb AND correct-sized flower stem, slingshot it, and watch the flower physically bloom open with squishy bounce animation, petals unfurling like a stretchy toy.
+
+This merges color vocabulary AND adjective-noun agreement into a single skill-shot physics mechanic no other language app has attempted — it's part mini-golf, part gardening, part vocabulary.
+
+**Room Transformation:** Once all garden stems bloom, they release a wave of colored pollen that swirls upward and dissolves the ceiling into a rainbow-colored archway into Room 4.
+
+---
+
+### **ROOM 4 — Die Ahnenhalle** *(The Ancestor Hall)*
+**Concept:** Family members (Mutter, Vater, Bruder, Schwester, etc.)
+
+**Wall Slots & Boards:**
+A long hallway lined with **empty oval picture frames** embedded IN the wall at varying heights (child-height to adult-height), like a family portrait gallery with all the portraits missing. Boards are cute claymation-style portrait busts (a bouncy, squishy little grandmother figure, a father figure, etc.) sitting on pedestals.
+
+**🆕 UNIQUE MECHANIC: "The Growing Family Tree (Vertical Stacking)"**
+Instead of matching pictures to labels, the player must **physically stack** the family figures like a precarious tower, and the STACKING ORDER itself teaches relational vocabulary. A voice states a relationship riddle: *"Die Mutter meines Vaters"* (my father's mother = grandmother). The player must pick up the correct bouncy figure and physically place it into the correctly-HEIGHTED frame in the wall — frames are ordered by generation (grandparents highest/oldest at top, children lowest at bottom), so understanding generational vocabulary (Groß-, as in Großmutter) determines whether your figure launches high or stays low via a spring-platform the player stands on to reach each frame. Placing the wrong figure in the wrong height slot causes it to comically boing back out.
+
+This is wholly original: it teaches family vocabulary AND relational logic (whose mother, whose brother) through VERTICAL PHYSICAL PLACEMENT and jump-height-puzzle mechanics rather than flat matching.
+
+**Room Transformation:** When the full family tree is assembled top-to-bottom, all frames illuminate simultaneously and the entire portrait wall folds down like a drawbridge, forming a ramp up into Room 5.
+
+---
+
+### **ROOM 5 — Der Körperbrunnen** *(The Body Fountain)*
+**Concept:** Body parts (Kopf, Hand, Fuß, Auge, etc.)
+
+**Wall Slots & Boards:**
+Center of the room: a large dry stone fountain shaped like a curled-up humanoid statue, MISSING all its body parts (holes where head, hands, feet should be). The walls have small slots holding floating water-orbs, each containing a labeled, squishy, bouncy body-part board (a cute wobbly hand, a big cartoon eye, etc.)
+
+**🆕 UNIQUE MECHANIC: "Puppet Assembly via Motion Mimicry"**
+This is a full-body (or touchscreen-gesture) mimicry game. The fountain statue's empty socket lights up (say, the head socket), and the ambient voice says **"der Kopf."** The player must perform a matching PHYSICAL GESTURE on their own character on-screen — tilting/swiping their character's head, or on mobile, physically tilting the PHONE itself (using the gyroscope) to make their clay character nod/tilt — which "activates" the correct floating body-part orb, causing it to fly across the room and snap into the fountain statue's socket with a satisfying squelchy-bouncy sound. Getting body parts in the wrong socket causes them to slide off comically.
+
+This reinvents body-part vocabulary through DEVICE-GYROSCOPE / gesture-based interaction rather than tapping — genuinely novel for a mobile language game, making "learning the word for hand" require you to physically move your hand-controlled character.
+
+**Room Transformation:** When the statue is fully assembled, the fountain roars to life, water bursts upward (a colorful, non-realistic magical water/light hybrid), and the water column carries the player up and OUT through a new opening in the ceiling into Room 6.
+
+---
+
+### **ROOM 6 — Die Speisekammer** *(The Pantry Chamber)*
+**Concept:** Food & drink vocabulary
+
+**Wall Slots & Boards:**
+A cozy, warmly-lit pantry with wall shelving carved directly into stone — recessed circular "plate slots" at a long banquet table built into the wall. Boards are adorable bouncy squash-and-stretch food items (a wobbling loaf of bread, a jiggly apple, a fizzy drink) sitting in a "cart" that trundles around the room on a track.
+
+**🆕 UNIQUE MECHANIC: "The Conveyor Confession Booth"**
+A conveyor belt (food-cart track) circles the room continuously carrying ALL the food boards past the player. The player does NOT grab freely — instead, a hungry stone "guest" statue at the table periodically WHISPERS a craving in German ("Ich möchte... Brot" — I would like... bread), and the player must TIME A GRAB — like a rhythm game — reaching out and snatching the correct food item off the moving conveyor belt at the right moment as it passes, then physically SERVING it by placing it onto the guest's empty plate slot. Grab the wrong item and it splats comically; grab correctly and the stone guest's face brightens and they take a satisfied clay-bite.
+
+This merges food vocabulary with RHYTHM-GAME TIMING and a "serving" fantasy — nobody has combined a conveyor-belt rhythm mechanic with vocabulary recall this way. It also naturally teaches "Ich möchte" (I would like) as a functional phrase, not just a word.
+
+**Room Transformation:** After serving 8-10 correct food items, the guest statues around the table all "wake up," clap in unison (a joyful, bouncy group animation), and the pantry wall behind them crumbles into a doorway revealing Room 7.
+
+---
+
+### **ROOM 7 — Das Tierlabyrinth** *(The Animal Labyrinth)*
+**Concept:** Animals & the verb "sehen" (to see) / basic sentence "Ich sehe einen Hund"
+
+**Wall Slots & Boards:**
+A maze of low, moveable stone partitions (the room reconfigures itself) with silhouette-shaped slots on walls — animal-shaped shadow outlines with nothing filling them. Boards are bouncy plush-textured animal figures that physically wander/patrol the maze on their own (simple AI paths), each occasionally "calling out" their sound (a Hund barks, a Katze meows).
+
+**🆕 UNIQUE MECHANIC: "Sound-Hunting via Echolocation Ripples"**
+The player cannot SEE the animals directly (maze walls block sightlines) — instead, they hear a German animal name spoken ("Der Hund") and must send out a **visible sonar ripple** (a tap-and-hold that emits an expanding ring pulse through the maze, like a cute glowing shockwave) which, when it PHYSICALLY TOUCHES a wandering animal board behind the walls, makes that animal bark/emit its sound and briefly glow through the stone (silhouette visible through walls). The player then must NAVIGATE the maze physically to intercept that specific glowing animal and herd/bump it (gentle bouncy collision, like a Fall Guys body-check) toward its matching silhouette slot on the outer wall.
+
+This is a completely unique fusion of echolocation-sonar mechanics with animal-vocabulary hide-and-seek — nothing in language learning has done "ping the maze to find the word" before.
+
+**Room Transformation:** Once all silhouettes are filled, the maze partitions retract INTO the floor (satisfying mechanical stone-grinding animation), revealing a straight path to a large arched doorway into Room 8.
+
+---
+
+### **ROOM 8 — Der Artikelaltar** *(The Article Altar)*
+**Concept:** Der/Die/Das — grammatical gender (the single hardest A0 concept)
+
+**Wall Slots & Boards:**
+A circular ceremonial room with THREE giant stone pedestal-altars in primary colors (blue for der/masculine, red for die/feminine, green for das/neuter), each with a large ring-shaped slot on top. The walls hold dozens of small floating nouns-boards (Tisch, Katze, Buch, Auto, etc.) drifting like fireflies.
+
+**🆕 UNIQUE MECHANIC: "The Sorting Storm (Wind Tunnel Physics)"**
+This is the game's signature grammar mechanic. The player stands in the center as firefly-noun-boards drift chaotically. Suddenly, a WIND begins (visualized as swirling debris/leaf-physics) and the fireflies start getting SUCKED toward the player rapidly, one at a time, in randomized order. The player has a split-second to physically **swat/redirect** each floating noun (a swipe gesture, satisfying bouncy paddle-physics like air hockey) toward ONE of the three colored altars based on its gender. A correct swat sends the noun-board flying in a perfect arc into its pedestal's ring slot (satisfying "clink"); a wrong swat causes the noun to bounce off an invisible barrier and get sucked back into the chaos to try again later, with visible frustration animation.
+
+This transforms the dreaded, purely-memorization task of German gender into a fast-paced REFLEX SORTING mechanic under pressure — like a physical, arcade-style "Fruit Ninja meets air hockey" built entirely around der/die/das, something absolutely no existing app has gamified this way.
+
+**Room Transformation:** As each altar fills to capacity, it begins glowing its color and humming. When all three are full, they simultaneously fire beams of blue/red/green light into the ceiling, which combine into WHITE light, and the entire domed ceiling opens like a camera aperture into Room 9.
+
+---
+
+### **ROOM 9 — Die Zeitmühle** *(The Time Mill)*
+**Concept:** Days of the week, months, telling time
+
+**Wall Slots & Boards:**
+A room built around a massive, slowly-rotating stone WATERWHEEL/MILL embedded in the wall, its paddles each bearing an empty slot (7 paddles for days of the week). A secondary smaller inner wheel has 12 slots (months). Boards are small sundial-like discs.
+
+**🆕 UNIQUE MECHANIC: "Feed the Mill (Momentum Timing)"**
+The wheel is ALREADY TURNING continuously — the player cannot stop it. Instead, they must grab the correct day-board (e.g., "Montag") from a floating rack and **THROW it with correctly-timed momentum** (a pull-back-release throwing gesture, factoring in the wheel's rotation speed) so it lands into its matching empty paddle-slot AS THAT PADDLE PASSES BY, like a skill-based timing challenge (similar-feeling to ring-toss but requiring you to calculate rotational timing). Successfully seating a day-board causes that paddle to lock and glow, gradually slowing the wheel's rotation (physically getting easier as you succeed, a clever difficulty curve), until by the 7th correct day it's nearly stationary and even a beginner can finish the final "Sonntag" placement with confidence — a built-in accessibility ramp.
+
+This is original because it's the first language mechanic to use ROTATIONAL MOMENTUM and physics-based timing-throws as the core loop, and cleverly ties "the wheel slowing down as you learn" to the psychological feeling of mastery.
+
+**Room Transformation:** Once fully seated, the wheel stops perfectly upright, its 7 paddles glowing like a sunburst, and a floor hatch beneath it opens downward (a fun reversal — descending instead of ascending) into Room 10.
+
+---
+
+### **ROOM 10 — Der Richtungsturm** *(The Direction Tower)*
+**Concept:** Prepositions of place (in, auf, unter, neben, vor, hinter) & basic directions (links, rechts, geradeaus)
+
+**Wall Slots & Boards:**
+A tall vertical shaft (climbing straight up) with a single small bouncy "seed" or "crystal" board that must travel from bottom to top. The walls have protruding stone shelves/ledges at various positions (some IN alcoves, some UNDER ledges, some BEHIND pillars, some NEXT TO torches) — each labeled with a German preposition plaque.
+
+**🆕 UNIQUE MECHANIC: "Sculpting the Path with Voice-Commanded Platforms"**
+This is a vertical platforming puzzle where the platforms DON'T EXIST until the player names them correctly. The player looks up the shaft and sees only a few visible ledges. A voice instructs: *"Springe auf den Tisch"* (jump ONTO the table) or *"Geh unter die Brücke"* (go UNDER the bridge). The player must select the correct preposition-board (auf, unter, neben, etc.) from a wheel-menu and physically PLACE it against the wall at their current height — and doing so causes a NEW physical platform to bouncily materialize (squash-stretch pop-in animation) in the exact spatial position that preposition describes (auf = platform appears above/on top of the previous one, unter = appears below, hinter = appears behind/further back in Z-space). The player then climbs onto their own newly-spawned platform and repeats, ascending the entire tower using platforms THEY summoned by correctly using spatial grammar.
+
+This is genuinely unprecedented: prepositions are usually the most abstract, hardest-to-visualize grammar concept in any language, and here the player LITERALLY BUILDS THEIR CLIMBING PATH out of correct preposition usage — spatial grammar becomes spatial platforming.
+
+**Room Transformation:** Reaching the top of the shaft, the final "oben" (above) platform bursts through a stone ceiling cap like breaking through a shell, launching the player into Room 11.
+
+---
+
+### **ROOM 11 — Die Wettergrotte** *(The Weather Grotto)*
+**Concept:** Weather vocabulary (Es regnet, Es ist sonnig, kalt/warm)
+
+**Wall Slots & Boards:**
+A grotto with a domed ceiling that acts as a "sky" — currently blank grey stone. The walls have 6 recessed slots shaped like weather-symbol cutouts (sun, cloud, raindrop, snowflake, lightning bolt, wind swirl). Boards are squishy, bouncy weather-orbs that respond to TILT.
+
+**🆕 UNIQUE MECHANIC: "The Living Snow Globe"**
+The entire room IS a giant snow-globe that the player can physically TILT (using phone gyroscope or click-drag on desktop). Tilting the room causes physics-simulated weather particles (rain, snow, leaves for wind) to slosh and swirl realistically inside the dome, Fall-Guys-bouncy-but-grounded-in-real-fluid-physics. A voice announces a weather phrase ("Es schneit" — it's snowing), and the player must TILT THE ENTIRE ROOM in the correct way to physically GENERATE that weather inside the globe (tilt sharply = wind swirls form; tilt and hold upside-down-ish = "rain" pools flip to "fall"; a specific gentle rocking = snow drifts) — essentially performing a physical charade WITH THE ROOM ITSELF to conjure the weather, then grab the matching weather-orb board (which only becomes grabbable once the correct weather is actively occurring) and slot it into its ceiling-dome cutout.
+
+Nobody has made the ENTIRE ROOM a tiltable snow-globe puzzle tied to weather vocabulary — this is a genuinely new spatial-physics interaction merging environmental storytelling with gyroscope control.
+
+**Room Transformation:** As all 6 weather symbols lock into the dome, the grey stone ceiling literally transforms into a real, animated sky matching a beautiful sunset, and it PEELS OPEN like flower petals to reveal Room 12 above.
+
+---
+
+### **ROOM 12 — Der Verbmotor** *(The Verb Engine)*
+**Concept:** Basic conjugation of sein (to be) and haben (to have) across ich/du/er-sie-es/wir/ihr/sie
+
+**Wall Slots & Boards:**
+A steampunk-esque chamber with a large stone/brass ENGINE embedded in the wall — six gears of different sizes, each gear having a slot for a "pronoun-cog" (ich, du, er/sie/es, wir, ihr, sie) and a corresponding output slot for a "verb-piston" (bin, bist, ist, sind, seid, sind). Boards are interlocking gear-shaped pieces.
+
+**🆕 UNIQUE MECHANIC: "The Conjugation Engine (Gear-Meshing Logic Puzzle)"**
+This is a mechanical gear-fitting puzzle where GEAR SIZE AND TEETH-COUNT must physically match. Each pronoun-cog has a specific number of teeth (ich = 1 tooth, du = 2 teeth, er/sie/es = 3 teeth, wir = 4 teeth, ihr = 5 teeth, sie/Sie = 6 teeth — arbitrary but consistent internal logic), and the player must find the verb-piston gear with the MATCHING teeth-count to mesh properly (a wrong pairing causes the gears to grind, spark, and jam with a comedic shudder — visually teaching "these don't fit together" as a metaphor for grammatical incorrectness). Once the player correctly pairs all 6 pronoun-cogs with their matching verb-pistons for "sein," they physically CRANK a large lever (repeated pull gesture) to power the engine, and it runs smoothly, chugging and steaming happily. Then the whole puzzle repeats with a second, more complex gear-set for "haben," layered onto the SAME engine, now requiring the player to route pairs through a slightly more complex gear train.
+
+This transforms rote conjugation memorization into TACTILE MECHANICAL ENGINEERING — teeth-matching as a metaphor for grammatical agreement is an entirely new conceptual bridge between mechanics and grammar.
+
+**Room Transformation:** When fully cranked and running, the engine's steam output blasts a cloud that fills the room, and when it clears, an entire new wall section has rotated 180° (like a hidden rotating bookshelf) revealing Room 13.
+
+---
+
+### **ROOM 13 — Das Fragezelt** *(The Question Tent)*
+**Concept:** W-Fragen (question words: Wer, Was, Wann, Wo, Warum, Wie)
+
+**Wall Slots & Boards:**
+A cozy, tent-like circular room (fabric-textured stone, warm lantern light) with 6 lantern-shaped slots hanging from a central pole, currently unlit. Boards are small glowing "firefly-lanterns," each humming a question word.
+
+**🆕 UNIQUE MECHANIC: "The Interrogation Campfire (Answer-Bait Fishing)"**
+In the center sits a small, shy, adorable clay creature (a "Wissensgeist" / knowledge-spirit) who will only answer questions if asked correctly. The player selects a lantern (say, "Wo?" — where?) and must literally CAST IT like a fishing line (pull-back, arc-throw physics, satisfying bouncy plop) toward the creature. If the lantern-question is contextually appropriate to "reel in" a specific truth (the creature holds 6 hidden facts about itself, each answerable by exactly one W-word — its location, its name, its age/time, its reason for being there, its method/feeling, its identity), the line "catches" and the player reels (repeated pull gesture) the creature's glowing answer-orb back across the room and into a corresponding wall-slot ANSWER frame beside the lantern rack. Throwing the wrong question-type lantern at the creature causes it to shake its head "no" and duck away, resetting that attempt.
+
+This is a wholly original "fish for the correct answer using the correct question word" mechanic — turning abstract question-word usage into a literal fishing/reeling minigame with a narrative payoff (you're learning about this creature as you learn the grammar).
+
+**Room Transformation:** Once all 6 W-questions successfully "catch" their answers, the shy creature transforms — it grows, brightens, and reveals itself as a guide spirit who physically tears open the tent fabric wall with glowing hands, revealing the final room.
+
+---
+
+### **ROOM 14 — Der Klangthron** *(The Throne of Sound)* — FINALE
+**Concept:** Full sentence synthesis — combining EVERYTHING learned into complete A1-ready sentences
+
+**Wall Slots & Boards:**
+A grand circular throne room. All 13 previous companion-orbs (the freed echoes) now visibly orbit the player in a glowing constellation. The back wall has ONE enormous slot shaped like an open mouth/speech-bubble. All the room's individual board-types (number cubes, color orbs, gender-altars in miniature, verb-gears, etc.) are present as small tokens on floating pedestals encircling the room.
+
+**🆕 UNIQUE MECHANIC: "The Constellation Sentence-Forge"**
+This is the emotional and mechanical capstone. The player must construct a complete sentence (e.g., "Ich bin acht Jahre alt und ich habe einen braunen Hund" — I am eight years old and I have a brown dog) by PHYSICALLY GRABBING their own orbiting companion-echoes (which have been floating around them this entire game) one at a time, in correct grammatical order, and PLACING them into a floating sequence-line that hovers in front of the giant mouth-slot — like assembling beads on a necklace made of light, where each bead is a piece of language you personally unlocked in an earlier room. As each companion is placed correctly, it dims from "orbiting memory" to "spoken word," visually flying into the giant mouth-slot and causing a soundwave-ripple to pulse outward.
+
+This finale is original because it repurposes EVERY PREVIOUS ROOM'S REWARD OBJECT as the raw material for the final puzzle — there is no new vocabulary here, only synthesis, and the player is literally disassembling their own achievement-constellation to build fluency, a deeply satisfying full-circle mechanic no other game structure achieves.
+
+**Room Transformation:** When the sentence is fully and correctly forged, the giant mouth-slot LIGHTS UP and the entire throne room's ceiling and walls dissolve into pure golden particle light (a soft, joyous, non-violent "explosion" of bouncy light-confetti). The character is revealed standing in an open, sunlit German village square, full color, fully real, surrounded by warmly animated NPCs who greet them BY NAME using the exact phrase learned in Room 1 — closing the narrative loop perfectly. Text appears: *"Du bist bereit für A1."* (You are ready for A1.)

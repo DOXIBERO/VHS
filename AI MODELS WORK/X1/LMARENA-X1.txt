@@ -1,0 +1,683 @@
+
+
+# ECHOKAMMER
+### *The Game Where Language Literally Builds the World*
+
+---
+
+## I. THE STORY & LORE
+
+### THE MYTH OF THE SPRACHGEIST
+
+You are **Stumm** — a small, round, marshmallow-soft creature with enormous curious eyes and stubby legs. Stumm has no mouth. Stumm has never spoken a word. Stumm was born in **Die Stille** (The Silence) — an infinite void of white nothing.
+
+One day, a crack appears in the void. A single sound leaks through: *"Hallo."*
+
+The sound materializes into a golden thread that pulls Stumm forward into a stone doorway — the entrance to **Der Echoturm** (The Echo Tower), an ancient structure built by a forgotten civilization called **Die Sprecher** (The Speakers). The Sprecher believed that *language is architecture* — that every word, once truly understood, becomes a physical brick in reality. They built the tower word by word, room by room. But the tower has gone silent. The rooms have emptied. The words have fallen off the walls, and the building is collapsing inward.
+
+A spectral guide named **Klang** (Sound) — a floating, shimmering wisp made of visible sound waves — appears and tells Stumm:
+
+> *"Each room is a frozen sentence the world forgot. Put the words back. Speak the rooms alive. Climb the tower. And at the top... I will give you a mouth."*
+
+**The emotional engine:** Stumm is learning German not as "study" but as a desperate, beautiful act of *earning a voice for the first time.* Every word learned is a word closer to being able to speak. The player isn't studying — they're *becoming someone who can finally talk.*
+
+As rooms are solved, Stumm's body subtly changes — faint glowing lines appear around where a mouth would be, growing brighter and more defined with each room completed. By the final room, the mouth fully forms.
+
+---
+
+## II. THE A0 CURRICULUM ARCHITECTURE
+
+The A0 level covers everything needed *before* A1: the absolute foundations. I've mapped the complete pre-A1 curriculum into **18 rooms** across **4 floors** of the tower.
+
+### FLOOR STRUCTURE:
+
+| Floor | Rooms | Theme |
+|-------|-------|-------|
+| **Keller** (Basement) | Rooms 1–4 | *The Alphabet of Existence* — Sounds, greetings, numbers, colors |
+| **Erdgeschoss** (Ground Floor) | Rooms 5–9 | *The Self & Others* — Pronouns, introductions, family, body, feelings |
+| **Erste Etage** (First Floor) | Rooms 10–14 | *The World of Things* — Nouns, articles, food, animals, objects, rooms |
+| **Dachboden** (Attic) | Rooms 15–18 | *The Engine of Meaning* — Verbs, sentence structure, questions, time |
+
+---
+
+## III. ROOM-BY-ROOM BREAKDOWN
+
+---
+
+# 🏚️ FLOOR ONE: KELLER (Basement)
+*"Before you can speak, you must learn to hear."*
+
+The basement rooms are dark, damp, with rough stone walls lit by bioluminescent moss. The atmosphere is womb-like — you are being born into language.
+
+---
+
+## ROOM 1: DIE LAUTKAMMER (The Sound Chamber)
+
+**A0 Concept:** The German Alphabet & Phonetics — all 30 letters (including ä, ö, ü, ß) and their specific German pronunciations.
+
+### THE WALL:
+The room is circular. The wall is a continuous ring of **30 carved stone alcoves** arranged in a spiral from floor to ceiling. Each alcove is shaped like a different abstract mouth position (lips rounded, tongue forward, jaw open, etc.) and has a German letter carved above it. The alcoves are dark and silent.
+
+### THE BOARDS:
+Scattered on the floor are **30 translucent crystal tablets**, each containing a trapped, visible sound wave — a unique animated waveform pattern. They glow faintly and hum when Stumm gets near them.
+
+### 🎮 THE MECHANIC: RESONANZSKULPTUR (Resonance Sculpting)
+
+**The invention:** The player doesn't just "match" sounds — they must **physically sculpt sound waves** to fit the mouth-shaped alcoves.
+
+Here's how it works:
+
+1. Stumm picks up a crystal tablet. The trapped sound wave inside begins playing its German letter sound on loop (e.g., the German "R" — that throaty, uvular sound).
+
+2. The player sees the sound wave visualized as a **3D malleable ribbon of light** floating above the tablet. It has shape, amplitude, peaks, valleys.
+
+3. Each mouth-shaped alcove on the wall has a **specific 3D cavity profile** — like a lock. The sound wave ribbon must be **pinched, stretched, and bent** by the player's fingers to match the cavity shape.
+
+4. **Here's the genius part:** The shape of the wave *directly corresponds to mouth position*. When the player stretches the wave wider, the sound shifts (e.g., "U" becomes "Ü" — the wave gets tighter and more forward). The player is *hearing* the phonetic difference as they sculpt. They're literally **molding pronunciation with their hands.**
+
+5. When the wave shape matches the alcove cavity, the tablet slides in with a satisfying **CHUNK**, the alcove lights up, and the stone mouth *animates* — the carved lips/tongue move to demonstrate the correct mouth position for that letter, while the perfected sound resonates through the room.
+
+6. **Combo bonus:** If the player slots 3 letters consecutively that form a real German sound cluster (like SCH, CH, EI), the three alcoves link with golden veins and produce the combined sound — teaching phonetic blending organically.
+
+### ROOM TRANSFORMATION:
+As all 30 alcoves fill, the spiral of mouths begins speaking in sequence — the full alphabet echoes upward like a chant. The ceiling, which was solid stone, **cracks open** to reveal it was a giant stone mouth all along. The jaw drops open, forming a ramp to Room 2. Stumm walks *into* the mouth and up into the next room.
+
+---
+
+## ROOM 2: DER HALLRAUM (The Echo Hall)
+
+**A0 Concept:** Basic Greetings & Farewells — Hallo, Guten Morgen, Guten Tag, Guten Abend, Gute Nacht, Tschüss, Auf Wiedersehen, Bitte, Danke, Entschuldigung.
+
+### THE WALL:
+A long rectangular corridor. The two facing walls are made of **polished dark wood, like a concert hall.** On the left wall: **10 recessed portrait-sized slots** with carved timestamps and atmospheric cues (a sunrise icon, a moon, a waving hand, a bowing figure, etc.). On the right wall: nothing — just smooth, reflective wood.
+
+### THE BOARDS:
+10 thick wooden boards with **painted scenes** — a morning window with golden light, a dark starry bedroom, two people meeting, someone leaving through a door, a gift being given, someone bumping into another person, etc.
+
+### 🎮 THE MECHANIC: ECHOWANDERN (Echo Walking)
+
+**The invention:** The room is a **sound-reflection physics puzzle.** Stumm's footsteps produce echoes — but in this room, echoes don't just bounce, they **materialize into visible rippling waves** that travel across the floor and up the walls.
+
+1. The floor has a specific **topography** — raised ridges, shallow channels, curved banks — like a miniature landscape. These are **echo channels.**
+
+2. When Stumm walks, each footstep sends a visible sound ripple outward. The ripple follows the floor channels like water follows riverbeds.
+
+3. The player must **walk specific paths** through the floor channels to direct the echo ripple toward the correct slot on the left wall. The path the ripple travels determines which **German greeting** it becomes — the ripple picks up phonetic fragments embedded in the floor channels (glowing syllable stones: "Gu-", "-ten", "Mor-", "-gen" are physically embedded in different channel segments).
+
+4. **The physical joy:** The player is essentially playing a **living pinball machine with their own footsteps.** They walk, the ripple rolls, bounces off the curved banks, collects syllable fragments in sequence, and arrives at a wall slot as a complete word. Walk the wrong path? The ripple hits a dead end, the fragments scatter, and you hear a garbled funny sound (Stumm looks confused — comic beat).
+
+5. When the ripple arrives correctly assembled, the wooden board with the matching scene **magnetically pulls** off the floor and snaps into the slot. The greeting plays in a warm, resonant voice, and the right wall **reflects** it back — but this time with a visual: the reflection shows a ghostly Sprecher figure acting out the greeting's context (bowing, waving, etc.).
+
+6. **Social layer:** Some greetings require **two ripples simultaneously** — the player must figure out how to make Stumm walk a forked path (by building up momentum and doing a cute bouncy jump-split). "Auf Wiedersehen" requires the ripple to literally split into two waves that reach two separate slots (AUF + WIEDERSEHEN), teaching compound word structure physically.
+
+### ROOM TRANSFORMATION:
+When all 10 greetings are placed, both walls begin echoing the greetings back and forth in a beautiful overlapping chorus. The corridor walls slowly **slide apart** like opening arms, revealing Room 3 behind one of them. The wooden wall pivots like a giant door — a greeting made architectural. The room is literally saying "welcome, come in."
+
+---
+
+## ROOM 3: DER ZÄHLSTEIN (The Counting Stone)
+
+**A0 Concept:** Numbers 0–100 (eins, zwei, drei... zehn, elf, zwölf, dreizehn... zwanzig, dreißig... hundert).
+
+### THE WALL:
+A tall, narrow tower room. The wall is a **spiral staircase carved INTO the wall itself** — stairs going up the interior wall in a helix. Each stair is a slot. There are key milestone stairs (slots for 0–12, then 13, 20, 21, 30, 40, 50, 60, 70, 80, 90, 100 — **25 critical number slots** that teach the pattern).
+
+### THE BOARDS:
+25 stone tablets, each with a **photographic image containing a countable quantity** — 1 sun, 2 eyes, 3 traffic lights, 7 dwarfs, 12 eggs in a carton, etc. Plus abstract pattern tiles for the tens (20, 30, 40...).
+
+### 🎮 THE MECHANIC: SCHWERKRAFTZÄHLER (Gravity Counter)
+
+**The invention:** Stumm can **change the direction of gravity in the room** by doing a specific bouncy ground-pound move. Each pound rotates gravity 90° — the floor becomes a wall, the wall becomes the ceiling. The room tumbles.
+
+1. The spiral staircase is carved into the wall, but the stairs face in **four different directions** depending on which wall section they're on. To walk on stair 1–6, gravity needs to pull "down" normally. For stairs 7–12, gravity needs to pull "left." For 13–30, "up." For 40–100, "right."
+
+2. The player must **rotate gravity** to make each section of the spiral walkable. Everything in the room — Stumm, the stone tablets, loose pebbles — tumbles and rolls with each gravity shift. The boards slide across the floor to new positions. The player must plan: *"If I flip gravity now, where will the tablet I need end up?"*
+
+3. **The counting mechanic within:** Each tablet, when picked up, becomes a **stack of individual objects that Stumm must physically count by bouncing on them.** Pick up the "7 Dwarfs" tablet and seven small dwarf figures pop out. Stumm must bounce on each one (1... 2... 3...) and each bounce produces the German number word. Bounce all 7 in order → the number "sieben" materializes and the tablet activates.
+
+4. **Compound number teaching (21–99):** The German number system is famously "backwards" (einundzwanzig = one-and-twenty). The room teaches this physically: for number 21, the player must carry **two separate mini-tablets** (a "1" and a "20") and snap the "1" BEFORE the "20" into a compound slot — the slot won't accept them in the English order. The player *feels* the German number structure in the physical ordering of objects.
+
+5. **The gravity thrill:** The room constantly rotates. Tablets slide. Stumm tumbles adorably. The player is doing mental math ("I need to get this '50' tablet up to that slot, but if I flip gravity, it'll fall away from me...") while counting in German. It's a **spatial-mathematical-linguistic triple challenge** that *feels* like a playground.
+
+### ROOM TRANSFORMATION:
+When the final number (100 — hundert) is placed at the top of the spiral, all 25 stair-slots light up in sequence from 0 to 100, counting upward in a rapid, rhythmic German voice. The spiral staircase **physically unscrews from the wall** and descends into the center of the room, becoming a real staircase. A hatch at the top opens. Stumm climbs up through the ceiling.
+
+---
+
+## ROOM 4: DAS FARBENBECKEN (The Color Basin)
+
+**A0 Concept:** Colors — rot, blau, grün, gelb, weiß, schwarz, orange, lila, rosa, braun, grau.
+
+### THE WALL:
+A wide, shallow room. The walls are **white marble, completely blank** — but covered in deep carved grooves and channels, like an enormous empty coloring book page embedded in the wall. The grooves form outlines of recognizable objects (an apple, the sky, grass, a banana, snow, night, etc.) — 11 objects for 11 colors. Each object-outline has a circular drain-like slot at its lowest point.
+
+### THE BOARDS:
+11 **spherical glass orbs** (not flat boards this time), each filled with a swirling liquid of a specific color. They're heavy and roll. Each has the German color name etched into the glass, but the etching is only visible when the orb is held up to light.
+
+### 🎮 THE MECHANIC: FARBFLUT (Color Flood)
+
+**The invention:** The room is a **3D fluid dynamics painting machine.** The player doesn't place boards into slots — they **crack orbs at specific points** and the colored liquid physically flows through the wall channels based on real-time fluid physics, filling the carved grooves.
+
+1. Stumm can pick up a color orb and **throw it against any point on the wall.** The orb shatters (satisfying glass-break plus liquid splash) and the colored fluid begins **flowing through the carved channels** according to gravity and channel connectivity.
+
+2. **The puzzle:** The channel network is interconnected. If you crack the red orb at the wrong spot, the red paint flows into the banana outline instead of the apple. Now the banana is red and the apple is empty. The player must read the German color name carved at each object's drain slot (ROT at the apple, GELB at the banana) and figure out **which launch point on the wall** will send the fluid through the correct path to the correct object.
+
+3. **The delight factor:** The fluid physics are gorgeous — the paint swirls, pools, drips, splits at channel junctions. Stumm gets splattered with color (and stays splattered, getting increasingly rainbow-coated as the room progresses — pure visual joy). Wrong answers create beautiful messes. The room becomes a Jackson Pollock.
+
+4. **Course correction mechanic:** If paint goes wrong, the player can make Stumm do a **spin move** near a drain slot, which creates a tiny vortex that sucks paint back out and re-forms the orb (but slightly depleted — you get 3 tries per orb before it's gone and respawns at the starting position, adding light pressure).
+
+5. **Color mixing discovery:** Two SECRET slots exist — one labeled ROSA (pink) has no orb. The player must discover they need to crack ROT and WEIß orbs simultaneously above a junction where the channels merge, *mixing the colors in the channels* to create pink. Same for ORANGE (ROT + GELB), LILA (ROT + BLAU), and GRAU (SCHWARZ + WEIß). This teaches color relationships while making the player feel like a genius.
+
+### ROOM TRANSFORMATION:
+When all 11 objects are correctly color-filled, the paint in the channels begins **glowing and pulsing** like veins of light. The white marble walls are now a vivid, beautiful mural — the room has gone from sterile to alive. The colors drain downward through the wall into the floor, which becomes a **stained glass panel** that shatters into a ramp of colored shards leading down to Floor 2. The transition is breathtaking.
+
+---
+
+# 🏠 FLOOR TWO: ERDGESCHOSS (Ground Floor)
+*"Now that you can hear, learn who you are."*
+
+The ground floor rooms are warmer — wooden floors, plaster walls, soft ambient light. Like a home being remembered.
+
+---
+
+## ROOM 5: DER SPIEGELSAAL (The Mirror Hall)
+
+**A0 Concept:** Personal Pronouns — ich, du, er, sie, es, wir, ihr, sie, Sie (and their usage contexts).
+
+### THE WALL:
+An octagonal room. Each of the **8 walls is a massive tarnished mirror** — so dark and corroded you can't see reflections. Above each mirror is a carved pronoun: ICH, DU, ER, SIE (she), ES, WIR, IHR, SIE/SIE (they/formal you — this mirror is twice as wide). Below each mirror: a slot.
+
+### THE BOARDS:
+8 ornate picture frames containing **photographs of people/situations:** a single person pointing at themselves, two friends talking face-to-face, a man alone, a woman alone, a table (object), a group including the viewer, a group excluding the viewer, a well-dressed stranger across a desk.
+
+### 🎮 THE MECHANIC: SPIEGELGEISTER (Mirror Ghosts)
+
+**The invention:** When Stumm stands in front of a mirror, a **ghost version of Stumm** appears in the corroded glass — but the ghost doesn't mirror Stumm's movements. It acts independently. Each mirror's ghost **behaves according to its pronoun's meaning**, and the player must figure out which photo-frame belongs to which mirror by **interacting with the ghost's behavior.**
+
+1. **ICH mirror:** The ghost copies Stumm exactly but with a 0.5-second delay — it's a reflection of self. It points at itself constantly.
+
+2. **DU mirror:** The ghost faces outward (toward the player/camera), points at STUMM, and beckons. It's addressing YOU.
+
+3. **ER mirror:** The ghost is a male Sprecher figure who turns sideways — always in profile, always looking away. He is "he" — a third party.
+
+4. **SIE (she) mirror:** Same as ER but a female figure, also looking away.
+
+5. **ES mirror:** The ghost is shapeless — a blob, a thing. It morphs between objects (a cloud, a book, a chair). It's an "it."
+
+6. **WIR mirror:** The ghost reaches out of the mirror and **grabs Stumm's hand.** The reflection shows both of them together, waving at the camera. WE.
+
+7. **IHR mirror:** The ghost splits into multiple small ghosts that look at each other, ignoring Stumm. Y'ALL.
+
+8. **SIE/SIE mirror:** The widest mirror. The ghost alternates between a formal, distant figure bowing politely (formal Sie) and a group of people (plural sie). Stumm must place TWO frames here.
+
+**The interaction:** The player must observe each ghost's behavior, understand the pronoun concept it represents, then **physically drag the correct photo-frame through the mirror surface** (it passes through like water — ripple effect) and snap it into the slot behind the glass. When correct, the mirror **de-tarnishes** — clearing to a perfect, bright reflection.
+
+**The revelation moment:** When all mirrors are clear, Stumm sees their reflection in all 8 mirrors simultaneously — but in each mirror, they're in a different pronoun context (alone, with others, being addressed, etc.). For the first time, Stumm sees themselves as a **social being** — existing in relationship to others. The ICH mirror glows brightest. A mouth-line appears on Stumm's reflection (even though Stumm doesn't have one yet). Klang whispers: *"Du existierst."* (You exist.)
+
+### ROOM TRANSFORMATION:
+All 8 mirrors simultaneously shatter outward (away from Stumm — dramatic but safe feeling). Behind one mirror: a doorway. Behind the others: solid wall. The player must remember which pronoun they felt most connected to — that mirror always had the door. (It's always ICH. The game knows.)
+
+---
+
+## ROOM 6: DAS VORSTELLUNGSZIMMER (The Introduction Room)
+
+**A0 Concept:** Self-Introduction — Ich heiße..., Ich komme aus..., Ich wohne in..., Ich bin... Jahre alt, Ich spreche..., basic nationality/city vocabulary.
+
+### THE WALL:
+A cozy room resembling an old German Meldeamt (registration office). One large wall is a **giant bureaucratic form** carved into stone — like a Kafkaesque immigration document scaled to architectural size. Fields include: NAME, ALTER (age), HERKUNFT (origin), WOHNORT (residence), SPRACHE (language). Each field has deep rectangular slots.
+
+### THE BOARDS:
+A **filing cabinet** in the room contains dozens of small photo-cards: pictures of people with names, flags of countries, city skylines, number cards (for age), speech bubbles with language names. Plus a special set of **blank cards** and a **stamp machine.**
+
+### 🎮 THE MECHANIC: STEMPELAMT (The Stamp Office)
+
+**The invention:** The player must assemble a **complete identity for Stumm** — but nothing is pre-assigned. The game lets the player CHOOSE who Stumm is, and the choices are made through a **physical bureaucratic stamp-press machine** that's absurdly fun to operate.
+
+1. A large, steampunk **stamp press** sits in the center of the room. It has a platform, a lever, rollers, and ink pads.
+
+2. The player takes a blank card, places it on the press platform, then selects from a **rotating wheel of options** (country flags for HERKUNFT, city images for WOHNORT, etc.). They pull the lever with a satisfying CLUNK-CHUNK-SSSHH, and the machine stamps the German text onto the card: "Ich komme aus Ägypten" / "Ich wohne in Berlin" / "Ich bin sieben Jahre alt."
+
+3. **The magic:** As the stamp presses down, the German sentence is spoken aloud, and Stumm **watches the stamp press with huge excited eyes,** bouncing with each stamp — the character is watching their own identity being created for the first time.
+
+4. The freshly stamped cards are placed into the corresponding wall form slots. Each placement triggers the giant form to **animate** — handwriting-style German text fills in the form field as if an invisible bureaucrat is writing it.
+
+5. **The personalization hook:** The player's choices persist throughout the entire game. If you stamp "Ich komme aus Japan," later rooms will include Japanese-related imagery in examples. The identity becomes real.
+
+6. **Sentence construction learning:** The stamp machine has **word components on separate rotating drums** (like a combination lock): [Ich] [komme] [aus] [___]. The player must align the drums to form correct sentences. Wrong combinations produce hilarious nonsensical stamps that smear (e.g., "Ich wohne aus sieben" — the stamp literally smudges and drips, and a buzzer sounds). The physical alignment of drums teaches word order.
+
+### ROOM TRANSFORMATION:
+When the form is complete, the giant bureaucratic document **rolls up like a scroll**, revealing a warm, sunlit passageway behind it. A stamped approval mark — a big red "GENEHMIGT" (APPROVED) — appears on the scroll. Stumm has been officially registered. They are someone now.
+
+---
+
+## ROOM 7: DER STAMMBAUM (The Family Tree)
+
+**A0 Concept:** Family vocabulary — Mutter, Vater, Bruder, Schwester, Sohn, Tochter, Großmutter, Großvater, Tante, Onkel, Kind, Baby, Familie.
+
+### THE WALL:
+The room is dominated by a **massive dead tree** growing from the center of the floor, its branches pressing against all four walls. The branches have **carved cradle-like nests** at specific points — empty, waiting. The walls behind the branches have carved labels: MUTTER, VATER, BRUDER, etc. — 13 in total, positioned at specific heights (grandparents high, children low, parents in the middle).
+
+### THE BOARDS:
+13 **wooden nesting dolls** (Matryoshka-style, but German — Schachtelpuppen), each painted with a distinct character portrait. They vary in size: grandparents are largest, babies are smallest. Each has a photo-realistic painted face. They're scattered across the floor.
+
+### 🎮 THE MECHANIC: VERWANDTSCHAFTSWAAGE (The Kinship Scale)
+
+**The invention:** The tree is a **living balance system.** Every branch is a physical lever/see-saw. Placing a doll in a cradle-nest affects the weight distribution of the entire tree, tilting branches, raising and lowering nests, potentially dumping already-placed dolls.
+
+1. The player must figure out the **correct placement order** based on family hierarchy. Place the GROSSVATER and GROSSMUTTER first (they're the heaviest — they stabilize the upper branches). Then MUTTER and VATER (they balance the middle). Then siblings and children.
+
+2. **The physics delight:** The tree creaks, sways, and tilts like a giant mobile/kinetic sculpture. Place the VATER doll without first placing GROSSVATER? The branch tips, VATER slides down, falls to the floor with a comical bounce, and the tree groans. The player learns *relational hierarchy through physical weight and balance.*
+
+3. **Nesting doll reveal:** Each doll, when placed correctly, **opens** (satisfying twist-and-pop) to reveal a smaller doll inside representing that person's child. MUTTER opens → TOCHTER pops out. VATER opens → SOHN pops out. This teaches family RELATIONSHIPS, not just vocabulary. The revealed doll must then be placed in the correct lower cradle.
+
+4. **The narrative touch:** As the tree fills with correctly placed dolls, it begins to **bloom** — leaves sprout, flowers appear, bark heals. Family literally brings the tree to life. Stumm watches with increasingly emotional eyes (the game subtly asks: does Stumm have a family? This quiet emotional beat drives the story).
+
+5. **The trap:** One cradle is labeled "ICH" (me). The player must place **Stumm themselves** into the tree. But Stumm is too small — they can't reach. The player must first build the family, and the family *lifts* Stumm up to the cradle. You can't place yourself without others.
+
+### ROOM TRANSFORMATION:
+The fully bloomed tree **grows upward,** punching through the ceiling. Its roots crack the floor. The room splits open organically — walls spreading apart like the tree is outgrowing the chamber. The passage to Room 8 is through the roots, underground, into a warm earth-smelling tunnel.
+
+---
+
+## ROOM 8: DER KÖRPERRAUM (The Body Room)
+
+**A0 Concept:** Body parts — Kopf, Auge(n), Ohr(en), Nase, Mund, Zahn/Zähne, Haar, Hand/Hände, Arm(e), Bein(e), Fuß/Füße, Finger, Bauch, Rücken, Herz — plus plurals introduction.
+
+### THE WALL:
+A tall cylindrical room. In the center stands a **massive, hollow mannequin** — 3 meters tall, made of translucent amber-colored resin. It's beautiful but empty, like an anatomical display case with nothing inside. The walls have **shallow shelves** at various heights with labeled slots: KOPF, AUGE, OHR, etc.
+
+### THE BOARDS:
+Scattered on the floor: photo-cards of body parts — close-up photographs (a real human eye, an ear, a hand, etc.) printed on thick tactile cards with a soft-touch matte finish. Each has a singular AND plural version (1 Auge / 2 Augen).
+
+### 🎮 THE MECHANIC: INNENARCHITEKT (Interior Architect)
+
+**The invention:** The player doesn't just label body parts — they must **build a body from the inside out**, and the mannequin physically responds to each piece.
+
+1. The wall shelf-slots are the **intake points.** When the player places a photo-card into the correct labeled slot on the wall, a **glowing holographic version** of that body part materializes inside the mannequin at its anatomically correct position — visible through the translucent resin.
+
+2. **The singular/plural mechanic:** For paired body parts (eyes, ears, hands, feet), the slot on the wall has **two sub-slots**: one labeled with the singular (das Auge) and one with the plural (die Augen). The player must place the single-eye photo in the singular slot AND the two-eyes photo in the plural slot. Only then do BOTH eyes light up inside the mannequin. This teaches plural forms through physical doubling — the player *sees* that adding the "-n" adds the second eye.
+
+3. **The puppeteer mechanic:** Here's the truly original part — once a body part is activated inside the mannequin, **Stumm can control it.** The player gets a control thread (like a marionette string) connecting Stumm to that body part. Touch the "Arm" thread → Stumm pulls it → the mannequin's arm waves. Touch the "Bein" thread → the leg kicks. The player is building a puppet, learning body parts by *operating them.*
+
+4. **The comedy engine:** Wrong placements create hilarious results — put the MUND (mouth) photo in the BAUCH (belly) slot, and the mannequin grows a mouth on its stomach that starts talking gibberish. The game rewards experimentation with visual comedy before auto-correcting.
+
+5. **The final piece — HERZ:** The heart has no wall slot. The Herz photo-card must be placed by having Stumm **walk into the mannequin** (passing through the resin like a membrane) and placing it at the center. When the heart activates, the mannequin's chest begins glowing with a rhythmic pulse. All other body parts synchronize to the heartbeat. The mannequin takes its first "breath."
+
+### ROOM TRANSFORMATION:
+The completed mannequin **steps off its pedestal** and walks to the wall. It presses its hand against the stone. An imprint of every body part appears on the wall — like a cave painting. The mannequin pushes through the wall, creating a human-shaped doorway. Stumm follows through the passage shaped like a body. You walk through the outline of what you just learned.
+
+---
+
+## ROOM 9: DAS GEFÜHLSLABOR (The Feelings Lab)
+
+**A0 Concept:** Emotions & states — glücklich, traurig, müde, hungrig, durstig, krank, gesund, wütend, ängstlich, überrascht, plus "Mir geht es..." / "Ich bin..." constructions.
+
+### THE WALL:
+A perfectly **white, clinical laboratory room.** 10 large circular porthole-windows line one wall, but each porthole is covered by a frosted glass disc — you can't see through. Each porthole has a carved German emotion word above it and a slot below. The room has a sterile, calm energy.
+
+### THE BOARDS:
+10 photo-cards with **expressive character portraits** — a face showing each emotion, rendered in gorgeous painted style (not photographs — painted to emphasize the emotion dramatically).
+
+### 🎮 THE MECHANIC: STIMMUNGSSTURM (Mood Storm)
+
+**The invention:** The room has a **weather system inside it** — an internal atmosphere that changes based on Stumm's emotional state, which the player controls through a never-before-seen mechanic: **Emotion Physics.**
+
+1. In the center of the room is a **glass orb on a pedestal** — the Stimmungskugel (Mood Sphere). Stumm can interact with it by performing different **physical gestures:**
+   - **Jumping rapidly** = excitement (the orb turns yellow, the room brightens, sparkles appear)
+   - **Standing completely still for 5 seconds** = sadness (the orb turns blue, it starts raining inside the room)
+   - **Spinning** = anger (the orb turns red, wind kicks up, papers fly)
+   - **Crouching** = fear (the orb turns purple, shadows creep in, thunder)
+   - **Lying down** = tiredness (the orb turns gray, the lights dim)
+
+2. Each emotional state **changes the room's internal weather.** The weather interacts with the frosted porthole-covers. Rain dissolves the "traurig" porthole's frost. Bright light burns away the "glücklich" porthole's frost. Wind blows away the "wütend" porthole's frost. Each porthole only clears under its matching weather condition.
+
+3. Once a porthole clears, the player can see through it — and sees a **vivid 3D diorama** beyond the glass showing a scene that matches the emotion (a birthday party for glücklich, a rainy funeral for traurig, a hospital bed for krank). The photo-card of the matching face must be placed in the slot below.
+
+4. **The sentence construction element:** Below each completed porthole, the sentence "Mir geht es ___" or "Ich bin ___" auto-fills with the emotion word. But the player must **turn a dial** on the wall to select the correct sentence frame (some emotions use "Mir geht es" and some use "Ich bin") — teaching the grammatical distinction through a simple physical toggle.
+
+5. **The atmosphere hook:** The room is constantly shifting — rain, sunshine, wind, shadows — as the player changes emotions. It's **synesthetic language learning.** You FEEL the word through environment, not just see it.
+
+### ROOM TRANSFORMATION:
+When all 10 portholes are clear and filled, the weather inside the room goes through a rapid cycle — all emotions in sequence — creating a beautiful, chaotic 30-second lightshow. Then: calm. The room settles into a warm, golden glow (Zufriedenheit — contentment — the unlabeled 11th emotion). The floor softens and sinks — it was never solid, it was a membrane. Stumm drops gently through it like falling through a cloud, landing in Floor 3.
+
+---
+
+# 🏢 FLOOR THREE: ERSTE ETAGE (First Floor)
+*"You know who you are. Now learn the world."*
+
+The rooms become more complex, with richer textures — tiled walls, polished concrete, ornate plaster. The world is filling in.
+
+---
+
+## ROOM 10: DER ARTIKELDOM (The Article Cathedral)
+
+**A0 Concept:** German articles and grammatical gender — der (masculine), die (feminine), das (neuter), die (plural), and 30+ essential nouns with their genders.
+
+### THE WALL:
+A massive cathedral-like room with **three enormous stained-glass rose windows** on three walls — one tinted BLUE (der), one tinted RED (die), one tinted GREEN (das). Each window has **10+ empty lead-frame compartments** where glass pieces should be. A fourth wall has smaller YELLOW (die — plural) windows. 35+ slots total across all windows.
+
+### THE BOARDS:
+35+ **glass shards** scattered across the floor, each etched with a photographic image of a common noun (der Tisch, die Lampe, das Buch, der Hund, die Katze, das Kind, etc.). The shards have no color — they're clear.
+
+### 🎮 THE MECHANIC: LICHTSPRACHE (Light Language)
+
+**The invention:** The room has a **single beam of white light** coming through a hole in the ceiling — like a spotlight. The glass shards are clear, but when held in the light beam, they **project their image onto the wall** — AND they refract the light into a specific color that matches their grammatical gender.
+
+1. Stumm picks up a clear glass shard (e.g., etched with a dog). The player carries it to the **light beam** in the center of the room and holds it up. The light passes through and projects a large dog image on the nearest wall — AND the refracted light is BLUE. Blue = der. The shard must go in the blue rose window.
+
+2. **The puzzle layer:** The light beam can only shine in ONE direction at a time. The player must **rotate a large stone dial** on the floor to aim the beam at different walls. To check if a shard is der/die/das, you hold it in the beam. To place it, you must aim the beam at the correct window and then **throw the shard into the beam** — the light carries it upward like a tractor beam, and the shard floats to its correct compartment, clicking into the lead frame and permanently adopting its gender color.
+
+3. **The wrong-window consequence:** If the player throws a shard at the wrong-colored window, the shard bounces off the glass with a resonant BONG, falls back, and **cracks slightly** (it can survive 2 wrong attempts before shattering and respawning). This teaches through consequence without harsh punishment.
+
+4. **Pattern recognition training:** After placing several nouns, the player begins to notice patterns — words ending in "-ung" always go to the red (die) window. Words ending in "-chen" always go to green (das). The game never explicitly states these rules — the player discovers them through environmental pattern recognition, which is far more powerful for retention.
+
+5. **The beauty factor:** As the windows fill with colored glass, the room gradually fills with colored light. By the end, three massive rose windows are casting overlapping red, blue, and green light across the cathedral floor, creating a full spectrum. It's the most visually stunning room in the game.
+
+### ROOM TRANSFORMATION:
+When complete, all three windows blaze with light. The beams converge in the center of the room, and where they overlap, a white-hot point of light burns through the floor — melting a circular hole. Below is a warm, steamy room that smells of bread: the kitchen. Room 11.
+
+---
+
+## ROOM 11: DIE VORRATSKAMMER (The Pantry)
+
+**A0 Concept:** Food & Drink vocabulary — Brot, Wasser, Milch, Kaffee, Tee, Apfel, Reis, Fleisch, Käse, Ei, Gemüse, Obst, Suppe, Kuchen, Salz, Zucker, etc. Plus "Ich möchte..." / "Ich hätte gern..."
+
+### THE WALL:
+A rustic stone pantry. The walls are lined with **empty wooden shelves** — carved labels for 20+ food/drink items. A large wooden **serving counter** divides the room. Behind the counter: a ghostly Sprecher figure (the Kellner — waiter) who gestures impatiently.
+
+### THE BOARDS:
+20+ **realistic 3D miniature food models** (like Japanese food replicas — hyper-realistic tiny breads, fruits, cups) scattered in a chaotic pile on the player's side of the counter.
+
+### 🎮 THE MECHANIC: BESTELLUNGSSCHLEUDER (The Order Catapult)
+
+**The invention:** The ghostly Kellner speaks German orders aloud: *"Ich möchte Brot, bitte."* The player must find the correct food item and **physically launch it** over the counter using a mechanical **catapult/trebuchet** built into the counter surface.
+
+1. The catapult has a **spring-loaded platform.** Stumm places a food item on it, pulls the lever back (the farther back = the farther the launch), and releases. The food arcs over the counter.
+
+2. **The Kellner's reaction:** If correct, the Kellner catches it with ghostly hands, smiles, and places it on a shelf behind them with the German word glowing above it. If wrong, the Kellner **ducks** and the food splats against the back wall in a comically messy way (eggs crack, milk splashes, bread bounces off the Kellner's head).
+
+3. **The escalating orders:** The Kellner starts simple — one item. Then: *"Ich möchte Kaffee mit Milch und Zucker."* Three items in sequence. Then: *"Ich hätte gern Suppe, Brot, und Käse, bitte."* The player must identify multiple items from a single spoken sentence, load them in order, and launch them in rapid succession.
+
+4. **Aim mechanic:** The shelves behind the Kellner are at **different heights.** Heavy items (Brot) need low shelves (less catapult force). Light items (Salz) need high shelves (more force). The player learns to associate items with physical weight, adding a tactile dimension to vocabulary.
+
+5. **The polite escalation:** The Kellner only gives new orders if the player has pressed a **BITTE button** on the counter first. Without pressing BITTE, the Kellner stands with crossed arms and taps their foot. The player physically learns that you must say please. If the player presses DANKE after a successful order, the Kellner beams, bows, and gives a bonus — a golden food item worth extra points.
+
+### ROOM TRANSFORMATION:
+When all shelves are full, the Kellner prepares an enormous feast on the counter — all the foods arranged beautifully. They gesture for Stumm to sit. Stumm sits on a tiny stool, and for the first time, attempts to eat — but has no mouth (the emotional beat hits). The Kellner's expression becomes sad, then determined. They point to the door behind them — *keep climbing.* The pantry wall opens like a cabinet door.
+
+---
+
+## ROOM 12: DER TIERKREIS (The Animal Circle)
+
+**A0 Concept:** Animal vocabulary — Hund, Katze, Vogel, Fisch, Maus, Pferd, Kuh, Schwein, Schaf, Bär, Hase, Schmetterling, plus animal sounds in German (Wau wau, Miau, etc.).
+
+### THE WALL:
+A circular room with a **domed ceiling painted like a night sky.** The walls show a faded fresco of a forest/farm landscape — but all the animals are **missing** from the scene (empty silhouettes). 14 animal-shaped holes in the wall. The floor is covered in soft straw.
+
+### THE BOARDS:
+14 **wooden animal silhouette cutouts** — flat, thick, shaped exactly like each animal. They're unpainted, raw wood.
+
+### 🎮 THE MECHANIC: KLANGFÄHRTE (Sound Trail)
+
+**The invention:** The room is completely dark except for Stumm's faint glow. The player must find and identify each animal **purely by sound** first, then by sight.
+
+1. In the darkness, **animal sounds play from specific locations** in the room — but they're GERMAN animal sounds (German dogs say "Wau wau," not "Woof"; German roosters say "Kikeriki," not "Cock-a-doodle-doo"). The sounds come from the wall where each animal's silhouette-hole is located.
+
+2. Stumm walks toward a sound. Getting closer makes it louder. When Stumm reaches the source, the wall area **faintly illuminates** — just enough to reveal the animal silhouette hole and the German animal name carved above it.
+
+3. The animal cutouts on the floor are invisible in the dark. The player must **stomp** (Stumm does a cute ground pound), which sends out a **sonar pulse** — a visible ring of light that expands outward, briefly illuminating the floor for 2 seconds. In that flash, the player must spot and memorize the locations of cutouts.
+
+4. **The fitting mechanic:** The cutouts must be carried to the correct wall-holes. But the holes are oriented in **specific rotations** — the Hund hole might be upside-down, requiring the player to rotate the cutout (two-finger twist on mobile). This adds spatial reasoning and ensures the player examines each animal's shape carefully.
+
+5. **The paint reward:** When a cutout slots in correctly, the straw on the floor beneath it **transforms into the animal's habitat** — grass for Kuh, water for Fisch, a tiny barn for Schwein. The cutout gains color — painted in real-time with a beautiful watercolor wash effect. The room gradually fills with light, color, and ambient nature sounds. By the end, it's a vibrant pastoral scene.
+
+6. **The call-and-response:** After placing each animal, Stumm must reproduce the animal's German sound by **tapping a rhythm on the floor** (specific rhythm patterns for each sound: two quick taps = "Wau wau," one long press = "Muuuh"). This rhythm mechanic teaches German onomatopoeia through musical gameplay.
+
+### ROOM TRANSFORMATION:
+The dome ceiling's night sky transitions to dawn, then full daylight. The fresco comes alive — wind blows the painted trees, the painted river flows. A painted path on the wall extends off the fresco, becoming a 3D hallway that leads into the next room. Stumm walks INTO the painting.
+
+---
+
+## ROOM 13: DAS ZIMMERMODELL (The Room Model)
+
+**A0 Concept:** Household objects & rooms — Tisch, Stuhl, Bett, Lampe, Tür, Fenster, Küche, Schlafzimmer, Badezimmer, Wohnzimmer, Kühlschrank, Sofa, Spiegel, Uhr, Treppe, plus prepositions: auf, unter, neben, in, vor, hinter, zwischen.
+
+### THE WALL:
+The room is a **giant dollhouse** — Stumm is miniaturized (or the room is enormous). Four walls represent four rooms of a house: KÜCHE, SCHLAFZIMMER, BADEZIMMER, WOHNZIMMER. Each wall-room is a deep alcove (like a shadow box) with shelves and surfaces at different levels. Labels for prepositions are carved at various positions: AUF (on a shelf), UNTER (beneath a ledge), NEBEN (next to a pillar), etc. Object-name labels sit in specific prepositional positions within each alcove.
+
+### THE BOARDS:
+30+ **miniature furniture and object models** — adorable, slightly oversized, toylike. A tiny bed, a tiny stove, a tiny bathtub, tiny chairs. They have a chunky, satisfying weight.
+
+### 🎮 THE MECHANIC: SCHRUMPFARCHITEKT (Shrink Architect)
+
+**The invention:** Stumm can **change their own size** using a pump mechanism in the center of the room — a giant bellows that, when jumped on, inflates or deflates Stumm.
+
+1. **Big Stumm** can carry heavy furniture (Bett, Tisch, Sofa) but can't fit through small doorways or reach small shelves.
+
+2. **Small Stumm** can reach tiny alcoves and read tiny labels but can't lift anything heavier than a Lampe.
+
+3. **Medium Stumm** is the default and can do moderate tasks.
+
+4. The player must constantly **resize Stumm** to navigate the giant dollhouse, reading German preposition labels to determine exact placement:
+   - *"Die Lampe auf dem Tisch"* → The Lampe goes ON the Tisch. But first you need to place the Tisch, then shrink down to climb ON the Tisch, then place the Lampe.
+   - *"Die Katze unter dem Bett"* → A tiny cat figure goes UNDER the bed. Shrink to tiny, crawl under the already-placed bed, place the cat.
+   - *"Der Spiegel an der Wand"* → The mirror goes ON (attached to) the wall. Grow big enough to reach the wall-level shelf.
+
+5. **The spatial preposition learning:** The game teaches prepositions by making the player **physically experience them.** You don't just learn "unter" means "under" — you literally crawl under a giant bed as a tiny creature. "Auf" means climbing on top. "Hinter" means going behind. The spatial concept is lived, not memorized.
+
+6. **The chain reaction delight:** Some objects only become accessible after others are placed. Place the TREPPE (stairs) → now you can climb to the upper alcove → place the BETT → shrink → crawl under the BETT → find a hidden SCHLÜSSEL (key) → this unlocks the KÜHLSCHRANK → inside is the UHR (clock) → the clock goes "zwischen" the windows. It's a cascading furniture-placement adventure.
+
+### ROOM TRANSFORMATION:
+When the dollhouse is fully furnished, the walls **zoom outward** — the camera pulls back — and you realize the dollhouse IS the room. The walls are normal-sized now. Stumm is standing in a fully furnished, cozy German apartment. A front door appears. Stumm opens it — and steps out into a corridor leading to Room 14.
+
+---
+
+## ROOM 14: DAS KLEIDERZIMMER (The Clothing Room)
+
+**A0 Concept:** Clothing vocabulary — Hemd, Hose, Kleid, Schuh(e), Jacke, Mantel, Mütze, Socken, T-Shirt, Rock, Pullover, Brille, Tasche — plus colors and adjective-noun combinations (das rote Kleid, die blaue Hose).
+
+### THE WALL:
+A long room resembling a **vintage tailor's workshop.** One wall is a massive **wardrobe/closet** with individually carved compartments, each labeled with a clothing item and a color (e.g., "die blaue Jacke," "das weiße Hemd"). 18 compartments.
+
+### THE BOARDS:
+18 **fabric swatches** mounted on stiff cards — actual textile-textured patches (digital textures that look tactile) showing each clothing item in its correct color.
+
+### 🎮 THE MECHANIC: ANZIEHPUPPE (Dress-Up Mannequin)
+
+**The invention:** In the center of the room is a **spinning mannequin platform** with a poseable mannequin. But the mannequin is a WIND-UP figure — it walks a short runway, strikes a pose, and returns. The clothing you put on it determines how it walks and poses.
+
+1. The player picks fabric swatches and **wraps them around the mannequin.** But you can't just slap them on — each clothing item requires a specific **wrapping technique.** Hose: wrap around both legs bottom-up. Hemd: drape over shoulders and button (tap sequence). Mütze: place on head and pat down. The wrapping is gestural and satisfying.
+
+2. **Color-word matching:** The wardrobe labels include the adjective form with the correct article: "die blaue Jacke." The player must select the correct color swatch for each item. This introduces **adjective endings** organically — the player sees that the ending changes depending on the article (der rote Mantel vs. das rote Kleid vs. die rote Hose).
+
+3. **The runway mechanic:** After dressing the mannequin, the player winds a large key on its back. The mannequin walks down a short runway. At the end, a panel of **three ghost judges** (Sprecher figures) hold up reaction cards:
+   - ✅ if the outfit is correctly labeled
+   - 😂 if items are mismatched (blue shirt in the red shirt slot — the judges laugh)
+   - 🔄 if items are on the wrong body part (socks on hands)
+
+4. **Combination learning:** Some compartments require **multi-word descriptions:** "der lange, schwarze Mantel." The player must select both the correct item AND the correct color AND size swatch, layering descriptors physically.
+
+5. **Weather integration:** A window in the room shows changing weather (Sonne, Regen, Schnee). The judges reject outfits inappropriate for the weather, teaching contextual vocabulary: *"Es regnet — Mantel, bitte!"*
+
+### ROOM TRANSFORMATION:
+When all 18 compartments are filled and the mannequin has successfully walked the runway in the complete A0 wardrobe, the wardrobe doors all swing open simultaneously — and behind them isn't a wall. It's a **vast, starlit sky.** The wardrobe was never a closet. It was a portal. Narnia energy. Stumm steps through into Floor 4.
+
+---
+
+# 🏠 FLOOR FOUR: DACHBODEN (Attic)
+*"You have the words. Now learn to move them."*
+
+The attic rooms have exposed wooden beams, skylights with shifting light, floating dust motes. The atmosphere is magical and final. The rooms are about *combining* everything learned into sentences and actions.
+
+---
+
+## ROOM 15: DAS UHRWERK (The Clockwork)
+
+**A0 Concept:** Time — Uhr, Stunde, Minute, Tag, Woche, Monat, Tage der Woche (Montag–Sonntag), Monate (Januar–Dezember), Jahreszeiten, telling time (Es ist drei Uhr, halb vier, Viertel vor/nach), heute, morgen, gestern.
+
+### THE WALL:
+An enormous room dominated by a **colossal broken clock mechanism** — gears, pendulums, springs, and escapements — embedded in all four walls. The clock face takes up an entire wall, its hands frozen. Slots on the walls correspond to time concepts: 7 for days of the week, 12 for months, 4 for seasons, plus 12 hour positions on the clock face.
+
+### THE BOARDS:
+35 **brass gear-shaped tokens**, each engraved with a time word and decorated with a seasonal/temporal photograph (Monday's token shows someone arriving at work; Juli's token shows a beach; Frühling's token shows cherry blossoms).
+
+### 🎮 THE MECHANIC: ZEITMASCHINIST (Time Machinist)
+
+**The invention:** The player must **repair the clock mechanism** by inserting gear-tokens into the correct positions — but each gear, once inserted, begins turning, and connected gears must mesh correctly or the whole mechanism jams.
+
+1. **The gear-mesh puzzle:** Days of the week are a **7-gear train** that must go in sequence. Insert MONTAG first → it spins clockwise. DIENSTAG's gear must mesh with it (teeth interlocking), meaning it spins counter-clockwise. MITTWOCH meshes with DIENSTAG, spinning clockwise again. If you place FREITAG next to MONTAG, the gear teeth don't align (the words are wrong order) — CRUNCH, sparks fly, the gear pops out.
+
+2. **The month ring:** The 12 months form a **ring gear** around the clock face. They must be placed in order, and as each month is placed, the **lighting through the skylight changes** to match: warm golden for summer months, blue-gray for winter, green for spring, amber for autumn. The player physically feels the year cycle through light.
+
+3. **Time-telling mechanic:** Once the clock face is active, the hands begin moving. The player must **grab the clock hands** (they're physical levers protruding from the wall) and move them to specific positions. A voice says: *"Es ist halb drei."* The player must set the clock to 2:30. Correct → the clock chimes beautifully. Wrong → a comical cuckoo bird pops out and squawks disapprovingly.
+
+4. **The temporal weather system:** "Gestern" (yesterday), "heute" (today), and "morgen" (tomorrow) are taught through a **triple pendulum** — three weighted pendulums of different lengths. The short one (today) swings fast. Yesterday's pendulum is slowing down. Tomorrow's hasn't started. The player must give tomorrow's pendulum a push to start it, physically embodying the concept of future.
+
+5. **The full mechanism test:** Once all gears are placed, the player must make the whole mechanism run by **jumping on a giant bellows** (like an organ pump) to provide air pressure. The rhythm of their jumping determines the clock speed. Jump to the rhythm of "TICK... TOCK... TICK... TOCK..." and the mechanism runs smoothly. Break rhythm, and gears slip.
+
+### ROOM TRANSFORMATION:
+The clock strikes midnight — twelve resonant chimes. With each chime, one of the room's wooden beams illuminates with golden light. After the twelfth, the entire room is glowing. The clock face **swings open** like a vault door — behind it is a passage. Time literally opens the way forward.
+
+---
+
+## ROOM 16: DAS VERBZIMMER (The Verb Room)
+
+**A0 Concept:** Essential verbs & present tense conjugation — sein, haben, machen, gehen, kommen, essen, trinken, sprechen, wohnen, heißen, lernen, spielen, arbeiten, schlafen, sehen, hören — conjugated across all pronouns (ich bin, du bist, er/sie/es ist, etc.).
+
+### THE WALL:
+A rectangular room with the aesthetic of a **mechanical theater stage.** The back wall is a giant **conjugation grid** — a physical grid of horizontal rows (pronouns: ICH, DU, ER/SIE/ES, WIR, IHR, SIE) and vertical columns (verb infinitives: SEIN, HABEN, MACHEN, etc.). At each intersection: an empty slot. That's **96 slots** (6 pronoun rows × 16 verbs) — but the game focuses on the critical patterns, requiring about 40 key placements while auto-completing recognized patterns.
+
+### THE BOARDS:
+40+ small **theater ticket stubs** — printed with conjugated verb forms (bin, bist, ist, sind, seid, sind / habe, hast, hat...) and a tiny action photograph on each.
+
+### 🎮 THE MECHANIC: KONJUGATIONSTHEATER (Conjugation Theater)
+
+**The invention:** The grid on the wall isn't just a chart — it's a **working mechanical theater.** Each slot, when filled, activates a tiny **automaton scene** at that grid position — a miniature mechanical puppet theater that acts out the pronoun doing the verb.
+
+1. The player places the ticket "bin" at the intersection of ICH × SEIN. Click. A tiny mechanical Stumm-puppet rises from the slot and STANDS (sein = to be). It exists. It just stands there, being. The verb is embodied.
+
+2. Place "isst" at ER × ESSEN. A tiny mechanical man rises and pantomimes eating. The visual is adorable and immediately mnemonic.
+
+3. **The pattern discovery mechanic:** When the player fills an entire pronoun row, the puppets in that row **perform their actions simultaneously** — creating a tiny mechanical chorus line. When they fill an entire verb column, they see all the conjugation forms at once and the **stem changes** are highlighted in red on the tickets (e.g., sprechen: spreche, sprichst, spricht — the vowel change glows red). Pattern recognition through visual emphasis.
+
+4. **The irregular verb boss fight:** Regular verbs auto-conjugate once the player places 3 forms correctly (the game fills in the rest with a satisfying cascade). Irregular verbs (sein, haben, essen, sprechen) require ALL 6 forms placed manually — and the tickets are **shuffled and face-down.** The player must flip them, read the conjugation, and place correctly. Getting one wrong causes all face-down tickets to reshuffle. It's a memory/knowledge challenge.
+
+5. **The sentence builder extension:** Below the grid is a **conveyor belt** with slots. Once conjugations are learned, the belt activates and carries **subject + verb + object combinations** past the player: [ICH] [___] [Brot]. The player must grab the correct conjugated form from the grid and slam it into the moving slot before it passes. Speed + accuracy = addictive.
+
+### ROOM TRANSFORMATION:
+When the grid is complete, all 96 puppets animate simultaneously — a spectacular mechanical ballet of every pronoun doing every verb. The theater curtain at the back of the grid rises, revealing a real passageway behind the mechanical stage. Stumm walks backstage, into the machinery of language itself.
+
+---
+
+## ROOM 17: DER FRAGESAAL (The Question Hall)
+
+**A0 Concept:** Question words & question formation — Wer? Was? Wo? Woher? Wohin? Wann? Wie? Warum? Wie viel? — plus yes/no question inversion (Bist du...? Hast du...? Kommst du aus...?)
+
+### THE WALL:
+A dramatic courtroom-like space. A high **judge's bench** dominates one wall, with 9 carved question-word pedestals (WER, WAS, WO, etc.) — each with a slot. Opposite the bench: a **witness stand** where Stumm stands. The side walls have **evidence boards** — corkboard-style surfaces covered in pinned photographs, red string, and case files (like a detective's investigation board).
+
+### THE BOARDS:
+9 **magnifying glass-shaped frames**, each containing a photo that answers one question word (a person for WER, an object for WAS, a place for WO, etc.). Plus 10 **case file folders** containing question-answer pairs.
+
+### 🎮 THE MECHANIC: VERHÖRKAMMER (Interrogation Chamber)
+
+**The invention:** Stumm is on trial. But it's a trial of curiosity — the **ghost judges** (Sprecher figures in wigs) ask questions, and Stumm must investigate the evidence boards to find answers. But here's the twist: the judges ask **in German**, and the player must first identify WHICH QUESTION TYPE is being asked before they can investigate.
+
+1. A judge booms: *"WO ist die Katze?"* The word "WO" echoes and materializes as floating text. The player must grab the floating WO and place it on the correct pedestal. This unlocks the WO-type investigation.
+
+2. **Investigation mechanic:** Each question type has a unique **investigation tool:**
+   - **WO (where)** gives Stumm a **compass** — the player tilts their device, and the compass needle points toward the area of the evidence board where the location answer is pinned.
+   - **WER (who)** gives Stumm a **magnifying glass** — the player holds it over photos on the evidence board, and faces glow when the correct person is found.
+   - **WANN (when)** gives Stumm a **pocket watch** — the player winds it forward/backward, and evidence photos age/de-age until the correct time period is visible.
+   - **WARUM (why)** gives Stumm **red string** — the player physically draws connections between evidence photos, building a cause-and-effect chain.
+   - **WIE (how)** gives Stumm **tweezers** — the player must carefully extract a detail from a photograph (pulling out a small element, like the method/manner from a scene).
+
+3. **Yes/No question inversion:** The case folders contain statement cards ("Du bist müde.") The player must **physically flip the first two words** — picking up "Du" and "bist," swapping their positions — to form the question "Bist du müde?" When the inversion is correct, the folder stamps itself with a green checkmark.
+
+4. **Cross-examination mode:** After initial placement, the judges begin asking compound questions: *"Woher kommt die Frau, und wann?"* The player must identify TWO question types and investigate both, then present both answers to the judge simultaneously by placing two magnifying-glass frames on the bench.
+
+5. **The emotional beat:** The final question the judges ask is: *"Wer bist du?"* (Who are you?) The answer is Stumm's own identity card from Room 6. The player must retrieve it (it appears in Stumm's inventory), and present it. When placed on the bench, the judges look at each other, then at Stumm, and nod solemnly. Identity confirmed. Case closed.
+
+### ROOM TRANSFORMATION:
+The judges stand. The bench splits down the center — the judge's platform rises, revealing a staircase that was hidden beneath it. The evidence boards peel away from the walls, revealing windows filled with bright light. The courtroom was always the second-to-last room. One more to go. The staircase leads up into blinding white light.
+
+---
+
+## ROOM 18: DER LETZTE SATZ (The Final Sentence)
+
+**A0 Concept:** Complete sentence construction — putting together everything learned (subjects, verbs, objects, adjectives, prepositions, time) into correct German sentences. SVO order, time-manner-place rule, verb-second position.
+
+### THE WALL:
+The final room is **almost empty.** Pure white walls. No texture. No decoration. But on every wall, from floor to ceiling, are **thousands of tiny carved slots** in horizontal lines — like ruled notebook paper made architectural. The room is a blank page.
+
+One wall has a carved motto: *"SCHREIB DEINE WELT."* (Write your world.)
+
+### THE BOARDS:
+On the floor, in a vast, organized spread, are **hundreds of word-tiles** — every single word learned across all 17 rooms. Nouns, verbs, articles, adjectives, pronouns, prepositions, numbers, colors, time words. Each tile has the word and its tiny photo-icon.
+
+### 🎮 THE MECHANIC: SATZARCHITEKT (Sentence Architect)
+
+**The invention:** The room is a **living sentence construction space** where every correctly built sentence **physically creates the thing it describes.** Language becomes reality.
+
+1. The wall slots accept word-tiles in sequence, left to right. The player must build sentences following German grammar rules: **verb in second position, time-manner-place order.**
+
+2. **The magic:** When a grammatically correct sentence is placed, the wall **reads it aloud** — and the sentence manifests in the center of the room as a 3D object/scene:
+   - "Die rote Katze schläft auf dem Sofa" → A red cat appears, curled on a sofa, sleeping.
+   - "Ich trinke morgen Kaffee in der Küche" → A future-morning kitchen scene with coffee.
+   - "Der große Hund spielt mit dem Ball" → A big dog appears, bouncing a ball.
+
+3. **The grammar physics engine:** The verb-second rule is enforced mechanically — the second slot on each line has a **deeper groove** and a special lock. Only conjugated verbs fit in slot 2. If the player tries to place a noun there, it won't click in. The slot literally won't accept it. Grammar is architecture.
+
+4. **The error feedback:** Grammatically incorrect sentences cause the manifested scene to **glitch** — the objects appear but broken, floating, inverted. A sentence with wrong word order creates a surreal, Dalí-esque distortion. The player sees the consequence of grammar errors as visual chaos, motivating correction. Fix the word order → the scene snaps into beautiful clarity.
+
+5. **The free creation phase:** After 10 guided sentences (prompted by Klang), the room opens up for **free creation.** The player can build any sentence they want from all available tiles. Each sentence adds to the room. The room fills with manifested objects and scenes — the player is literally **building a world from language.**
+
+6. **The final sentence:** Klang appears one last time and says: *"One more sentence. The most important one."* A special set of tiles glows on the floor: ICH / KANN / JETZT / DEUTSCH / SPRECHEN. (I can now speak German.) The player places them. The sentence glows gold.
+
+### ROOM TRANSFORMATION:
+
+The sentence "Ich kann jetzt Deutsch sprechen" radiates light that fills every manifested object in the room. The objects merge, swirl, and form into a massive, glowing orb of white light.
+
+The light rushes toward Stumm.
+
+It hits their face.
+
+**A mouth appears.**
+
+Stumm opens their mouth for the first time. A single word comes out — the player's choice. A text prompt appears: "What is Stumm's first word?"
+
+Whatever the player types — using their German vocabulary — Stumm speaks it aloud. The word echoes through all 18 rooms. Every slot in every room resonates.
+
+The walls of the final room dissolve into open sky. Stumm stands on top of Der Echoturm, looking out over a vast, beautiful, word-built world — every sentence they constructed visible on the landscape below. Cities of nouns. Rivers of verbs. Mountains of adjectives.
+
+Klang's voice, one final time:
+
+*"Du bist nicht mehr stumm."*
+(You are no longer silent.)
+
+**CREDITS ROLL.**
+
+---
+
+## APPENDIX: GAME DESIGN PILLARS
+
+### RETENTION MECHANICS
+- **Daily Echo:** Each morning, the game replays 3 random room mechanics as 60-second micro-challenges, reinforcing vocabulary through the physical mechanics the player already learned. Not flashcards — you re-sculpt sound waves, re-catapult food, re-rotate gravity.
+- **Stumm's Diary:** Between rooms, Stumm's journal fills in with German sentences using learned words. The player can tap any word to replay its room mechanic.
+
+### PERFORMANCE NOTES
+- Rooms are loaded one at a time — minimal assets (empty rooms + one unique mechanic).
+- Realistic walls use tiling PBR textures (low memory). Stumm + props are low-poly stylized (minimal draw calls).
+- Fluid dynamics (Room 4) use simplified 2D particle systems projected onto wall UVs.
+- Clockwork (Room 15) uses animated prefabs, not real-time physics.
+
+### ACCESSIBILITY
+- All audio is subtitled in both German and the player's language.
+- Color-coded elements always have secondary shape/texture differentiation for colorblind players.
+- All gesture mechanics have alternative button-based inputs.
+
+---
+
+*Stumm's journey is the player's journey: from silence to speech, from empty rooms to a full world, from zero to the doorstep of A1.*
+
+**ECHOKAMMER.**

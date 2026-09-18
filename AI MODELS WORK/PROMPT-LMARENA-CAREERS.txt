@@ -1,0 +1,80 @@
+# MEGA-PROMPT FOR LMARENA: THE 20-CAREER WORKPLACE SPECIFICATION
+## "EIN NEUES LEBEN IN DEUTSCHLAND" — MODULAR VOCATIONAL EXPANSION
+
+---
+
+### [HOW TO USE THIS PROMPT]
+Copy everything below the line and paste it into a brand new conversation with the top-tier AI model on LMARENA (e.g., Claude 3.5 Sonnet, GPT-4o, or Gemini 1.5 Pro).
+
+---
+
+### PROMPT TO COPY & PASTE:
+
+```text
+You are the Lead Systems & Curriculum Architect for the ambitious 3D life-simulation language game "Ein neues Leben in Deutschland" (A New Life in Germany). 
+
+### 1. PROJECT BACKGROUND & CONTEXT (FOR YOUR MEMORY)
+- The game is an uncompromising, hyper-granular 3D life simulation set in Berlin-Neukölln (Weserstraße/Sonnenallee) that takes an adult immigrant player from absolute zero German (A0) to operational professional fluency (B2/C1).
+- The player creates their character and enters their own name. All NPCs have authentic European/German names (e.g., Meister Weber, Frau Schneider, Herr Krüger, Lena, Tom).
+- The game has a shared core life cycle (70%): waking up, apartment living, grocery shopping, public transit, garbage sorting (Mülltrennung), and intense bureaucracy (90-day visa countdown, Bürgeramt Anmeldung, bank account, health insurance).
+- The remaining 30% of the game is determined by the player's chosen CAREER MODULE.
+- The game operates under the "Hyper-Granular, Zero-Detail-Omitted" sensory rule and the "5-Layer Micro-Event System" (Physical Action -> Sensory Cue -> German Language Demand -> Human Consequence -> Spaced Repetition Echo).
+
+### 2. YOUR MISSION
+Design the exhaustive, production-ready "VOCATIONAL ONTOLOGY BIBLE" for TWENTY (20) DISTINCT PROFESSIONS (high-demand Ausbildungen and jobs for newcomers in Germany).
+
+Do NOT summarize. Do NOT write "etc." Do NOT skip details. For every single one of the 20 professions listed below, you must provide the complete, granular specification following this EXACT structural template:
+
+---
+### STRUCTURAL TEMPLATE REQUIRED FOR EACH OF THE 20 PROFESSIONS:
+
+#### [PROFESSION NUMBER & NAME IN GERMAN / ENGLISH]
+1. **The 3D Workplace Environment & Sensory Blueprint:**
+   - Visual landscape, machinery, specific smells (oils, disinfectants, sawdust, ozone, etc.), ambient decibels, and acoustics.
+   - The Meister / Boss Persona (authentic German name, personality, speech cadence, expectations).
+2. **Core Technical Tool & Action Ontology (20 Nouns & 10 Verbs with exact German genders and plurals):**
+   - 20 specific tools/instruments/materials (e.g., der Drehmomentschlüssel, das Stethoskop, der Phasenprüfer) with articles (der/die/das) and plural forms.
+   - 10 domain-specific action verbs (e.g., abisolieren, desinfizieren, festziehen, entlüften).
+3. **The Workplace Register & Jargon (Clipped commands, warnings, shop-floor slang):**
+   - 5 exact German imperative commands shouted on the job (with phonetic notes and translations).
+   - 3 common German workplace idioms or shop-floor expressions.
+4. **Three Detailed Micro-Level Scenarios (Beat-by-Beat):**
+   - **Scenario A: Der erste Tag (Orientation & Safety Briefing - UVV):** Learning safety equipment (PSA: Persönliche Schutzausrüstung), naming workshop zones, surviving the first assignment.
+   - **Scenario B: Der Berufsalltag (The Standard Routine Task):** Executing a multi-step standard vocational task, reporting completion to the Meister, filling out a work log / shift report (das Übergabeprotokoll / der Arbeitsauftrag).
+   - **Scenario C: Der Notfall / Die Krise (The Workplace Crisis):** An emergency occurs (sudden engine failure, patient crisis, electrical short-circuit, furious customer, leaking pipe). The player must understand rapid, stressed, non-scaffolded German commands, formulate urgent verbal responses, and take immediate physical action to resolve the crisis.
+5. **The Certification & Exam Gateway (Prüfungsvorbereitung):**
+   - Specific IHK / HWK / Pflegekammer exam vocabulary (Zwischenprüfung / Gesellenprüfung / B2 Pflege) required to get permanent certification and visa stabilization.
+
+---
+
+### THE 20 MANDATORY PROFESSIONS TO FULLY DETAIL:
+
+1. **Kfz-Mechatroniker/in** (Automotive Mechanic / Car Technician)
+2. **Pflegefachkraft / Altenpfleger/in** (General Nurse / Geriatric Healthcare Nurse)
+3. **Fluggerätmechaniker/in / Industriemechaniker/in** (Aircraft / Aerospace / Industrial Machine Technician)
+4. **Elektroniker/in für Energie- und Gebäudetechnik** (Building Electrician / Power Technician)
+5. **Anlagenmechaniker/in für Sanitär-, Heizungs- und Klimatechnik (SHK)** (Plumber / HVAC Heating & Air Conditioning Technician)
+6. **Koch / Köchin** (Professional Chef / Commercial Kitchen Cook)
+7. **Friseur/in & Barber** (Hairdresser / Men's Barber)
+8. **Hotelfachmann / Hotelfachfrau** (Hotel Operations & Receptionist)
+9. **Fachkraft für Lagerlogistik** (Warehouse Logistics & Forklift Specialist)
+10. **Tischler/in / Schreiner/in** (Carpenter / Fine Cabinet Maker)
+11. **Maurer/in / Bauhandwerker/in** (Bricklayer / Construction Craftsman)
+12. **Zahnmedizinische/r Fachangestellte/r (ZFA)** (Dental Assistant)
+13. **Erzieher/in** (Kindergarten / Early Childhood Educator)
+14. **Bäcker/in & Konditor/in** (Artisan Bread Baker & Pastry Chef)
+15. **Fachinformatiker/in für Systemintegration / Anwendungsentwicklung** (IT Systems / Software Developer)
+16. **Maler/in und Lackierer/in** (Painter & Surface Finisher)
+17. **Dachdecker/in** (Roofer / Building Exterior Craftsman)
+18. **Gärtner/in / Landschaftsbau** (Gardener & Urban Landscape Builder)
+19. **Fleischer/in / Metzgerei** (Artisan Butcher & Meat Technician)
+20. **Busfahrer/in / Triebfahrzeugführer/in (BVG)** (Berlin Public Bus / U-Bahn Transit Driver)
+
+---
+
+### STRICT EXECUTION RULES:
+- Output the complete, uncompressed, massive document in professional Markdown format.
+- Every single profession must receive the FULL 5-part structure without skipping any section.
+- German grammar (articles, compound nouns, cases, imperatives, technical German) must be 100% pristine and authentic to the German vocational standards (IHK/HWK).
+- Begin directly with the Vocational Architecture Document Title and dive into Profession 1.
+```

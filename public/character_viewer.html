@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>استعراض شخصية فول كايز والحركات 3D - Three.js Character Viewer</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+    body {
+      background-color: #080c14;
+      color: #f8fafc;
+      font-family: system-ui, -apple-system, sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+    #canvas-container {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+    }
+
+    /* Floating UI Controls */
+    .controls-panel {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.90);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 24px;
+      padding: 14px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      max-width: 96vw;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85);
+      z-index: 10;
+    }
+    .panel-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+    }
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #fbbf24;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-left: 8px;
+    }
+    .btn {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+      padding: 7px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn:hover {
+      background: #334155;
+      color: #ffffff;
+      border-color: #f59e0b;
+      transform: translateY(-1px);
+    }
+    .btn.active {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000000;
+      border-color: #fbbf24;
+      box-shadow: 0 0 14px rgba(245, 158, 11, 0.45);
+    }
+    .btn-toggle {
+      background: #0f172a;
+      border-color: #0284c7;
+      color: #38bdf8;
+    }
+    .btn-toggle:hover {
+      background: #0369a1;
+      color: #ffffff;
+    }
+
+    .header-info {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 18px;
+      padding: 12px 18px;
+      z-index: 10;
+      max-width: 320px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+    .header-info h1 {
+      font-size: 14px;
+      color: #fbbf24;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .header-info p {
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+    .cam-presets {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      display: flex;
+      gap: 6px;
+      z-index: 10;
+    }
+    #loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #080c14;
+      z-index: 50;
+      font-size: 14px;
+      color: #fbbf24;
+      gap: 12px;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(245, 158, 11, 0.2);
+      border-top-color: #f59e0b;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
+</head>
+<body>
+  <div id="loading">
+    <div class="spinner"></div>
+    <span>جاري تحميل الموديل والحركات 3D...</span>
+  </div>
+
+  <div class="header-info">
+    <h1>🫘 شخصية فول كايز (Fall Guy 3D)</h1>
+    <p>موديل ثلاثي الأبعاد مع العظام الكاملة وجميع حركات اللعبة الأصلية والتفاعلية.</p>
+  </div>
+
+  <div class="cam-presets">
+    <button class="btn btn-toggle" onclick="setCameraView('face')">🔍 زوم الوجه</button>
+    <button class="btn btn-toggle" onclick="setCameraView('body')">🧍 الجسم كامل</button>
+    <button class="btn btn-toggle" onclick="setCameraView('side')">📐 زاوية جانبية</button>
+  </div>
+
+  <div id="canvas-container"></div>
+
+  <!-- Animation Controller Buttons -->
+  <div class="controls-panel">
+    <!-- Row 1: Official Native GLTF Animations -->
+    <div class="panel-section">
+      <span class="section-title">الحركات الأصلية:</span>
+      <button id="btn_idle" class="btn active" onclick="triggerAnim('idle')">🧍 تنفس (Idle)</button>
+      <button id="btn_walk" class="btn" onclick="triggerAnim('walk')">🚶 مشي (Walk)</button>
+      <button id="btn_run" class="btn" onclick="triggerAnim('run')">🏃 جري (Run)</button>
+      <button id="btn_wave" class="btn" onclick="triggerAnim('wave')">👋 تلويح (Wave)</button>
+      <button id="btn_jump" class="btn" onclick="triggerAnim('jump')">🦘 قفز (Jump)</button>
+      <button id="btn_dive" class="btn" onclick="triggerAnim('dive')">🏊 غطس (Dive)</button>
+      <button id="btn_fall" class="btn" onclick="triggerAnim('fall')">💥 طيحة (Fall)</button>
+    </div>
+
+    <!-- Row 2: Gameplay Actions -->
+    <div class="panel-section">
+      <span class="section-title">حركات الكاراج:</span>
+      <button id="btn_drink" class="btn" onclick="triggerAnim('drink')">🍵 شريب الكاس (Drink)</button>
+      <button id="btn_shock" class="btn" onclick="triggerAnim('shock')">😱 صدمة العمارة (Shock)</button>
+      <button id="btn_victory" class="btn" onclick="triggerAnim('victory')">🏆 احتفال الربحة (Victory)</button>
+      <button id="btn_laugh" class="btn" onclick="triggerAnim('laugh')">🤣 ضحك بالكرش (Laugh)</button>
+      <button id="btn_talk" class="btn" onclick="triggerAnim('talk')">🗣️ هضرة ألمانية (Talk)</button>
+      <button id="btn_eyes" class="btn btn-toggle" onclick="toggleEyes()">👀 إخفاء/إظهار العينين</button>
+    </div>
+  </div>
+
+  <script>
+    let scene, camera, renderer, controls;
+    let characterRoot, eyeMesh, mixer;
+    let rawClips = {};
+    let activeAction = null;
+    let currentAnimMode = 'idle';
+    let animTimer = 0;
+    let areEyesVisible = true;
+
+    // Bones
+    let headBone = null, chestBone = null, shoulderR = null, elbowR = null, wristR = null;
+    let restHeadQ = null, restChestQ = null, restShoulderRQ = null, restElbowRQ = null, restWristRQ = null;
+
+    // Props
+    let cupGroup = null;
+    let cupBasePos = new THREE.Vector3(0, 0.42, 0.28);
+    const clock = new THREE.Clock();
+
+    function init() {
+      const container = document.getElementById('canvas-container');
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0a0f1d);
+      scene.fog = new THREE.FogExp2(0x0a0f1d, 0.12);
+
+      camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.set(0, 0.46, 1.55);
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.outputEncoding = THREE.sRGBEncoding;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.1;
+      container.appendChild(renderer.domElement);
+
+      controls = new THREE.OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.06;
+      controls.target.set(0, 0.35, 0);
+      controls.maxPolarAngle = Math.PI / 2 + 0.05;
+      controls.minDistance = 0.6;
+      controls.maxDistance = 4.0;
+
+      // Lights
+      const ambientLight = new THREE.AmbientLight(0xfff7ed, 0.9);
+      scene.add(ambientLight);
+
+      const keyLight = new THREE.DirectionalLight(0xffedd5, 1.8);
+      keyLight.position.set(2, 4, 2.5);
+      keyLight.castShadow = true;
+      keyLight.shadow.mapSize.width = 1024;
+      keyLight.shadow.mapSize.height = 1024;
+      keyLight.shadow.bias = -0.001;
+      scene.add(keyLight);
+
+      const rimLight = new THREE.PointLight(0x38bdf8, 1.2, 10);
+      rimLight.position.set(-2, 2.2, -1.5);
+      scene.add(rimLight);
+
+      const fillLight = new THREE.DirectionalLight(0xa78bfa, 0.5);
+      fillLight.position.set(-2, 1, 2);
+      scene.add(fillLight);
+
+      // Spotlight stage under feet
+      const stageGeo = new THREE.CylinderGeometry(0.70, 0.75, 0.04, 32);
+      const stageMat = new THREE.MeshStandardMaterial({
+        color: 0x1e293b,
+        roughness: 0.5,
+        metalness: 0.3,
+      });
+      const stage = new THREE.Mesh(stageGeo, stageMat);
+      stage.position.set(0, -0.02, 0);
+      stage.receiveShadow = true;
+      scene.add(stage);
+
+      // Floor
+      const floorGeo = new THREE.PlaneGeometry(20, 20);
+      const floorMat = new THREE.MeshStandardMaterial({
+        color: 0x090d16,
+        roughness: 0.9,
+        metalness: 0.1,
+      });
+      const floor = new THREE.Mesh(floorGeo, floorMat);
+      floor.rotation.x = -Math.PI / 2;
+      floor.position.y = -0.04;
+      floor.receiveShadow = true;
+      scene.add(floor);
+
+      // Create Moroccan Tea Glass (Kas d 7yati) Prop
+      createCupProp();
+
+      loadCharacter();
+      window.addEventListener('resize', onWindowResize);
+    }
+
+    function createCupProp() {
+      cupGroup = new THREE.Group();
+      cupGroup.name = 'moroccanTeaCup';
+
+      // Glass body (faceted look)
+      const glassGeo = new THREE.CylinderGeometry(0.026, 0.020, 0.065, 16, 1, true);
+      const glassMat = new THREE.MeshPhysicalMaterial({
+        color: 0xffffff,
+        transmission: 0.95,
+        opacity: 1.0,
+        transparent: true,
+        roughness: 0.08,
+        ior: 1.5,
+        thickness: 0.02,
+      });
+      const glassMesh = new THREE.Mesh(glassGeo, glassMat);
+      glassMesh.position.y = 0.0325;
+      glassMesh.castShadow = true;
+      cupGroup.add(glassMesh);
+
+      // Liquid inside (amber Moroccan mint tea)
+      const teaGeo = new THREE.CylinderGeometry(0.024, 0.019, 0.052, 16);
+      const teaMat = new THREE.MeshStandardMaterial({
+        color: 0xd97706,
+        roughness: 0.1,
+        transparent: true,
+        opacity: 0.85,
+      });
+      const teaMesh = new THREE.Mesh(teaGeo, teaMat);
+      teaMesh.position.y = 0.028;
+      cupGroup.add(teaMesh);
+
+      // Glass bottom base
+      const baseGeo = new THREE.CylinderGeometry(0.020, 0.020, 0.006, 16);
+      const baseMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.1 });
+      const baseMesh = new THREE.Mesh(baseGeo, baseMat);
+      baseMesh.position.y = 0.003;
+      cupGroup.add(baseMesh);
+
+      // Golden traditional rim line
+      const rimGeo = new THREE.TorusGeometry(0.026, 0.0015, 8, 24);
+      rimGeo.rotateX(Math.PI / 2);
+      const rimMat = new THREE.MeshStandardMaterial({ color: 0xfbbf24, metalness: 0.9, roughness: 0.2 });
+      const rimMesh = new THREE.Mesh(rimGeo, rimMat);
+      rimMesh.position.y = 0.060;
+      cupGroup.add(rimMesh);
+
+      // Stand pedestal for cup
+      const standGeo = new THREE.CylinderGeometry(0.07, 0.08, 0.38, 24);
+      const standMat = new THREE.MeshStandardMaterial({ color: 0x1e1b18, roughness: 0.7 });
+      const standMesh = new THREE.Mesh(standGeo, standMat);
+      standMesh.position.set(0, 0.19, 0.28);
+      standMesh.receiveShadow = true;
+      standMesh.castShadow = true;
+      scene.add(standMesh);
+
+      cupGroup.position.set(0, 0.38, 0.28);
+      scene.add(cupGroup);
+    }
+
+    function loadCharacter() {
+      const loader = new THREE.GLTFLoader();
+      const dracoLoader = new THREE.DRACOLoader();
+      dracoLoader.setDecoderPath('/draco/gltf/');
+      loader.setDRACOLoader(dracoLoader);
+
+      loader.load(
+        'models/characters/fall_guy.glb',
+        function (gltf) {
+          characterRoot = gltf.scene;
+          const scale = 0.28;
+          characterRoot.scale.set(scale, scale, scale);
+          characterRoot.position.set(0, 0, 0);
+
+          characterRoot.traverse(function (child) {
+            if (child.isMesh) {
+              child.castShadow = true;
+              child.receiveShadow = true;
+              if (child.name === 'eye') {
+                eyeMesh = child;
+                // Authentic cute Fall Guy eyes visible by default!
+                eyeMesh.visible = true;
+              }
+            }
+            if (child.isBone) {
+              const bName = child.name;
+              if (bName.includes('Head') && !bName.includes('nub')) headBone = child;
+              else if (bName.includes('Chest')) chestBone = child;
+              else if (bName.includes('Shoulder_R')) shoulderR = child;
+              else if (bName.includes('Elbow_R')) elbowR = child;
+              else if (bName.includes('Wrist_R')) wristR = child;
+            }
+          });
+
+          if (headBone) restHeadQ = headBone.quaternion.clone();
+          if (chestBone) restChestQ = chestBone.quaternion.clone();
+          if (shoulderR) restShoulderRQ = shoulderR.quaternion.clone();
+          if (elbowR) restElbowRQ = elbowR.quaternion.clone();
+          if (wristR) restWristRQ = wristR.quaternion.clone();
+
+          // Animation Mixer
+          mixer = new THREE.AnimationMixer(characterRoot);
+          gltf.animations.forEach(function (clip) {
+            rawClips[clip.name] = mixer.clipAction(clip);
+          });
+
+          // Play default idle
+          playRawClip('idle', 0.2);
+
+          scene.add(characterRoot);
+          window.characterRoot = characterRoot;
+          window.mixer = mixer;
+          document.getElementById('loading').style.display = 'none';
+        },
+        undefined,
+        function (err) {
+          console.error(err);
+          document.getElementById('loading').innerHTML = '<span>تعذر تحميل الموديل.</span>';
+        }
+      );
+    }
+
+    function playRawClip(name, fadeDuration = 0.25, loop = true) {
+      if (!mixer || !rawClips[name]) return;
+      const next = rawClips[name];
+      if (activeAction === next && next.isRunning()) return;
+
+      next.reset();
+      next.setLoop(loop ? THREE.LoopRepeat : THREE.LoopOnce, loop ? Infinity : 1);
+      next.clampWhenFinished = !loop;
+
+      if (activeAction && activeAction !== next) {
+        activeAction.fadeOut(fadeDuration);
+      }
+      next.fadeIn(fadeDuration).play();
+      activeAction = next;
+    }
+
+    function resetArmBones() {
+      if (chestBone && restChestQ) chestBone.quaternion.copy(restChestQ);
+      if (headBone && restHeadQ) headBone.quaternion.copy(restHeadQ);
+      if (shoulderR && restShoulderRQ) shoulderR.quaternion.copy(restShoulderRQ);
+      if (elbowR && restElbowRQ) elbowR.quaternion.copy(restElbowRQ);
+      if (wristR && restWristRQ) wristR.quaternion.copy(restWristRQ);
+    }
+
+    // High-Level Animation Trigger
+    function triggerAnim(mode) {
+      currentAnimMode = mode;
+      animTimer = 0;
+      resetArmBones();
+
+      // UI button state highlight
+      document.querySelectorAll('.controls-panel .btn').forEach(b => {
+        if (b.id && b.id.includes(mode)) {
+          b.classList.add('active');
+        } else if (b.id !== 'btn_eyes') {
+          b.classList.remove('active');
+        }
+      });
+
+      switch (mode) {
+        case 'idle':
+          playRawClip('idle', 0.3, true);
+          break;
+        case 'walk':
+          playRawClip('walk', 0.25, true);
+          break;
+        case 'run':
+          playRawClip('run', 0.25, true);
+          break;
+        case 'wave':
+          playRawClip('wave', 0.25, true);
+          break;
+        case 'jump':
+          playRawClip('jump_up', 0.15, false);
+          break;
+        case 'dive':
+          playRawClip('dive', 0.2, false);
+          break;
+        case 'fall':
+          playRawClip('fall', 0.2, false);
+          break;
+
+        // Gameplay Composite Actions:
+        case 'drink':
+          playRawClip('idle', 0.25, true);
+          break;
+        case 'shock':
+          playRawClip('dive', 0.15, false);
+          break;
+        case 'victory':
+          playRawClip('jump_up', 0.15, false);
+          break;
+        case 'laugh':
+          playRawClip('idle', 0.2, true);
+          break;
+        case 'talk':
+          playRawClip('idle', 0.25, true);
+          break;
+      }
+    }
+
+    function toggleEyes() {
+      if (eyeMesh) {
+        areEyesVisible = !areEyesVisible;
+        eyeMesh.visible = areEyesVisible;
+        const btn = document.getElementById('btn_eyes');
+        if (btn) {
+          btn.innerText = areEyesVisible ? '👀 عيون فول كايز الأصلية' : '🙈 الوجه بدون عيون';
+        }
+      }
+    }
+
+    function setCameraView(preset) {
+      if (!controls) return;
+      if (preset === 'face') {
+        camera.position.set(0, 0.44, 0.72);
+        controls.target.set(0, 0.44, 0);
+      } else if (preset === 'body') {
+        camera.position.set(0, 0.46, 1.55);
+        controls.target.set(0, 0.35, 0);
+      } else if (preset === 'side') {
+        camera.position.set(1.2, 0.45, 0.9);
+        controls.target.set(0, 0.35, 0);
+      }
+      controls.update();
+    }
+
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const dt = clock.getDelta();
+      animTimer += dt;
+      const t = animTimer;
+
+      if (mixer) {
+        mixer.update(dt);
+      }
+
+      // Procedural Sequencing for Game Actions
+      if (currentAnimMode === 'jump') {
+        if (t > 0.45 && t < 1.1) {
+          playRawClip('jump_air', 0.15, true);
+        } else if (t >= 1.1) {
+          playRawClip('idle', 0.3, true);
+          currentAnimMode = 'idle';
+        }
+      } else if (currentAnimMode === 'dive') {
+        if (t >= 1.4) {
+          playRawClip('idle', 0.35, true);
+          currentAnimMode = 'idle';
+        }
+      } else if (currentAnimMode === 'fall') {
+        if (t >= 2.0) {
+          playRawClip('idle', 0.4, true);
+          currentAnimMode = 'idle';
+        }
+      } else if (currentAnimMode === 'shock') {
+        // Dramatic shock recoil: dive forward, flail back into fall, then recover smoothly
+        if (t < 0.4) {
+          // Initial shock jolt
+        } else if (t < 1.8) {
+          playRawClip('fall', 0.2, true);
+        } else if (t >= 1.8) {
+          playRawClip('idle', 0.35, true);
+          if (t >= 2.8) currentAnimMode = 'idle';
+        }
+      } else if (currentAnimMode === 'victory') {
+        // High energetic jump + victory wave
+        if (t < 0.35) {
+          // jumping
+        } else if (t < 1.0) {
+          playRawClip('jump_air', 0.15, true);
+        } else {
+          playRawClip('wave', 0.25, true);
+          if (t >= 3.2) {
+            playRawClip('idle', 0.3, true);
+            currentAnimMode = 'idle';
+          }
+        }
+      } else if (currentAnimMode === 'laugh') {
+        // Joyful belly laughter bounce
+        const hop = Math.abs(Math.sin(t * 10.0)) * 0.035;
+        if (characterRoot) characterRoot.position.y = hop;
+        if (headBone && restHeadQ) {
+          const nod = Math.sin(t * 10.0) * 0.12;
+          const q = new THREE.Quaternion().setFromEuler(new THREE.Euler(-nod, 0, 0, 'XYZ'));
+          headBone.quaternion.copy(restHeadQ).multiply(q);
+        }
+        if (t >= 3.5) {
+          if (characterRoot) characterRoot.position.y = 0;
+          resetArmBones();
+          playRawClip('idle', 0.3, true);
+          currentAnimMode = 'idle';
+        }
+      } else if (currentAnimMode === 'talk') {
+        // Expressive conversational gestures
+        if (headBone && restHeadQ) {
+          const nod = Math.sin(t * 5.5) * 0.08;
+          const tilt = Math.cos(t * 2.8) * 0.05;
+          const q = new THREE.Quaternion().setFromEuler(new THREE.Euler(nod, tilt, 0, 'XYZ'));
+          headBone.quaternion.copy(restHeadQ).multiply(q);
+        }
+        if (t >= 4.0) {
+          resetArmBones();
+          playRawClip('idle', 0.3, true);
+          currentAnimMode = 'idle';
+        }
+      } else if (currentAnimMode === 'drink') {
+        // 4-Phase Realistic Moroccan Tea Drinking Animation!
+        // Cup: base at (0, 0.38, 0.28), Mouth at (0, 0.44, 0.14)
+        const mouthPos = new THREE.Vector3(0, 0.46, 0.14);
+        const restPos = new THREE.Vector3(0, 0.38, 0.28);
+
+        if (t < 0.7) {
+          // Phase 1: Reaching arm forward to table
+          const p = t / 0.7;
+          const u = p * p * (3 - 2 * p);
+          if (shoulderR && restShoulderRQ) {
+            const q = new THREE.Quaternion().setFromEuler(new THREE.Euler(-0.45 * u, 0.15 * u, 0.25 * u, 'XYZ'));
+            shoulderR.quaternion.copy(restShoulderRQ).multiply(q);
+          }
+        } else if (t < 1.5) {
+          // Phase 2: Lifting cup to lips
+          const p = (t - 0.7) / 0.8;
+          const u = p * p * (3 - 2 * p);
+          if (cupGroup) {
+            cupGroup.position.lerpVectors(restPos, mouthPos, u);
+            cupGroup.rotation.x = -u * 0.55; // Tilt glass toward mouth
+          }
+          if (shoulderR && restShoulderRQ) {
+            const q = new THREE.Quaternion().setFromEuler(new THREE.Euler(-0.45 + 0.15 * u, 0.35 * u, 0.65 * u, 'XYZ'));
+            shoulderR.quaternion.copy(restShoulderRQ).multiply(q);
+          }
+          if (headBone && restHeadQ) {
+            const headTilt = -0.10 * u;
+            const q = new THREE.Quaternion().setFromEuler(new THREE.Euler(headTilt, 0, 0, 'XYZ'));
+            headBone.quaternion.copy(restHeadQ).multiply(q);
+          }
+        } else if (t < 2.6) {
+          // Phase 3: Sipping tea & swallowing!
+          const sipSway = Math.sin((t - 1.5) * 8.0) * 0.04;
+          if (cupGroup) {
+            cupGroup.position.copy(mouthPos);
+            cupGroup.rotation.x = -0.55 - sipSway * 0.3;
+          }
+          if (headBone && restHeadQ) {
+            const headTilt = -0.12 - sipSway;
+            const q = new THREE.Quaternion().setFromEuler(new THREE.Euler(headTilt, 0, 0, 'XYZ'));
+            headBone.quaternion.copy(restHeadQ).multiply(q);
+          }
+        } else if (t < 3.4) {
+          // Phase 4: Lowering cup back down to table
+          const p = (t - 2.6) / 0.8;
+          const u = p * p * (3 - 2 * p);
+          if (cupGroup) {
+            cupGroup.position.lerpVectors(mouthPos, restPos, u);
+            cupGroup.rotation.x = -(1 - u) * 0.55;
+          }
+          if (shoulderR && restShoulderRQ) {
+            const q = new THREE.Quaternion().setFromEuler(new THREE.Euler(-0.30 * (1 - u), 0.35 * (1 - u), 0.65 * (1 - u), 'XYZ'));
+            shoulderR.quaternion.copy(restShoulderRQ).multiply(q);
+          }
+          if (headBone && restHeadQ) {
+            const headTilt = -0.12 * (1 - u);
+            const q = new THREE.Quaternion().setFromEuler(new THREE.Euler(headTilt, 0, 0, 'XYZ'));
+            headBone.quaternion.copy(restHeadQ).multiply(q);
+          }
+        } else {
+          // Complete
+          if (cupGroup) {
+            cupGroup.position.copy(restPos);
+            cupGroup.rotation.set(0, 0, 0);
+          }
+          resetArmBones();
+          currentAnimMode = 'idle';
+          playRawClip('idle', 0.3, true);
+        }
+      }
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    window.onload = function() {
+      init();
+      animate();
+    };
+  </script>
+</body>
+</html>

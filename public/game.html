@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Ein Neues Leben in Deutschland — 2D Arcade Life-Sim</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #090d16;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: #ffffff;
+    }
+    #game-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: crosshair;
+    }
+    /* HUD Overlays */
+    .hud-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      z-index: 10;
+    }
+    .hud-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .hud-card {
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 14px;
+      padding: 10px 16px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+    .visa-card {
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+    .visa-title {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #f59e0b;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .visa-countdown {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-top: 2px;
+    }
+    .money-badge {
+      color: #10b981;
+      font-weight: 800;
+      margin-top: 4px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .quest-card {
+      max-width: 500px;
+      text-align: center;
+      border-color: rgba(245, 158, 11, 0.5);
+      background: rgba(15, 23, 42, 0.92);
+      padding: 12px 24px;
+    }
+    .quest-step {
+      font-size: 11px;
+      font-weight: 800;
+      color: #f59e0b;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .quest-objective {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 3px 0 2px 0;
+    }
+    .quest-sub {
+      font-size: 12px;
+      color: #94a3b8;
+      font-style: italic;
+    }
+    .btn-dossier {
+      pointer-events: auto;
+      background: #f59e0b;
+      color: #000000;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 12px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-dossier:hover {
+      background: #fbbf24;
+      transform: scale(1.03);
+    }
+    .btn-dossier:active {
+      transform: scale(0.97);
+    }
+    .hud-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 12px;
+    }
+    .controls-hint {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      padding: 8px 16px;
+      border-radius: 12px;
+      color: #94a3b8;
+    }
+    .controls-hint b {
+      color: #ffffff;
+    }
+    .controls-hint span {
+      color: #f59e0b;
+      font-weight: bold;
+    }
+    /* Quick Action Keycap */
+    .quick-action-container {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: auto;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes popIn {
+      from { transform: translate(-50%, 15px) scale(0.85); opacity: 0; }
+      to { transform: translate(-50%, 0) scale(1); opacity: 1; }
+    }
+    .btn-action {
+      background: #0f172a;
+      border: 2px solid #f59e0b;
+      color: #ffffff;
+      padding: 10px 24px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.6);
+      transition: all 0.12s ease;
+    }
+    .btn-action:hover {
+      background: #f59e0b;
+      color: #000000;
+      transform: scale(1.04);
+    }
+    .btn-action .key-badge {
+      background: #f59e0b;
+      color: #000000;
+      padding: 3px 8px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-weight: 900;
+    }
+    .btn-action:hover .key-badge {
+      background: #000000;
+      color: #f59e0b;
+    }
+    /* Decryption Modal */
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal-box {
+      background: #0f172a;
+      border: 2px solid #f59e0b;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 580px;
+      padding: 28px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+      position: relative;
+      animation: modalScale 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes modalScale {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: #ffffff;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .modal-close:hover {
+      background: rgba(255,255,255,0.25);
+    }
+    .modal-header-badge {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    .modal-german-title {
+      font-size: 36px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+    .gender-pill {
+      font-size: 18px;
+      padding: 2px 10px;
+      border-radius: 10px;
+      font-weight: 800;
+    }
+    .gender-der { background: #1e3a8a; color: #60a5fa; border: 1px solid #3b82f6; }
+    .gender-die { background: #881337; color: #f43f5e; border: 1px solid #f43f5e; }
+    .gender-das { background: #064e3b; color: #34d399; border: 1px solid #10b981; }
+    .modal-phonetic {
+      color: #94a3b8;
+      font-size: 14px;
+      font-family: monospace;
+      margin-bottom: 20px;
+    }
+    .shift-box {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px dashed rgba(245, 158, 11, 0.5);
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      text-align: center;
+    }
+    .shift-word {
+      font-size: 22px;
+      font-weight: 800;
+    }
+    .shift-arrow {
+      font-size: 24px;
+      color: #f59e0b;
+    }
+    .shift-rule-badge {
+      background: #f59e0b;
+      color: #000000;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 900;
+      margin-top: 4px;
+      display: inline-block;
+    }
+    .modal-story {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 14px;
+      border-radius: 12px;
+      border-left: 3px solid #f59e0b;
+      margin-bottom: 24px;
+    }
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+    }
+    .btn-audio {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.15s;
+    }
+    .btn-audio:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+    .btn-collect {
+      flex: 2;
+      background: #f59e0b;
+      border: none;
+      color: #000000;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-collect:hover {
+      background: #fbbf24;
+      transform: scale(1.02);
+    }
+    /* Dialogue Modal */
+    .dialogue-box {
+      background: #0f172a;
+      border: 2px solid #38bdf8;
+      border-radius: 20px;
+      padding: 24px;
+      max-width: 620px;
+      width: 100%;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.85);
+      animation: modalScale 0.2s ease;
+    }
+    .dialogue-speaker {
+      color: #38bdf8;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .dialogue-speech {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+    .dialogue-english {
+      font-size: 13px;
+      color: #94a3b8;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .dialogue-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .dialogue-opt-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #ffffff;
+      padding: 12px 16px;
+      border-radius: 12px;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .dialogue-opt-btn:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      transform: translateX(4px);
+    }
+    /* Dossier Journal Drawer */
+    .dossier-modal {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 440px;
+      height: 100%;
+      background: #0f172a;
+      border-left: 2px solid rgba(245, 158, 11, 0.4);
+      z-index: 60;
+      box-shadow: -15px 0 50px rgba(0,0,0,0.7);
+      padding: 24px;
+      display: none;
+      flex-direction: column;
+      animation: slideLeft 0.25s ease;
+    }
+    @keyframes slideLeft {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+    .dossier-list {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+      padding-right: 6px;
+    }
+    .dossier-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Game Canvas -->
+  <canvas id="game-canvas"></canvas>
+
+  <!-- HUD Layer -->
+  <div class="hud-layer">
+    <!-- Top Bar -->
+    <div class="hud-top">
+      <!-- Visa & Bank Status -->
+      <div class="hud-card visa-card">
+        <div class="visa-title">
+          <span>⚖️</span>
+          <span>Schengen Visa Status</span>
+        </div>
+        <div class="visa-countdown" id="visa-days-display">Tag 1 / Noch 89 Tage</div>
+        <div class="money-badge">
+          <span>💶</span>
+          <span id="money-display">€2.400,00</span>
+          <span style="color: #64748b; font-weight: normal; margin-left: 4px;">(Girokonto)</span>
+        </div>
+      </div>
+
+      <!-- Active Mission / Quest Objective -->
+      <div class="hud-card quest-card">
+        <div class="quest-step" id="quest-title">Beat 1: Der Wecker klingelt</div>
+        <div class="quest-objective" id="quest-objective">Schalte den Wecker auf dem Nachttisch aus.</div>
+        <div class="quest-sub" id="quest-sub">Turn off the alarm clock on the nightstand.</div>
+      </div>
+
+      <!-- Grimm's Law Dossier Button -->
+      <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+        <button class="btn-dossier" onclick="toggleDossier(true)">
+          <span>📖</span>
+          <span>Grimm's Law Matrix</span>
+        </button>
+        <div class="hud-card" style="padding: 4px 10px; font-size: 11px; color: #f59e0b;">
+          § 17 BMG Anmeldung: Noch 14 Tage
+        </div>
+      </div>
+    </div>
+
+    <!-- Center Action Callout -->
+    <div class="quick-action-container" id="action-container">
+      <button class="btn-action" id="action-btn" onclick="triggerInteract()">
+        <span class="key-badge">E</span>
+        <span id="action-text">Untersuchen</span>
+      </button>
+    </div>
+
+    <!-- Bottom Controls Bar -->
+    <div class="hud-bottom">
+      <div class="controls-hint">
+        <b>[W, A, S, D / Pfeile]</b> Bewegen &nbsp;•&nbsp; 
+        <b>[Klick]</b> Ziel ansteuern &nbsp;•&nbsp; 
+        <span>[E / Leertaste]</span> Untersuchen / Entschlüsseln &nbsp;•&nbsp;
+        <b>[Mausrad]</b> Zoom
+      </div>
+      <div class="controls-hint" style="font-size: 11px;">
+        Ein Neues Leben in Deutschland • Fall Guys & Roblox Arcade Edition
+      </div>
+    </div>
+  </div>
+
+  <!-- Decryption Modal -->
+  <div class="modal-backdrop" id="decrypt-modal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-header-badge">Grimm's Law Consonant Shift Matrix</div>
+      <div class="modal-german-title">
+        <span class="gender-pill gender-das" id="modal-article">das</span>
+        <span id="modal-german-word">Wasser</span>
+      </div>
+      <div class="modal-phonetic" id="modal-phonetic">[ˈvasɐ] • Neuter Noun</div>
+
+      <div class="shift-box">
+        <div>
+          <div style="font-size: 11px; color: #94a3b8;">DEUTSCH</div>
+          <div class="shift-word" id="modal-shift-de" style="color: #4ade80;">Wasser</div>
+        </div>
+        <div>
+          <div class="shift-arrow">➔</div>
+          <div class="shift-rule-badge" id="modal-shift-rule">SS → T</div>
+        </div>
+        <div>
+          <div style="font-size: 11px; color: #94a3b8;">ENGLISH COGNATE</div>
+          <div class="shift-word" id="modal-shift-en" style="color: #38bdf8;">Water</div>
+        </div>
+      </div>
+
+      <div class="modal-story" id="modal-story">
+        German and English split during the High German Consonant Shift. The Proto-Germanic 'T' sound stayed in English as 'Water', but shifted to double 'SS' in German 'Wasser'!
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-audio" onclick="playAudioTTS()">
+          <span>🔊</span>
+          <span>Aussprache hören (Audio)</span>
+        </button>
+        <button class="btn-collect" onclick="collectWord()">
+          <span>In den Wortschatz eintragen (+50 XP)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dialogue Modal -->
+  <div class="modal-backdrop" id="dialogue-modal">
+    <div class="dialogue-box">
+      <div class="dialogue-speaker" id="dialogue-speaker">Lena Marie Vogel</div>
+      <div class="dialogue-speech" id="dialogue-speech">Guten Morgen! Willkommen in Berlin!</div>
+      <div class="dialogue-english" id="dialogue-english">Good morning! Welcome to Berlin!</div>
+      <div class="dialogue-options" id="dialogue-options"></div>
+    </div>
+  </div>
+
+  <!-- Dossier Drawer -->
+  <div class="dossier-modal" id="dossier-modal">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h2 style="font-size: 18px; font-weight: 800; color: #f59e0b;">Wortschatz-Dossier</h2>
+      <button class="modal-close" style="position: static;" onclick="toggleDossier(false)">✕</button>
+    </div>
+    <div style="font-size: 12px; color: #94a3b8; margin-top: 4px;">
+      Entdeckte Wörter & das Grimm'sche Gesetz
+    </div>
+    <div class="dossier-list" id="dossier-list"></div>
+  </div>
+
+  <script>
+    // --- 1. AUDIO SYNTHESIZER ---
+    const AudioEngine = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+      },
+      beep(freq = 800, type = 'sine', duration = 0.08) {
+        this.init();
+        if (this.ctx.state === 'suspended') this.ctx.resume();
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+        gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + duration);
+      },
+      chime() {
+        this.beep(523.25, 'sine', 0.12);
+        setTimeout(() => this.beep(659.25, 'sine', 0.12), 80);
+        setTimeout(() => this.beep(783.99, 'sine', 0.25), 160);
+      },
+      speak(text) {
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const ut = new SpeechSynthesisUtterance(text);
+          ut.lang = 'de-DE';
+          ut.rate = 0.88;
+          ut.pitch = 1.05;
+          window.speechSynthesis.speak(ut);
+        }
+      }
+    };
+
+    // --- 2. DECRYPTION DICTIONARY ---
+    const DICTIONARY = {
+      wecker: { word: 'Wecker', article: 'der', phonetic: '[ˈvɛkɐ]', en: 'Alarm Clock (Waker)', shiftDe: 'We[ck]er', shiftEn: 'Wa[k]er', rule: 'CK → K', story: 'From the verb "wecken" (to wake). A Wecker is literally a "waker"!' },
+      bett: { word: 'Bett', article: 'das', phonetic: '[bɛt]', en: 'Bed', shiftDe: 'Be[tt]', shiftEn: 'Be[d]', rule: 'T → D', story: 'Proto-Germanic *badja-. In the High German consonant shift, English kept D while German shifted to T!' },
+      foto: { word: 'Foto', article: 'das', phonetic: '[ˈfoːto]', en: 'Photograph', shiftDe: 'Foto', shiftEn: 'Photo', rule: 'F → PH', story: 'Alex\'s Great-Uncle Tomás in West Berlin, 1968. Vanished in 1971.' },
+      licht: { word: 'Licht', article: 'das', phonetic: '[lɪçt]', en: 'Light', shiftDe: 'Li[cht]', shiftEn: 'Li[ght]', rule: 'CHT → GHT', story: 'Night = Nacht, Light = Licht, Right = Recht, Might = Macht. CHT always maps to GHT!' },
+      wasser: { word: 'Wasser', article: 'das', phonetic: '[ˈvasɐ]', en: 'Water', shiftDe: 'Wa[ss]er', shiftEn: 'Wa[t]er', rule: 'SS → T', story: 'Double S in German consistently becomes T in English: Wasser → Water, Straße → Street, besser → better!' },
+      brot: { word: 'Brot', article: 'das', phonetic: '[bʁoːt]', en: 'Bread', shiftDe: 'Bro[t]', shiftEn: 'Brea[d]', rule: 'T → D', story: 'The T-to-D shift in action. Brot is bread, rot is red, tot is dead, gut is good!' },
+      milch: { word: 'Milch', article: 'die', phonetic: '[mɪlç]', en: 'Milk', shiftDe: 'Mil[ch]', shiftEn: 'Mil[k]', rule: 'CH → K', story: 'German CH shifts to English hard K: Milch → Milk, Buch → Book, Küche → Kitchen!' },
+      kaffee: { word: 'Kaffee', article: 'der', phonetic: '[ˈkafe]', en: 'Coffee', shiftDe: 'Kaffee', shiftEn: 'Coffee', rule: 'K → C', story: 'Essential fuel for early Berlin mornings in Neukölln.' },
+      apfel: { word: 'Apfel', article: 'der', phonetic: '[ˈapfl̩]', en: 'Apple', shiftDe: 'A[pf]el', shiftEn: 'A[pp]le', rule: 'PF → P', story: 'German PF shifts to English P: Apfel → Apple, Pfeffer → Pepper, Pflug → Plough!' },
+      dokument: { word: 'Dokument', article: 'das', phonetic: '[dokuˈmɛnt]', en: 'Landlord Confirmation (§ 19 BMG)', shiftDe: 'Dokument', shiftEn: 'Document', rule: 'Cognate', story: 'The essential Wohnungsgeberbestätigung signed by landlord Herr Brandt.' },
+      schuhe: { word: 'Schuhe', article: 'die', phonetic: '[ˈʃuːə]', en: 'Shoes (House Slippers)', shiftDe: 'Schuhe', shiftEn: 'Shoes', rule: 'SCH → SH', story: 'German SCH maps to English SH. Never wear outside shoes indoors in Germany!' },
+      schluessel: { word: 'Schlüssel', article: 'der', phonetic: '[ˈʃlʏsl̩]', en: 'Keys', shiftDe: 'Schlü[ss]el', shiftEn: 'Slo[t] (Lock)', shiftRule: 'SS → T', story: 'From root *sleutan (to close/slot). Never lock yourself out in Berlin!' },
+      tuer: { word: 'Tür', article: 'die', phonetic: '[tyːɐ̯]', en: 'Door', shiftDe: '[T]ür', shiftEn: '[D]oor', rule: 'T → D', story: 'T shifts to D: Tür → Door, Tag → Day, Traum → Dream, Tochter → Daughter!' },
+      strasse: { word: 'Straße', article: 'die', phonetic: '[ˈʃtʁaːsə]', en: 'Street', shiftDe: 'Stra[ß]e', shiftEn: 'Stree[t]', rule: 'ß → T', story: 'The sharp ß (Eszett) shifts to English T: Straße → Street, groß → great, Fuß → foot!' },
+      leben: { word: 'Leben', article: 'das', phonetic: '[ˈleːbn̩]', en: 'Life / Living', shiftDe: 'Le[b]en', shiftEn: 'Li[v]e', rule: 'B → V', story: 'German B shifts to English V: Leben → Live, haben → have, Silber → silver!' },
+      recht: { word: 'Recht', article: 'das', phonetic: '[ʁɛçt]', en: 'Right / Law / Certificate', shiftDe: 'Re[cht]', shiftEn: 'Ri[ght]', rule: 'CHT → GHT', story: 'Official stamped Meldebestätigung at Bürgeramt Neukölln!' }
+    };
+
+    // --- 3. STORY BEATS ---
+    const BEATS = [
+      { id: 1, title: 'Beat 1: Der Wecker klingelt', de: 'Schalte den Wecker auf dem Nachttisch aus.', en: 'Turn off the alarm clock on the nightstand.', target: 'obj-alarm' },
+      { id: 2, title: 'Beat 2: Das Bett & Orientierung', de: 'Untersuche dein Bett im Schlafzimmer.', en: 'Inspect your bed and orient yourself in the bedroom.', target: 'obj-bed' },
+      { id: 3, title: 'Beat 3: Großonkel Tomás', de: 'Betrachte das alte Schwarz-Weiß-Foto auf dem Tisch.', en: 'Inspect the framed photo of Great-Uncle Tomás (Berlin 1968).', target: 'obj-foto' },
+      { id: 4, title: 'Beat 4: Das Licht im Zimmer', de: 'Schalte die Nachttischlampe an.', en: 'Inspect the bedside reading lamp.', target: 'obj-lamp' },
+      { id: 5, title: 'Beat 5: Das Wasser im Badezimmer', de: 'Gehe ins Bad und drehe das Wasser am Waschbecken auf.', en: 'Walk into the bathroom and turn on the water at the sink.', target: 'obj-sink' },
+      { id: 6, title: 'Beat 6: Der Kühlschrank in der Küche', de: 'Öffne den Kühlschrank nach Brot und Milch.', en: 'Inspect the refrigerator in the kitchen for breakfast.', target: 'obj-fridge' },
+      { id: 7, title: 'Beat 7: Die Kaffeemaschine', de: 'Koche frischen Morgenkaffee.', en: 'Brew fresh morning coffee on the counter.', target: 'obj-coffee' },
+      { id: 8, title: 'Beat 8: Das Bürgeramt-Dokument', de: 'Nimm die Wohnungsgeberbestätigung vom Schreibtisch.', en: 'Pick up the landlord confirmation dossier from the desk.', target: 'obj-doc' },
+      { id: 9, title: 'Beat 9: Hausschuhe-Kultur', de: 'Wechsle deine Schuhe an der Garderobe im Flur.', en: 'Inspect the shoe rack in the hallway (house slippers rule!).', target: 'obj-shoes' },
+      { id: 10, title: 'Beat 10: Der Wohnungsschlüssel', de: 'Nimm den Schlüssel vom Konsolentisch.', en: 'Take the apartment keys so you don\'t lock yourself out.', target: 'obj-keys' },
+      { id: 11, title: 'Beat 11: Die Wohnungstür aufschließen', de: 'Schließe die Tür auf und tritt ins Treppenhaus.', en: 'Unlock the front door and step into the building stairwell.', target: 'obj-door' },
+      { id: 12, title: 'Beat 12: Nachbar Herr Krüger', de: 'Grüße Herrn Krüger im Treppenhaus höflich mit "Sie".', en: 'Greet neighbor Herr Krüger politely in the stairwell.', target: 'obj-krueger' },
+      { id: 13, title: 'Beat 13: Die Sonnenallee', de: 'Tritt hinaus auf die Straße und lies das Straßenschild.', en: 'Step onto Sonnenallee and inspect the street sign.', target: 'obj-sign' },
+      { id: 14, title: 'Beat 14: Bäckerei Schneider', de: 'Bestelle zwei frische Schrippen bei Frau Schneider.', en: 'Order two rolls and coffee at Bäckerei Schneider.', target: 'obj-baker' },
+      { id: 15, title: 'Beat 15: Treffen mit Lena', de: 'Triff Lena auf der Terrasse des Café Morgenrot.', en: 'Meet your DaF language mentor Lena at Café Morgenrot.', target: 'obj-lena' },
+      { id: 16, title: 'Beat 16: Die Wartemarke am Bürgeramt', de: 'Ziehe Wartemarke W-42 am Ticketautomaten.', en: 'Pull queue ticket W-42 inside Bürgeramt Neukölln.', target: 'obj-ticket' },
+      { id: 17, title: 'Beat 17: Amtliche Meldebestätigung!', de: 'Tritt an Schalter 4 und erhalte den amtlichen Stempel!', en: 'Present papers to Beamter Herr Meyer for your official stamp!', target: 'obj-officer' }
+    ];
+
+    // --- 4. GAME STATE ---
+    let currentBeatIdx = 0;
+    let moneyEuros = 2400.0;
+    let visaDays = 89;
+    let discoveredWords = new Set();
+    let inspectedItem = null;
+
+    // --- 5. WORLD GEOMETRY & ENTITIES ---
+    const WORLD = {
+      player: {
+        x: 250,
+        y: 280,
+        radius: 14,
+        speed: 240,
+        vx: 0,
+        vy: 0,
+        facing: 'down',
+        walkTimer: 0,
+        isMoving: false
+      },
+      camera: {
+        x: 250,
+        y: 280,
+        scale: 2.2
+      },
+      zones: [
+        // Apartment
+        { name: 'Das Schlafzimmer', x: 80, y: 80, w: 340, h: 320, bg: '#d4a373', border: '#8c5828' },
+        { name: 'Der Flur', x: 420, y: 80, w: 140, h: 600, bg: '#c68b59', border: '#8c5828' },
+        { name: 'Das Wohnzimmer', x: 80, y: 400, w: 340, h: 280, bg: '#d4a373', border: '#8c5828' },
+        { name: 'Die Küche', x: 560, y: 80, w: 340, h: 320, bg: '#e2e8f0', border: '#94a3b8' },
+        { name: 'Das Badezimmer', x: 560, y: 400, w: 340, h: 280, bg: '#bae6fd', border: '#38bdf8' },
+        // Stairwell
+        { name: 'Das Treppenhaus (2. OG)', x: 900, y: 80, w: 220, h: 600, bg: '#cbd5e1', border: '#64748b' },
+        // Street
+        { name: 'Sonnenallee & Weserstraße', x: 40, y: 740, w: 2000, h: 380, bg: '#1e293b', border: '#0f172a' },
+        // Bakery
+        { name: 'Bäckerei Schneider', x: 1200, y: 120, w: 440, h: 560, bg: '#fed7aa', border: '#ea580c' },
+        // Café
+        { name: 'Café Morgenrot', x: 60, y: 1180, w: 460, h: 380, bg: '#fef08a', border: '#ca8a04' },
+        // Bürgeramt
+        { name: 'Bürgeramt Neukölln', x: 580, y: 1180, w: 840, h: 460, bg: '#f8fafc', border: '#1e3a8a' }
+      ],
+      walls: [
+        // Apartment Outer
+        { x: 80, y: 75, w: 820, h: 10 },
+        { x: 75, y: 80, w: 10, h: 600 },
+        { x: 80, y: 675, w: 340, h: 10 },
+        { x: 560, y: 675, w: 340, h: 10 },
+        { x: 895, y: 80, w: 10, h: 260 },
+        { x: 895, y: 440, w: 10, h: 240 },
+        // Interior Dividers
+        { x: 80, y: 395, w: 240, h: 10 },
+        { x: 415, y: 80, w: 10, h: 120 },
+        { x: 415, y: 300, w: 10, h: 380 },
+        { x: 555, y: 80, w: 10, h: 120 },
+        { x: 555, y: 300, w: 10, h: 380 },
+        { x: 560, y: 395, w: 240, h: 10 },
+        // Stairwell
+        { x: 900, y: 75, w: 220, h: 10 },
+        { x: 1115, y: 80, w: 10, h: 600 },
+        // Bakery
+        { x: 1200, y: 115, w: 440, h: 10 },
+        { x: 1195, y: 120, w: 10, h: 560 },
+        { x: 1635, y: 120, w: 10, h: 560 },
+        { x: 1200, y: 675, w: 180, h: 10 },
+        { x: 1480, y: 675, w: 160, h: 10 }
+      ],
+      entities: [
+        { id: 'obj-alarm', name: 'Wecker', article: 'der', en: 'Alarm Clock', x: 120, y: 110, w: 36, h: 36, type: 'alarm', dictKey: 'wecker', isSolid: true, radius: 80 },
+        { id: 'obj-bed', name: 'Bett', article: 'das', en: 'Bed', x: 170, y: 100, w: 110, h: 130, type: 'bed', dictKey: 'bett', isSolid: true, radius: 95 },
+        { id: 'obj-foto', name: 'Foto', article: 'das', en: 'Tomás Photo', x: 295, y: 110, w: 32, h: 32, type: 'foto', dictKey: 'foto', isSolid: true, radius: 75 },
+        { id: 'obj-lamp', name: 'Licht', article: 'das', en: 'Bedside Lamp', x: 120, y: 160, w: 30, h: 30, type: 'lamp', dictKey: 'licht', isSolid: true, radius: 75 },
+        { id: 'obj-doc', name: 'Dokument', article: 'das', en: 'Landlord Confirmation', x: 120, y: 310, w: 80, h: 50, type: 'desk', dictKey: 'dokument', isSolid: true, radius: 85 },
+        { id: 'obj-shoes', name: 'Schuhe', article: 'die', en: 'House Slippers', x: 440, y: 380, w: 45, h: 35, type: 'shoes', dictKey: 'schuhe', isSolid: true, radius: 75 },
+        { id: 'obj-keys', name: 'Schlüssel', article: 'der', en: 'Apartment Keys', x: 450, y: 480, w: 36, h: 36, type: 'keys', dictKey: 'schluessel', isSolid: true, radius: 80 },
+        { id: 'obj-door', name: 'Tür', article: 'die', en: 'Apartment Door', x: 890, y: 360, w: 20, h: 80, type: 'door', dictKey: 'tuer', isSolid: false, radius: 90 },
+        { id: 'obj-couch', name: 'Couch', article: 'die', en: 'Salon Sofa', x: 120, y: 440, w: 120, h: 90, type: 'couch', dictKey: 'bett', isSolid: true, radius: 85 },
+        { id: 'obj-fire', name: 'Feuer', article: 'das', en: 'Fireplace', x: 100, y: 590, w: 80, h: 50, type: 'fireplace', dictKey: 'licht', isSolid: true, radius: 80 },
+        { id: 'obj-fridge', name: 'Brot & Milch', article: 'das', en: 'Fridge', x: 810, y: 100, w: 60, h: 70, type: 'fridge', dictKey: 'brot', isSolid: true, radius: 85 },
+        { id: 'obj-sink-k', name: 'Wasser', article: 'das', en: 'Kitchen Sink', x: 740, y: 100, w: 55, h: 50, type: 'sink', dictKey: 'wasser', isSolid: true, radius: 80 },
+        { id: 'obj-coffee', name: 'Kaffee', article: 'der', en: 'Coffee Machine', x: 670, y: 100, w: 50, h: 50, type: 'coffee', dictKey: 'kaffee', isSolid: true, radius: 80 },
+        { id: 'obj-sink', name: 'Wasser', article: 'das', en: 'Bathroom Sink', x: 580, y: 420, w: 50, h: 50, type: 'sink', dictKey: 'wasser', isSolid: true, radius: 80 },
+        { id: 'obj-bath', name: 'Bad', article: 'das', en: 'Bathtub', x: 740, y: 420, w: 120, h: 60, type: 'bath', dictKey: 'wasser', isSolid: true, radius: 85 },
+        // NPCs
+        { id: 'obj-krueger', name: 'Herr Krüger', article: 'der', en: 'Neighbor', x: 990, y: 340, w: 44, h: 44, type: 'krueger', isSolid: true, radius: 95 },
+        { id: 'obj-sign', name: 'Straße', article: 'die', en: 'Sonnenallee Sign', x: 820, y: 760, w: 140, h: 35, type: 'sign', dictKey: 'strasse', radius: 95 },
+        { id: 'obj-baker', name: 'Frau Schneider', article: 'die', en: 'Master Baker', x: 1380, y: 300, w: 46, h: 46, type: 'baker', isSolid: true, radius: 95 },
+        { id: 'obj-lena', name: 'Lena Marie Vogel', article: 'die', en: 'Language Mentor', x: 280, y: 1300, w: 46, h: 46, type: 'lena', dictKey: 'leben', isSolid: true, radius: 100 },
+        { id: 'obj-ticket', name: 'Wartemarke', article: 'die', en: 'Ticket Machine', x: 720, y: 1220, w: 40, h: 60, type: 'ticket', dictKey: 'dokument', isSolid: true, radius: 85 },
+        { id: 'obj-officer', name: 'Beamter Herr Meyer', article: 'der', en: 'Civil Servant', x: 1040, y: 1380, w: 50, h: 50, type: 'officer', dictKey: 'recht', isSolid: true, radius: 100 }
+      ]
+    };
+
+    // --- 6. CANVAS SETUP & LOOP ---
+    const canvas = document.getElementById('game-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      // Adaptive zoom scale
+      WORLD.camera.scale = Math.max(1.8, Math.min(canvas.width / 540, canvas.height / 360, 2.5));
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Input state
+    const keys = {};
+    let targetMove = null;
+
+    window.addEventListener('keydown', (e) => {
+      keys[e.code] = true;
+      if (e.code === 'KeyE' || e.code === 'Space') {
+        triggerInteract();
+      }
+    });
+    window.addEventListener('keyup', (e) => {
+      keys[e.code] = false;
+    });
+    canvas.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const zoom = e.deltaY < 0 ? 1.08 : 0.92;
+      WORLD.camera.scale = Math.max(1.3, Math.min(3.4, WORLD.camera.scale * zoom));
+    }, { passive: false });
+
+    canvas.addEventListener('pointerdown', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const screenX = e.clientX - rect.left;
+      const screenY = e.clientY - rect.top;
+      // Screen to world
+      const worldX = (screenX - canvas.width / 2) / WORLD.camera.scale + WORLD.camera.x;
+      const worldY = (screenY - canvas.height / 2) / WORLD.camera.scale + WORLD.camera.y;
+      targetMove = { x: worldX, y: worldY };
+      AudioEngine.beep(1200, 'sine', 0.03);
+    });
+
+    // --- 7. PHYSICS & COLLISION ---
+    function updatePhysics(delta) {
+      const p = WORLD.player;
+      let dx = 0;
+      let dy = 0;
+
+      if (keys['KeyW'] || keys['ArrowUp']) dy -= 1;
+      if (keys['KeyS'] || keys['ArrowDown']) dy += 1;
+      if (keys['KeyA'] || keys['ArrowLeft']) dx -= 1;
+      if (keys['KeyD'] || keys['ArrowRight']) dx += 1;
+
+      if (targetMove) {
+        const dist = Math.hypot(targetMove.x - p.x, targetMove.y - p.y);
+        if (dist > 8) {
+          dx = (targetMove.x - p.x) / dist;
+          dy = (targetMove.y - p.y) / dist;
+        } else {
+          targetMove = null;
+        }
+      }
+
+      const len = Math.hypot(dx, dy);
+      if (len > 0) {
+        dx /= len;
+        dy /= len;
+        p.isMoving = true;
+        p.walkTimer += delta * 12;
+
+        if (Math.abs(dx) > Math.abs(dy)) {
+          p.facing = dx > 0 ? 'right' : 'left';
+        } else {
+          p.facing = dy > 0 ? 'down' : 'up';
+        }
+      } else {
+        p.isMoving = false;
+      }
+
+      const mx = dx * p.speed * delta;
+      const my = dy * p.speed * delta;
+
+      // Sliding collision
+      if (!isColliding(p.x + mx, p.y + my, p.radius)) {
+        p.x += mx;
+        p.y += my;
+      } else if (mx !== 0 && !isColliding(p.x + mx, p.y, p.radius)) {
+        p.x += mx;
+      } else if (my !== 0 && !isColliding(p.x, p.y + my, p.radius)) {
+        p.y += my;
+      }
+
+      // De-penetration
+      resolveDePenetration();
+
+      // Camera follow with smooth damping
+      WORLD.camera.x += (p.x - WORLD.camera.x) * 0.14;
+      WORLD.camera.y += (p.y - WORLD.camera.y) * 0.14;
+
+      // Check Proximity
+      checkNearbyInteractable();
+    }
+
+    function isColliding(x, y, r) {
+      for (const w of WORLD.walls) {
+        if (circleIntersectsRect(x, y, r, w.x, w.y, w.w, w.h)) return true;
+      }
+      for (const ent of WORLD.entities) {
+        if (ent.isSolid && circleIntersectsRect(x, y, r, ent.x, ent.y, ent.w, ent.h)) return true;
+      }
+      return false;
+    }
+
+    function resolveDePenetration() {
+      const p = WORLD.player;
+      const r = p.radius;
+      for (const ent of WORLD.entities) {
+        if (!ent.isSolid) continue;
+        if (p.x + r > ent.x && p.x - r < ent.x + ent.w && p.y + r > ent.y && p.y - r < ent.y + ent.h) {
+          const l = Math.abs(p.x - ent.x);
+          const ri = Math.abs(p.x - (ent.x + ent.w));
+          const t = Math.abs(p.y - ent.y);
+          const b = Math.abs(p.y - (ent.y + ent.h));
+          const min = Math.min(l, ri, t, b);
+          if (min === l) p.x = ent.x - r - 2;
+          else if (min === ri) p.x = ent.x + ent.w + r + 2;
+          else if (min === t) p.y = ent.y - r - 2;
+          else if (min === b) p.y = ent.y + ent.h + r + 2;
+        }
+      }
+    }
+
+    function circleIntersectsRect(cx, cy, r, rx, ry, rw, rh) {
+      const closeX = Math.max(rx, Math.min(cx, rx + rw));
+      const closeY = Math.max(ry, Math.min(cy, ry + rh));
+      const dx = cx - closeX;
+      const dy = cy - closeY;
+      return dx * dx + dy * dy < r * r;
+    }
+
+    function checkNearbyInteractable() {
+      let nearest = null;
+      let minD = Infinity;
+      const p = WORLD.player;
+
+      for (const ent of WORLD.entities) {
+        const cx = ent.x + ent.w / 2;
+        const cy = ent.y + ent.h / 2;
+        const d = Math.hypot(p.x - cx, p.y - cy);
+        if (d <= ent.radius && d < minD) {
+          minD = d;
+          nearest = ent;
+        }
+      }
+
+      inspectedItem = nearest;
+      const actionBox = document.getElementById('action-container');
+      const actionText = document.getElementById('action-text');
+
+      if (nearest) {
+        actionBox.style.display = 'flex';
+        let art = nearest.article ? nearest.article + ' ' : '';
+        actionText.innerHTML = `Untersuchen: <span style="color:#f59e0b; text-decoration:underline;">${art}${nearest.name}</span> (${nearest.en})`;
+      } else {
+        actionBox.style.display = 'none';
+      }
+    }
+
+    // --- 8. RENDERING PIPELINE ---
+    function render() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Background Courtyard
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.save();
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.scale(WORLD.camera.scale, WORLD.camera.scale);
+      ctx.translate(-WORLD.camera.x, -WORLD.camera.y);
+
+      // Draw Zones (Floors)
+      for (const z of WORLD.zones) {
+        ctx.fillStyle = z.bg;
+        ctx.fillRect(z.x, z.y, z.w, z.h);
+        ctx.strokeStyle = z.border;
+        ctx.lineWidth = 3;
+        ctx.strokeRect(z.x, z.y, z.w, z.h);
+
+        // Header Title
+        ctx.fillStyle = 'rgba(0,0,0,0.3)';
+        ctx.font = 'bold 13px sans-serif';
+        ctx.fillText(z.name, z.x + 12, z.y + 22);
+      }
+
+      // Draw Walls
+      for (const w of WORLD.walls) {
+        ctx.fillStyle = 'rgba(0,0,0,0.25)';
+        ctx.fillRect(w.x + 3, w.y + 3, w.w, w.h);
+        ctx.fillStyle = '#1e293b';
+        ctx.fillRect(w.x, w.y, w.w, w.h);
+        ctx.strokeStyle = '#475569';
+        ctx.lineWidth = 1.2;
+        ctx.strokeRect(w.x, w.y, w.w, w.h);
+      }
+
+      // Draw Entities
+      for (const ent of WORLD.entities) {
+        drawEntitySprite(ent);
+      }
+
+      // Draw Player Alex Herrera (Fall Guys Chibi Style!)
+      drawPlayerPawn(WORLD.player);
+
+      // Target Movement Ripple
+      if (targetMove) {
+        ctx.strokeStyle = 'rgba(245, 158, 11, 0.7)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(targetMove.x, targetMove.y, 8, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      ctx.restore();
+    }
+
+    function drawEntitySprite(ent) {
+      const cx = ent.x + ent.w / 2;
+      const cy = ent.y + ent.h / 2;
+
+      // Drop shadow
+      ctx.fillStyle = 'rgba(0,0,0,0.2)';
+      ctx.beginPath();
+      ctx.ellipse(cx, ent.y + ent.h, ent.w / 2, 6, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Proximity selection ring
+      if (inspectedItem === ent) {
+        const pulse = 1 + Math.sin(Date.now() * 0.008) * 0.08;
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.arc(cx, cy, (ent.w / 1.5) * pulse, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // Specific sprites
+      if (ent.type === 'bed') {
+        ctx.fillStyle = '#78350f';
+        ctx.fillRect(ent.x, ent.y, ent.w, ent.h);
+        ctx.fillStyle = '#b91c1c';
+        ctx.fillRect(ent.x + 8, ent.y + 30, ent.w - 16, ent.h - 36);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(ent.x + 12, ent.y + 8, 36, 18);
+        ctx.fillRect(ent.x + ent.w - 48, ent.y + 8, 36, 18);
+      } else if (ent.type === 'alarm') {
+        ctx.fillStyle = '#0f172a';
+        ctx.fillRect(ent.x, ent.y, ent.w, ent.h);
+        ctx.fillStyle = '#22c55e';
+        ctx.font = 'bold 9px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText('07:00', cx, cy + 3);
+      } else if (ent.type === 'door') {
+        ctx.fillStyle = '#991b1b';
+        ctx.fillRect(ent.x, ent.y, ent.w, ent.h);
+        ctx.fillStyle = '#f59e0b';
+        ctx.fillRect(ent.x + 4, cy, 6, 6);
+      } else if (ent.type === 'krueger' || ent.type === 'baker' || ent.type === 'lena' || ent.type === 'officer') {
+        // NPC Chibi Avatar
+        ctx.fillStyle = ent.type === 'lena' ? '#15803d' : (ent.type === 'baker' ? '#ffffff' : '#1e3a8a');
+        ctx.beginPath();
+        ctx.arc(cx, cy + 5, 13, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#fde047';
+        ctx.beginPath();
+        ctx.arc(cx, cy - 8, 10, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Tag
+        ctx.fillStyle = 'rgba(0,0,0,0.85)';
+        ctx.fillRect(cx - 36, cy - 28, 72, 14);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 8.5px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(ent.name.split(' ')[0], cx, cy - 18);
+      } else {
+        ctx.fillStyle = '#475569';
+        ctx.fillRect(ent.x, ent.y, ent.w, ent.h);
+        ctx.strokeStyle = 'rgba(0,0,0,0.25)';
+        ctx.strokeRect(ent.x, ent.y, ent.w, ent.h);
+      }
+
+      // Gender dot
+      if (ent.article) {
+        ctx.fillStyle = ent.article === 'der' ? '#3b82f6' : (ent.article === 'die' ? '#ef4444' : '#22c55e');
+        ctx.beginPath();
+        ctx.arc(ent.x + ent.w - 5, ent.y + 5, 3.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function drawPlayerPawn(p) {
+      const cx = p.x;
+      const cy = p.y;
+      const bob = p.isMoving ? Math.sin(p.walkTimer) * 2.5 : 0;
+
+      // Shadow
+      ctx.fillStyle = 'rgba(0,0,0,0.3)';
+      ctx.beginPath();
+      ctx.ellipse(cx, cy + 13, 11, 4.5, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Stepping Feet
+      if (p.isMoving) {
+        ctx.fillStyle = '#334155';
+        const leg = Math.sin(p.walkTimer) * 5;
+        ctx.fillRect(cx - 7, cy + 9 + leg, 4, 5);
+        ctx.fillRect(cx + 3, cy + 9 - leg, 4, 5);
+      }
+
+      // Fall Guys Squishy Body (Dark Blue Hoodie)
+      ctx.fillStyle = '#1e3a8a';
+      ctx.beginPath();
+      ctx.arc(cx, cy + 2 + bob, 11, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Chibi Head
+      ctx.fillStyle = '#fcd34d';
+      ctx.beginPath();
+      ctx.arc(cx, cy - 9 + bob, 9, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Dark Hair
+      ctx.fillStyle = '#1e1b4b';
+      ctx.beginPath();
+      ctx.arc(cx, cy - 13 + bob, 9, Math.PI, Math.PI * 2);
+      ctx.fill();
+
+      // Direction Eyes
+      ctx.fillStyle = '#0f172a';
+      if (p.facing === 'down') {
+        ctx.fillRect(cx - 4, cy - 9 + bob, 2, 2);
+        ctx.fillRect(cx + 2, cy - 9 + bob, 2, 2);
+      } else if (p.facing === 'left') {
+        ctx.fillRect(cx - 6, cy - 9 + bob, 2, 2);
+      } else if (p.facing === 'right') {
+        ctx.fillRect(cx + 4, cy - 9 + bob, 2, 2);
+      }
+
+      // Overhead Badge
+      ctx.fillStyle = 'rgba(15, 23, 42, 0.88)';
+      ctx.fillRect(cx - 36, cy - 28 + bob, 72, 14);
+      ctx.fillStyle = '#fef08a';
+      ctx.font = 'bold 8.5px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('Alex Herrera', cx, cy - 18 + bob);
+    }
+
+    // --- 9. INTERACTION SYSTEM ---
+    function triggerInteract() {
+      if (!inspectedItem) return;
+
+      const ent = inspectedItem;
+      AudioEngine.chime();
+
+      // Door Teleport
+      if (ent.id === 'obj-door') {
+        if (WORLD.player.x < 900) {
+          WORLD.player.x = 950;
+          WORLD.player.y = 400;
+        } else {
+          WORLD.player.x = 830;
+          WORLD.player.y = 400;
+        }
+      }
+
+      // Dialogues with NPCs
+      if (ent.id === 'obj-krueger') {
+        openDialogue('Herr Dietrich Krüger (72)', 'Guten Tag, junger Mann. Denken Sie stets an die Hausordnung und die Ruhezeit ab 22:00 Uhr!', 'Good day, young man. Always observe the building rules and quiet hours starting at 22:00!', [
+          'Guten Tag, Herr Krüger! Ich halte mich selbstverständlich daran.',
+          'Wo finde ich die Bäckerei Schneider?'
+        ]);
+        advanceStoryIfTarget(ent.id);
+        return;
+      }
+
+      if (ent.id === 'obj-baker') {
+        openDialogue('Frau Schneider (Bäckerin)', 'Guten Morgen! Der Nächste, bitte! Was darf es denn sein? Zwei frische Schrippen?', 'Good morning! Next please! Two fresh bread rolls?', [
+          'Guten Morgen! Zwei Schrippen und einen Kaffee, bitte! (€2.80)',
+          'Haben Sie auch frisches Vollkornbrot?'
+        ], () => {
+          moneyEuros = Math.round((moneyEuros - 2.80) * 100) / 100;
+          document.getElementById('money-display').textContent = `€${moneyEuros.toFixed(2)}`;
+        });
+        advanceStoryIfTarget(ent.id);
+        return;
+      }
+
+      if (ent.id === 'obj-lena') {
+        openDialogue('Lena Marie Vogel (Sprachbegleiterin)', 'Guten Morgen, Alex! Schön dich zu sehen. Hast du deine Wohnungsgeberbestätigung und den Pass dabei?', 'Good morning, Alex! Do you have your housing confirmation and passport ready?', [
+          'Ja, ich habe alle Dokumente dabei! Gehen wir zum Bürgeramt!',
+          'Danke für deine Hilfe mit den deutschen Wörtern, Lena!'
+        ]);
+        advanceStoryIfTarget(ent.id);
+        return;
+      }
+
+      if (ent.id === 'obj-officer') {
+        openDialogue('Beamter Herr Meyer (Bürgeramt)', 'Nummer W-42! Guten Tag. Ihren Pass und die Wohnungsgeberbestätigung, bitte. *KLACK-STEMPEL*! Hier ist Ihre amtliche Meldebestätigung!', 'Number W-42! Good day. Passport and confirmation please. *STAMP*! Here is your official registration certificate!', [
+          'Vielen herzlichen Dank! (Anmeldung abgeschlossen!)'
+        ], () => {
+          if (typeof confetti === 'function') {
+            confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+          }
+        });
+        advanceStoryIfTarget(ent.id);
+        return;
+      }
+
+      // Grimm's Law Decryption Modal
+      if (ent.dictKey && DICTIONARY[ent.dictKey]) {
+        openDecryptionModal(DICTIONARY[ent.dictKey]);
+        advanceStoryIfTarget(ent.id);
+      }
+    }
+
+    function advanceStoryIfTarget(targetId) {
+      const cur = BEATS[currentBeatIdx];
+      if (cur && cur.target === targetId && currentBeatIdx < BEATS.length - 1) {
+        currentBeatIdx++;
+        updateQuestUI();
+      }
+    }
+
+    function updateQuestUI() {
+      const cur = BEATS[currentBeatIdx];
+      document.getElementById('quest-title').textContent = cur.title;
+      document.getElementById('quest-objective').textContent = cur.de;
+      document.getElementById('quest-sub').textContent = cur.en;
+    }
+
+    function openDecryptionModal(dict) {
+      const modal = document.getElementById('decrypt-modal');
+      document.getElementById('modal-article').textContent = dict.article;
+      document.getElementById('modal-article').className = `gender-pill gender-${dict.article}`;
+      document.getElementById('modal-german-word').textContent = dict.word;
+      document.getElementById('modal-phonetic').textContent = `${dict.phonetic} • ${dict.article === 'das' ? 'Neuter' : (dict.article === 'die' ? 'Feminine' : 'Masculine')}`;
+      document.getElementById('modal-shift-de').textContent = dict.shiftDe;
+      document.getElementById('modal-shift-en').textContent = dict.shiftEn;
+      document.getElementById('modal-shift-rule').textContent = dict.rule;
+      document.getElementById('modal-story').textContent = dict.story;
+      modal.style.display = 'flex';
+      AudioEngine.speak(dict.word);
+    }
+
+    function closeModal() {
+      document.getElementById('decrypt-modal').style.display = 'none';
+      document.getElementById('dialogue-modal').style.display = 'none';
+    }
+
+    function playAudioTTS() {
+      const word = document.getElementById('modal-german-word').textContent;
+      AudioEngine.speak(word);
+    }
+
+    function collectWord() {
+      const word = document.getElementById('modal-german-word').textContent;
+      discoveredWords.add(word);
+      if (typeof confetti === 'function') {
+        confetti({ particleCount: 70, spread: 60, origin: { y: 0.7 } });
+      }
+      AudioEngine.chime();
+      closeModal();
+      renderDossier();
+    }
+
+    function openDialogue(speaker, speech, en, options, onChoice) {
+      const modal = document.getElementById('dialogue-modal');
+      document.getElementById('dialogue-speaker').textContent = speaker;
+      document.getElementById('dialogue-speech').textContent = speech;
+      document.getElementById('dialogue-english').textContent = en;
+
+      const optsContainer = document.getElementById('dialogue-options');
+      optsContainer.innerHTML = '';
+
+      options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'dialogue-opt-btn';
+        btn.textContent = `▶ ${opt}`;
+        btn.onclick = () => {
+          if (onChoice) onChoice();
+          closeModal();
+          AudioEngine.beep(880, 'sine', 0.1);
+        };
+        optsContainer.appendChild(btn);
+      });
+
+      modal.style.display = 'flex';
+      AudioEngine.speak(speech);
+    }
+
+    function toggleDossier(show) {
+      document.getElementById('dossier-modal').style.display = show ? 'flex' : 'none';
+      if (show) renderDossier();
+    }
+
+    function renderDossier() {
+      const list = document.getElementById('dossier-list');
+      list.innerHTML = '';
+      if (discoveredWords.size === 0) {
+        list.innerHTML = '<div style="color: #64748b; font-size: 12px; text-align: center; margin-top: 40px;">Noch keine Wörter gesammelt.<br>Untersuche Gegenstände mit [E]!</div>';
+        return;
+      }
+      discoveredWords.forEach(w => {
+        const item = document.createElement('div');
+        item.className = 'dossier-item';
+        item.innerHTML = `
+          <div>
+            <b style="color: #f59e0b;">${w}</b>
+            <div style="font-size: 11px; color: #94a3b8;">Grimm's Law Decrypted</div>
+          </div>
+          <button style="background:none; border:none; color:#38bdf8; cursor:pointer; font-size: 16px;" onclick="AudioEngine.speak('${w}')">🔊</button>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    // --- 10. MAIN LOOP ---
+    let lastT = performance.now();
+    function loop(t) {
+      const delta = Math.min((t - lastT) / 1000, 0.1);
+      lastT = t;
+      updatePhysics(delta);
+      render();
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  </script>
+</body>
+</html>
