@@ -1,5 +1,3 @@
-﻿import { eventBus } from './EventBus.js';
-
 export const STATES = {
   BOOT: 'BOOT',
   MENU: 'MENU',
@@ -13,13 +11,26 @@ export const STATES = {
 
 export class GameState {
   constructor() {
-    this.currentState = STATES.BOOT;
-    this.stateHandlers = new Map();
-    console.log(`[GameState] Initialized in State: ${this.currentState}`);
+    this.states = new Map();
+    this.current = STATES.BOOT;
+
+    // Register all default valid states
+    Object.values(STATES).forEach(state => {
+      this.states.set(state, {
+        onEnter: () => {},
+        onUpdate: () => {},
+        onExit: () => {}
+      });
+    });
+
+    console.log(`State: ${this.current}`);
   }
 
   registerState(stateName, handlers = {}) {
-    this.stateHandlers.set(stateName, {
+    if (!STATES[stateName]) {
+      throw new Error(`[GameState] Invalid state name: ${stateName}`);
+    }
+    this.states.set(stateName, {
       onEnter: handlers.onEnter || (() => {}),
       onUpdate: handlers.onUpdate || (() => {}),
       onExit: handlers.onExit || (() => {})
@@ -28,37 +39,30 @@ export class GameState {
 
   transition(newState) {
     if (!STATES[newState]) {
-      throw new Error(`[GameState] Invalid state transition target: "${newState}"`);
+      throw new Error(`[GameState] Cannot transition to invalid state: ${newState}`);
     }
 
-    if (this.currentState === newState) return;
+    if (this.current === newState) return;
 
-    const oldState = this.currentState;
-    console.log(`[GameState] Exiting ${oldState} -> Entering ${newState}`);
-
-    const oldHandler = this.stateHandlers.get(oldState);
-    if (oldHandler?.onExit) {
-      oldHandler.onExit();
+    const oldState = this.current;
+    console.log(`Exiting ${oldState}`);
+    const oldHandlers = this.states.get(oldState);
+    if (oldHandlers && oldHandlers.onExit) {
+      oldHandlers.onExit();
     }
 
-    this.currentState = newState;
-
-    const newHandler = this.stateHandlers.get(newState);
-    if (newHandler?.onEnter) {
-      newHandler.onEnter();
+    this.current = newState;
+    console.log(`Entering ${newState}`);
+    const newHandlers = this.states.get(newState);
+    if (newHandlers && newHandlers.onEnter) {
+      newHandlers.onEnter();
     }
-
-    eventBus.emit('state:changed', { from: oldState, to: newState });
   }
 
   update(dt) {
-    const handler = this.stateHandlers.get(this.currentState);
-    if (handler?.onUpdate) {
-      handler.onUpdate(dt);
+    const handlers = this.states.get(this.current);
+    if (handlers && handlers.onUpdate) {
+      handlers.onUpdate(dt);
     }
-  }
-
-  get current() {
-    return this.currentState;
   }
 }

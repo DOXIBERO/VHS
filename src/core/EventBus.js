@@ -1,39 +1,35 @@
-﻿export class EventBus {
+export class EventBus {
   constructor() {
     this.events = new Map();
   }
 
   on(event, callback) {
     if (!this.events.has(event)) {
-      this.events.set(event, new Set());
+      this.events.set(event, []);
     }
-    this.events.get(event).add(callback);
-    return () => this.off(event, callback);
+    this.events.get(event).push(callback);
   }
 
   off(event, callback) {
-    if (this.events.has(event)) {
-      this.events.get(event).delete(callback);
-      if (this.events.get(event).size === 0) {
-        this.events.delete(event);
-      }
+    if (!this.events.has(event)) return;
+    const callbacks = this.events.get(event).filter(cb => cb !== callback);
+    if (callbacks.length === 0) {
+      this.events.delete(event);
+    } else {
+      this.events.set(event, callbacks);
     }
   }
 
-  emit(event, data = {}) {
-    if (this.events.has(event)) {
-      for (const callback of this.events.get(event)) {
-        try {
-          callback(data);
-        } catch (err) {
-          console.error(`[EventBus] Error in listener for "${event}":`, err);
-        }
+  emit(event, data) {
+    if (!this.events.has(event)) return;
+    const callbacks = this.events.get(event);
+    callbacks.forEach(cb => {
+      try {
+        cb(data);
+      } catch (err) {
+        console.error(`[EventBus] Error in listener for event "${event}":`, err);
       }
-    }
-  }
-
-  clear() {
-    this.events.clear();
+    });
   }
 }
 

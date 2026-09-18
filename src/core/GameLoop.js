@@ -1,15 +1,16 @@
-﻿export class GameLoop {
+export class GameLoop {
   constructor(updateFn, renderFn) {
     this.updateFn = updateFn;
     this.renderFn = renderFn;
     this.isRunning = false;
     this.lastTime = 0;
-    this.fixedTimeStep = 1 / 60;
     this.accumulatedTime = 0;
-    this.maxDelta = 0.05;
+    this.timestep = 1 / 60; // 60fps target fixed timestep
+    this.maxDelta = 0.05;   // Prevent tab-switch explosions
 
+    // FPS logging
     this.frameCount = 0;
-    this.lastFpsLog = 0;
+    this.fpsTimer = 0;
     this.currentFps = 60;
 
     this.loop = this.loop.bind(this);
@@ -19,14 +20,11 @@
     if (this.isRunning) return;
     this.isRunning = true;
     this.lastTime = performance.now();
-    this.lastFpsLog = this.lastTime;
     requestAnimationFrame(this.loop);
-    console.log('[GameLoop] Started at target 60 FPS');
   }
 
   stop() {
     this.isRunning = false;
-    console.log('[GameLoop] Stopped');
   }
 
   loop(currentTime) {
@@ -35,33 +33,32 @@
     let delta = (currentTime - this.lastTime) / 1000;
     this.lastTime = currentTime;
 
-    // Cap delta to prevent spiral of death / teleportation on tab switch
+    // Cap delta time to 0.05s
     if (delta > this.maxDelta) {
       delta = this.maxDelta;
     }
 
     this.accumulatedTime += delta;
 
-    while (this.accumulatedTime >= this.fixedTimeStep) {
-      this.updateFn(this.fixedTimeStep);
-      this.accumulatedTime -= this.fixedTimeStep;
+    // Fixed timestep updates
+    while (this.accumulatedTime >= this.timestep) {
+      this.updateFn(this.timestep);
+      this.accumulatedTime -= this.timestep;
     }
 
+    // Render call
     this.renderFn();
 
-    // FPS calculation
+    // Track and log FPS every 2 seconds
     this.frameCount++;
-    if (currentTime - this.lastFpsLog >= 2000) {
-      this.currentFps = Math.round((this.frameCount * 1000) / (currentTime - this.lastFpsLog));
-      console.log(`[GameLoop] Current FPS: ${this.currentFps}`);
+    this.fpsTimer += delta;
+    if (this.fpsTimer >= 2.0) {
+      this.currentFps = Math.round(this.frameCount / this.fpsTimer);
+      console.log(`[GameLoop] FPS: ${this.currentFps}`);
       this.frameCount = 0;
-      this.lastFpsLog = currentTime;
+      this.fpsTimer = 0;
     }
 
     requestAnimationFrame(this.loop);
-  }
-
-  get fps() {
-    return this.currentFps;
   }
 }
