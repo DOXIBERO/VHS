@@ -3,6 +3,8 @@ import * as CANNON from 'cannon-es';
 import { Ground } from '../levels/Ground.js';
 import { Lighting } from './Lighting.js';
 import { PhysicsWorld } from '../physics/PhysicsWorld.js';
+import { CameraController } from './CameraController.js';
+import { eventBus } from './EventBus.js';
 
 export class Engine {
   constructor() {
@@ -45,7 +47,26 @@ export class Engine {
     // 6. Test Physics Sphere dropped from height (Part 0083-0090 Acceptance Criteria)
     this.initTestPhysicsSphere();
 
-    // 7. Window resize listener
+    // 7. Camera Controller (Parts 0121-0150)
+    this.cameraController = new CameraController(this.camera, this.testSphereMesh, {
+      offset: new THREE.Vector3(0, 8, 12),
+      lerpSpeed: 0.05,
+      lookAhead: 2.0,
+      minY: 2.0
+    });
+
+    // Wire camera shake triggers
+    eventBus.on('camera:shake', (data) => {
+      this.cameraController.shake(data?.intensity || 0.5, data?.duration || 0.3);
+    });
+    eventBus.on('collision:bean-slime', () => {
+      this.cameraController.shake(0.3, 0.25);
+    });
+    eventBus.on('collision:bean-trampoline', () => {
+      this.cameraController.shake(0.6, 0.4);
+    });
+
+    // 8. Window resize listener
     window.addEventListener('resize', this.onWindowResize.bind(this));
 
     console.log('Engine initialized');
@@ -87,6 +108,10 @@ export class Engine {
     // Step Cannon-es Physics World each frame (Part 0083-0090)
     if (this.physicsWorld) {
       this.physicsWorld.step(dt);
+    }
+    // Update CameraController follow & shake (Parts 0121-0150)
+    if (this.cameraController) {
+      this.cameraController.update(dt);
     }
   }
 
