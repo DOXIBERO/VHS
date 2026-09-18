@@ -39,6 +39,9 @@ export class Game {
 
   update(dt) {
     this.gameState.update(dt);
+    if (this.engine) {
+      this.engine.update(dt);
+    }
     if (this.debugPanel) {
       this.debugPanel.update(dt);
     }

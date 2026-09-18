@@ -1,6 +1,8 @@
 import * as THREE from 'three';
+import * as CANNON from 'cannon-es';
 import { Ground } from '../levels/Ground.js';
 import { Lighting } from './Lighting.js';
+import { PhysicsWorld } from '../physics/PhysicsWorld.js';
 
 export class Engine {
   constructor() {
@@ -20,8 +22,8 @@ export class Engine {
       0.1,
       1000
     );
-    this.camera.position.set(0, 10, 20);
-    this.camera.lookAt(0, 0, 0);
+    this.camera.position.set(0, 8, 18);
+    this.camera.lookAt(0, 1, 0);
 
     // 3. Renderer with shadow maps enabled (Part 0082)
     this.renderer = new THREE.WebGLRenderer({
@@ -37,16 +39,54 @@ export class Engine {
     this.ground = new Ground(this.scene);
     this.lighting = new Lighting(this.scene);
 
-    // 5. Window resize listener
+    // 5. Physics World with Cannon-es & Materials (Parts 0083-0100)
+    this.physicsWorld = new PhysicsWorld();
+
+    // 6. Test Physics Sphere dropped from height (Part 0083-0090 Acceptance Criteria)
+    this.initTestPhysicsSphere();
+
+    // 7. Window resize listener
     window.addEventListener('resize', this.onWindowResize.bind(this));
 
     console.log('Engine initialized');
+  }
+
+  initTestPhysicsSphere() {
+    // Visual Three.js Mesh
+    const sphereGeo = new THREE.SphereGeometry(0.8, 24, 24);
+    const sphereMat = new THREE.MeshStandardMaterial({
+      color: 0xFF3333, // Vibrant red
+      roughness: 0.3,
+      metalness: 0.1
+    });
+    this.testSphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
+    this.testSphereMesh.position.set(0, 12, 0);
+    this.testSphereMesh.castShadow = true;
+    this.scene.add(this.testSphereMesh);
+
+    // Physical Cannon.js Body with BEAN bouncy material
+    this.testSphereBody = new CANNON.Body({
+      mass: 1.0,
+      shape: new CANNON.Sphere(0.8),
+      position: new CANNON.Vec3(0, 12, 0),
+      material: this.physicsWorld.materials.BEAN
+    });
+
+    // Register with sync pair in PhysicsWorld
+    this.physicsWorld.addBody(this.testSphereBody, this.testSphereMesh);
   }
 
   onWindowResize() {
     this.camera.aspect = window.innerWidth / window.innerHeight;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+
+  update(dt) {
+    // Step Cannon-es Physics World each frame (Part 0083-0090)
+    if (this.physicsWorld) {
+      this.physicsWorld.step(dt);
+    }
   }
 
   render() {
