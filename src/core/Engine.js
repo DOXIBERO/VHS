@@ -71,6 +71,7 @@ export class Engine {
       position: new CANNON.Vec3(0, 12, 0),
       material: this.physicsWorld.materials.BEAN
     });
+    this.testSphereBody.userData = { type: 'bean', id: 'test_sphere_bean' };
 
     // Register with sync pair in PhysicsWorld
     this.physicsWorld.addBody(this.testSphereBody, this.testSphereMesh);

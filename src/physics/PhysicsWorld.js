@@ -1,8 +1,10 @@
 import * as CANNON from 'cannon-es';
 import { PhysicsMaterials } from './PhysicsMaterials.js';
+import { CollisionManager } from './CollisionManager.js';
+import { eventBus } from '../core/EventBus.js';
 
 export class PhysicsWorld {
-  constructor() {
+  constructor(bus = eventBus) {
     // 1. Initialize Cannon-es World with gravity (0, -9.82, 0) (Part 0083-0090)
     this.world = new CANNON.World({
       gravity: new CANNON.Vec3(0, -9.82, 0)
@@ -12,10 +14,13 @@ export class PhysicsWorld {
     this.materials = new PhysicsMaterials();
     this.materials.registerAll(this.world);
 
-    // 3. Body-Mesh sync mapping
+    // 3. Collision Manager (Parts 0101-0120)
+    this.collisionManager = new CollisionManager(this.world, bus);
+
+    // 4. Body-Mesh sync mapping
     this.syncPairs = [];
 
-    // 4. Physics Ground Plane matching visual ground (Part 0083-0090)
+    // 5. Physics Ground Plane matching visual ground (Part 0083-0090)
     this.initGroundPlane();
   }
 
@@ -28,6 +33,7 @@ export class PhysicsWorld {
     // Rotate -90° on X axis to face upward (+Y)
     groundBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0);
     groundBody.position.set(0, 0, 0);
+    CollisionManager.tagBody(groundBody, { type: 'ground', id: 'ground_plane' });
     this.world.addBody(groundBody);
     this.groundBody = groundBody;
   }
