@@ -5,12 +5,14 @@ import { eventBus } from './EventBus.js';
 import { DataManager } from './DataManager.js';
 import { DebugPanel } from './DebugPanel.js';
 import { AssetLoader } from './AssetLoader.js';
+import { PoolManager } from './ObjectPool.js';
 import { logger } from './ConsoleLogger.js';
 
 export class Game {
   constructor() {
     this.eventBus = eventBus;
     this.assetLoader = new AssetLoader(this.eventBus);
+    this.poolManager = PoolManager;
     this.dataManager = new DataManager();
     this.gameState = new GameState();
 
