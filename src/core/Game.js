@@ -3,6 +3,8 @@ import { GameLoop } from './GameLoop.js';
 import { GameState } from './GameState.js';
 import { eventBus } from './EventBus.js';
 import { DataManager } from './DataManager.js';
+import { DebugPanel } from './DebugPanel.js';
+import { logger } from './ConsoleLogger.js';
 
 export class Game {
   constructor() {
@@ -16,10 +18,12 @@ export class Game {
       this.render.bind(this)
     );
 
+    this.debugPanel = new DebugPanel(this.gameState, this.gameLoop, this.dataManager);
+
     this.setupStateTransitions();
     this.gameLoop.start();
 
-    console.log(`Game initialized | State: ${this.gameState.current} | FPS: 60`);
+    logger.game(`Game initialized | State: ${this.gameState.current} | FPS: 60`);
   }
 
   setupStateTransitions() {
@@ -35,6 +39,9 @@ export class Game {
 
   update(dt) {
     this.gameState.update(dt);
+    if (this.debugPanel) {
+      this.debugPanel.update(dt);
+    }
   }
 
   render() {
