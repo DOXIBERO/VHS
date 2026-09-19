@@ -77,6 +77,14 @@ export class DataManager {
       this.playerProfile.endSession();
       this.saveSystem.save(this.playerProfile, this.srsEngine);
     });
+
+    // Listen for skin changes to update PlayerProfile (Part 0211-0220)
+    this.eventBus.on('player:skinChanged', (data) => {
+      if (data?.skinName && this.playerProfile) {
+        this.playerProfile.setSkin(data.skinName);
+        this.save();
+      }
+    });
   }
 
   save() {

@@ -51,6 +51,22 @@ export class DebugPanel {
       if (e.code === 'KeyD' || e.key === 'd' || e.key === 'D') {
         this.toggle();
       }
+
+      // Skin switching hotkeys 1-5 (Parts 0211-0230)
+      const skinMap = {
+        'Digit1': 'CLASSIC',
+        'Digit2': 'KREUZBERG',
+        'Digit3': 'SPÄTI',
+        'Digit4': 'U-BAHN',
+        'Digit5': 'BERGHAIN'
+      };
+      if (skinMap[e.code]) {
+        const playerBean = window.game?.engine?.playerBean;
+        if (playerBean && typeof playerBean.applySkin === 'function') {
+          playerBean.applySkin(skinMap[e.code]);
+          if (this.isVisible) this.updateContent();
+        }
+      }
     });
   }
 
@@ -87,7 +103,9 @@ export class DebugPanel {
   updateContent() {
     const state = this.gameState ? this.gameState.current : 'UNKNOWN';
     const srsDue = this.dataManager && this.dataManager.srsEngine ? this.dataManager.srsEngine.getDueWords(100).length : 0;
-    const botCount = 10; // Presets defined
+    const currentSkin = this.dataManager?.playerProfile?.currentSkin || window.game?.engine?.playerBean?.customization?.currentSkin || 'CLASSIC';
+    const activeBeans = window.game?.engine?.beanFactory?.activeCount ?? 1;
+    const pooledBeans = window.game?.engine?.beanFactory?.availableCount ?? 0;
     const roundInfo = this.dataManager && this.dataManager.roundConfig ? 'Round 1 (Colors)' : 'None';
 
     // Memory usage if supported
@@ -103,10 +121,10 @@ export class DebugPanel {
       </div>
       <div>FPS: <span style="color:#FFFFFF; font-weight:bold;">${this.fps}</span></div>
       <div>State: <span style="color:#00E5FF; font-weight:bold;">${state}</span></div>
-      <div>Position: <span style="color:#CBD5E1;">(0.00, 0.00, 0.00)</span></div>
+      <div>Skin: <span style="color:#F59E0B; font-weight:bold;">${currentSkin}</span> <span style="color:#94A3B8; font-size:10px;">[1-5]</span></div>
+      <div>Beans: <span style="color:#38BDF8;">${activeBeans} active / ${pooledBeans} pool</span></div>
       <div>Round: <span style="color:#CBD5E1;">${roundInfo}</span></div>
       <div>SRS Due Words: <span style="color:#FFAA00;">${srsDue}</span></div>
-      <div>Bot Count: <span style="color:#CBD5E1;">${botCount}</span></div>
       <div>Memory: <span style="color:#CBD5E1;">${memoryStr}</span></div>
     `;
   }

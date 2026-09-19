@@ -16,6 +16,13 @@ export class PlayerProfile {
       correctAnswers: 0,
       totalAnswers: 0
     };
+
+    // Customization & Skins (Part 0211-0220)
+    this.currentSkin = 'CLASSIC';
+  }
+
+  setSkin(skinName) {
+    this.currentSkin = skinName;
   }
 
   completeWord(wordId, intervalDays = 8) {

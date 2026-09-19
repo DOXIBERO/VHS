@@ -5,6 +5,7 @@ import { Lighting } from './Lighting.js';
 import { PhysicsWorld } from '../physics/PhysicsWorld.js';
 import { CameraController } from './CameraController.js';
 import { BeanBody } from '../player/BeanBody.js';
+import { BeanFactory } from '../player/BeanFactory.js';
 import { eventBus } from './EventBus.js';
 
 export class Engine {
@@ -45,8 +46,20 @@ export class Engine {
     // 5. Physics World with Cannon-es & Materials (Parts 0083-0100)
     this.physicsWorld = new PhysicsWorld();
 
-    // 6. Player Bean Character (Parts 0201-0210 | PHASE 2: PLAYER MODEL)
+    // 6. BeanFactory with ObjectPool (Parts 0231-0240) & Player Bean
+    this.beanFactory = new BeanFactory({
+      scene: this.scene,
+      physicsWorld: this.physicsWorld,
+      physicsMaterial: this.physicsWorld.materials.BEAN
+    });
     this.initPlayerBean();
+
+    // Preload model & prewarm 20 beans for multiplayer rounds (Part 0231-0240 Acceptance Criteria)
+    BeanBody.preloadModel().then(() => {
+      this.beanFactory.prewarm(20);
+    }).catch((err) => {
+      console.warn('[Engine] Bean prewarm deferred:', err);
+    });
 
     // 7. Camera Controller following Player Bean (Parts 0121-0150)
     this.cameraController = new CameraController(this.camera, this.playerBean.mesh, {
@@ -74,14 +87,11 @@ export class Engine {
   }
 
   initPlayerBean() {
-    this.playerBean = new BeanBody({
+    this.playerBean = this.beanFactory.createBean({
       id: 'player_main',
       position: new THREE.Vector3(0, 3.5, 0),
-      physicsMaterial: this.physicsWorld.materials.BEAN
+      skin: 'CLASSIC'
     });
-
-    this.scene.add(this.playerBean.mesh);
-    this.physicsWorld.addBody(this.playerBean.body, this.playerBean.mesh);
   }
 
   onWindowResize() {
@@ -95,8 +105,10 @@ export class Engine {
     if (this.physicsWorld) {
       this.physicsWorld.step(dt);
     }
-    // Update Player Bean animations & physics sync
-    if (this.playerBean) {
+    // Update all active Beans via BeanFactory (Parts 0231-0240)
+    if (this.beanFactory) {
+      this.beanFactory.update(dt);
+    } else if (this.playerBean) {
       this.playerBean.update(dt);
     }
     // Update CameraController follow & shake (Parts 0121-0150)
