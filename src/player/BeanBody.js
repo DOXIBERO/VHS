@@ -37,7 +37,7 @@ export class BeanBody {
 
     const loader = new GLTFLoader();
     const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
+    dracoLoader.setDecoderPath(`${baseUrl}draco/gltf/`);
     loader.setDRACOLoader(dracoLoader);
 
     const modelPath = `${baseUrl}models/characters/fall_guy.glb`;
@@ -160,7 +160,8 @@ export class BeanBody {
     });
 
     // Cache skeletal bones for accessory tracking
-    this.headBone = this.characterRoot.getObjectByName('Head_C_nub_07') || this.characterRoot.getObjectByName('Head_C_jnt01_04');
+    this.headBone = this.characterRoot.getObjectByName('Head_C_jnt01_04') || this.characterRoot.getObjectByName('Head_C_nub_07');
+    this.chestBone = this.characterRoot.getObjectByName('Chest_C_jnt_02');
     this.initialHeadBoneY = this.headBone ? this.headBone.position.y : 0;
 
     // Dedicated Animation Mixer for this instance

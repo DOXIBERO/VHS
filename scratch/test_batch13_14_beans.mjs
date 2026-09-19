@@ -45,11 +45,53 @@ assert(policeCap.children.length === 6, 'Police cap has crown, piping, visor, co
 
 const aviators = customization.createPoliceAviators();
 assert(aviators instanceof THREE.Group, 'createPoliceAviators returns a THREE.Group');
-assert(aviators.children.length === 4, 'Aviators have left lens, right lens, brow bar, and bridge');
+assert(aviators.children.length === 6, 'Aviators have left lens, right lens, brow bar, bridge, and 2 temple arms');
 
 const bodyDetails = customization.createPoliceBodyDetails();
 assert(bodyDetails instanceof THREE.Group, 'createPoliceBodyDetails returns a THREE.Group');
-assert(bodyDetails.children.length >= 6, 'Body details has chest badge, tie, epaulets, walkie-talkie, belt, baton');
+assert(bodyDetails.children.length >= 8, 'Body details has collar, tie, tie clip, badge, epaulets, radio, belt, baton');
+
+// Officer Kinematic Tracking test
+console.log('\n--- 2b. Testing Kinematic Bone Tracking ---');
+const mockHeadBone = new THREE.Bone();
+const mockChestBone = new THREE.Bone();
+const mockMesh = new THREE.Group();
+mockMesh.add(mockHeadBone);
+mockMesh.add(mockChestBone);
+
+const mockOfficer = {
+  mesh: mockMesh,
+  headBone: mockHeadBone,
+  chestBone: mockChestBone,
+  officerAccessories: {
+    group: new THREE.Group(),
+    cap: policeCap,
+    aviators: aviators,
+    bodyDetails: bodyDetails
+  }
+};
+mockOfficer.officerAccessories.group.visible = true;
+
+// Frame 0: initialize rest pose
+mockHeadBone.position.set(0, 0.20, 0.05);
+mockChestBone.position.set(0, 0.10, 0);
+mockMesh.updateMatrixWorld(true);
+customization.update(0.016, mockOfficer);
+assert(mockOfficer.officerAccessories.initHead !== undefined, 'Cached initHead rest pose');
+assert(mockOfficer.officerAccessories.initChest !== undefined, 'Cached initChest rest pose');
+
+// Frame 1: simulate skeletal head nod & chest breathing motion
+mockHeadBone.position.y += 0.025; // +2.5cm up
+mockHeadBone.position.z += 0.010; // +1.0cm forward
+mockHeadBone.rotation.x += 0.08;  // head nod
+mockChestBone.position.y += 0.012; // +1.2cm chest breath
+mockMesh.updateMatrixWorld(true);
+customization.update(0.016, mockOfficer);
+
+assert(Math.abs(policeCap.position.y - 0.025) < 0.001, `Cap followed head Y translation (+0.025m, got ${policeCap.position.y.toFixed(4)})`);
+assert(Math.abs(policeCap.position.z - 0.010) < 0.001, `Cap followed head Z translation (+0.010m, got ${policeCap.position.z.toFixed(4)})`);
+assert(Math.abs(aviators.position.y - 0.025) < 0.001, `Aviators followed head Y translation (+0.025m, got ${aviators.position.y.toFixed(4)})`);
+assert(Math.abs(bodyDetails.position.y - 0.012) < 0.001, `Body details followed chest Y translation (+0.012m, got ${bodyDetails.position.y.toFixed(4)})`);
 
 // Legacy accessories
 const goldChain = customization.createGoldChain();

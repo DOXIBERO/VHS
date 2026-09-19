@@ -152,10 +152,24 @@ export class BeanCustomization {
     return BeanCustomization.silverMaterial;
   }
 
+  static getWhiteShirtMaterial() {
+    if (!BeanCustomization.whiteShirtMaterial) {
+      BeanCustomization.whiteShirtMaterial = new THREE.MeshStandardMaterial({
+        color: 0xF8FAFC,
+        roughness: 0.60,
+        metalness: 0.05
+      });
+    }
+    return BeanCustomization.whiteShirtMaterial;
+  }
+
   constructor(bus = eventBus) {
     this.eventBus = bus;
     this.currentSkin = 'OFFICER';
     this.goldMaterial = BeanCustomization.getGoldMaterial();
+    this._vPos = new THREE.Vector3();
+    this._qRot = new THREE.Quaternion();
+    this._eRot = new THREE.Euler();
   }
 
   /** Legacy helper for backward compatibility */
@@ -187,7 +201,8 @@ export class BeanCustomization {
 
   /**
    * Create Police Officer Peaked Cap (كاسكيطة الضابط)
-   * Calibrated for authentic Fall Guy head: top of head is at y = 0.93.
+   * Calibrated for authentic Fall Guy head: sits snugly on cranium,
+   * black patent visor projects forward over forehead shading eyes.
    * @returns {THREE.Group}
    */
   createPoliceCap() {
@@ -198,49 +213,48 @@ export class BeanCustomization {
     const blackGlossMat = BeanCustomization.getBlackGlossMaterial();
     const navyMat = BeanCustomization.getNavyMaterial();
 
-    // 1. Navy Flared Crown (Cylinder wider at top, base cleanly wrapping head)
-    const crownGeo = new THREE.CylinderGeometry(0.42, 0.36, 0.18, 24);
+    // 1. Navy Flared Crown (Seated cleanly wrapping cranium)
+    const crownGeo = new THREE.CylinderGeometry(0.42, 0.36, 0.16, 24);
     const crown = new THREE.Mesh(crownGeo, navyMat);
-    crown.position.set(0, 0.96, 0.04);
-    crown.rotation.x = -0.12; // Cool backward/forward tilt
+    crown.position.set(0, 0.88, 0.02);
+    crown.rotation.x = 0.04;
     crown.castShadow = true;
     cap.add(crown);
 
-    // 2. Gold Piping around top crown seam
-    const pipingGeo = new THREE.TorusGeometry(0.42, 0.016, 10, 24);
+    // 2. Gold Piping around top crown rim
+    const pipingGeo = new THREE.TorusGeometry(0.42, 0.014, 10, 24);
     const piping = new THREE.Mesh(pipingGeo, goldMat);
-    piping.position.set(0, 1.04, 0.05);
-    piping.rotation.x = Math.PI / 2 - 0.12;
+    piping.position.set(0, 0.96, 0.02);
+    piping.rotation.x = Math.PI / 2 + 0.04;
     cap.add(piping);
 
-    // 3. Black Gloss Curved Visor (Visière - protruding stylishly forward)
-    const visorGeo = new THREE.CylinderGeometry(0.38, 0.38, 0.028, 24, 1, false, 0, Math.PI);
+    // 3. Black Patent Curved Visor (Visière - projecting cleanly forward)
+    const visorGeo = new THREE.CylinderGeometry(0.38, 0.38, 0.024, 24, 1, false, -Math.PI / 2, Math.PI);
     const visor = new THREE.Mesh(visorGeo, blackGlossMat);
-    visor.position.set(0, 0.85, 0.24);
-    visor.rotation.x = 0.36;
-    visor.rotation.y = Math.PI / 2;
-    visor.scale.set(1.05, 1, 0.75);
+    visor.position.set(0, 0.81, 0.14);
+    visor.rotation.x = 0.24;
+    visor.scale.set(1.02, 1, 0.95);
     visor.castShadow = true;
     cap.add(visor);
 
-    // 4. Gold Chin Strap Cord & Side Buttons
-    const cordGeo = new THREE.TorusGeometry(0.36, 0.018, 8, 24, Math.PI);
+    // 4. Gold Chin Strap Cord
+    const cordGeo = new THREE.TorusGeometry(0.37, 0.015, 8, 24, Math.PI);
     const cord = new THREE.Mesh(cordGeo, goldMat);
-    cord.position.set(0, 0.87, 0.16);
-    cord.rotation.x = Math.PI / 2 - 0.08;
+    cord.position.set(0, 0.82, 0.22);
+    cord.rotation.x = Math.PI / 2 + 0.12;
     cord.rotation.z = Math.PI;
     cap.add(cord);
 
-    // 5. Golden Police Star Crest Plate & 5-point Star on Front
-    const badgePlateGeo = new THREE.CylinderGeometry(0.075, 0.075, 0.016, 16);
+    // 5. Golden Police Star Crest Plate & Star
+    const badgePlateGeo = new THREE.CylinderGeometry(0.068, 0.068, 0.014, 16);
     const badgePlate = new THREE.Mesh(badgePlateGeo, goldMat);
-    badgePlate.position.set(0, 0.97, 0.38);
-    badgePlate.rotation.x = Math.PI / 2 - 0.12;
+    badgePlate.position.set(0, 0.89, 0.37);
+    badgePlate.rotation.x = Math.PI / 2 + 0.04;
     cap.add(badgePlate);
 
-    const starGeo = new THREE.OctahedronGeometry(0.048, 0);
+    const starGeo = new THREE.OctahedronGeometry(0.044, 0);
     const star = new THREE.Mesh(starGeo, goldMat);
-    star.position.set(0, 0.97, 0.40);
+    star.position.set(0, 0.89, 0.39);
     star.rotation.z = Math.PI / 5;
     cap.add(star);
 
@@ -249,7 +263,7 @@ export class BeanCustomization {
 
   /**
    * Create Police Aviator Sunglasses (نظارات البوليسي كحلة)
-   * Perfectly covering the Fall Guy eyes with authentic tinted lenses and gold metal frames.
+   * Contoured to cylindrical bean face with wraparound gold temple arms.
    * @returns {THREE.Group}
    */
   createPoliceAviators() {
@@ -259,40 +273,57 @@ export class BeanCustomization {
     const goldMat = BeanCustomization.getGoldMaterial();
     const sunglassesMat = BeanCustomization.getSunglassesMaterial();
 
-    // Left Lens - 0.22 width x 0.26 height to span from y=0.45 to y=0.71 (100% eye coverage)
-    const lensGeo = new THREE.BoxGeometry(0.22, 0.26, 0.03);
+    // 1. Left Lens - Angled to hug face and cover left eye
+    const lensGeo = new THREE.BoxGeometry(0.185, 0.17, 0.022);
     const lensL = new THREE.Mesh(lensGeo, sunglassesMat);
-    lensL.position.set(-0.13, 0.58, 0.42);
-    lensL.rotation.y = -0.16;
-    lensL.rotation.z = 0.03;
+    lensL.position.set(-0.11, 0.605, 0.395);
+    lensL.rotation.y = -0.20;
+    lensL.rotation.x = 0.02;
     aviators.add(lensL);
 
-    // Right Lens
+    // 2. Right Lens - Angled to hug face and cover right eye
     const lensR = new THREE.Mesh(lensGeo, sunglassesMat);
-    lensR.position.set(0.13, 0.58, 0.42);
-    lensR.rotation.y = 0.16;
-    lensR.rotation.z = -0.03;
+    lensR.position.set(0.11, 0.605, 0.395);
+    lensR.rotation.y = 0.20;
+    lensR.rotation.x = 0.02;
     aviators.add(lensR);
 
-    // Gold Top Brow Bar
-    const browBarGeo = new THREE.CylinderGeometry(0.012, 0.012, 0.48, 8);
+    // 3. Gold Top Brow Bar
+    const browBarGeo = new THREE.CylinderGeometry(0.008, 0.008, 0.42, 8);
     const browBar = new THREE.Mesh(browBarGeo, goldMat);
     browBar.rotation.z = Math.PI / 2;
-    browBar.position.set(0, 0.71, 0.42);
+    browBar.position.set(0, 0.69, 0.395);
     aviators.add(browBar);
 
-    // Gold Nose Bridge
-    const bridgeGeo = new THREE.CylinderGeometry(0.012, 0.012, 0.09, 8);
+    // 4. Gold Nose Bridge
+    const bridgeGeo = new THREE.CylinderGeometry(0.008, 0.008, 0.06, 8);
     const bridge = new THREE.Mesh(bridgeGeo, goldMat);
     bridge.rotation.z = Math.PI / 2;
-    bridge.position.set(0, 0.60, 0.43);
+    bridge.position.set(0, 0.605, 0.405);
     aviators.add(bridge);
+
+    // 5. Left Temple Arm (wraps seamlessly along head to ear)
+    const templeGeo = new THREE.CylinderGeometry(0.006, 0.006, 0.37, 8);
+    const templeL = new THREE.Mesh(templeGeo, goldMat);
+    templeL.position.set(-0.28, 0.65, 0.215);
+    templeL.rotation.x = Math.PI / 2;
+    templeL.rotation.y = -0.45;
+    aviators.add(templeL);
+
+    // 6. Right Temple Arm
+    const templeR = new THREE.Mesh(templeGeo, goldMat);
+    templeR.position.set(0.28, 0.65, 0.215);
+    templeR.rotation.x = Math.PI / 2;
+    templeR.rotation.y = 0.45;
+    aviators.add(templeR);
 
     return aviators;
   }
 
   /**
-   * Create Police Uniform Accessories & Equipment (شارة الصدر، الكرافاطا، الكتافيات، الراديو، السنتور، الماتراك)
+   * Create Police Uniform Accessories & Equipment
+   * Features: Crisp white shirt collar, black tie with gold clip, golden chest badge,
+   * shoulder epaulets with gold stars, walkie-talkie with antenna, duty belt, buckle, baton.
    * @returns {THREE.Group}
    */
   createPoliceBodyDetails() {
@@ -303,62 +334,83 @@ export class BeanCustomization {
     const blackGlossMat = BeanCustomization.getBlackGlossMaterial();
     const navyMat = BeanCustomization.getNavyMaterial();
     const silverMat = BeanCustomization.getSilverMaterial();
+    const whiteShirtMat = BeanCustomization.getWhiteShirtMaterial();
 
-    // 1. Police Star Shield Badge on Left Chest (y = 0.28, z = 0.46)
-    const chestBadgeGeo = new THREE.OctahedronGeometry(0.075, 0);
+    // 1. Crisp White Shirt Collar Flaps (Snug at neckline)
+    const collarGeo = new THREE.BoxGeometry(0.12, 0.065, 0.02);
+    const collarL = new THREE.Mesh(collarGeo, whiteShirtMat);
+    collarL.position.set(-0.08, 0.43, 0.435);
+    collarL.rotation.z = -0.40;
+    collarL.rotation.y = -0.20;
+    bodyDetails.add(collarL);
+
+    const collarR = new THREE.Mesh(collarGeo, whiteShirtMat);
+    collarR.position.set(0.08, 0.43, 0.435);
+    collarR.rotation.z = 0.40;
+    collarR.rotation.y = 0.20;
+    bodyDetails.add(collarR);
+
+    // 2. Black Police Tie with Top Knot
+    const knotGeo = new THREE.BoxGeometry(0.085, 0.065, 0.03);
+    const knot = new THREE.Mesh(knotGeo, blackGlossMat);
+    knot.position.set(0, 0.41, 0.45);
+    bodyDetails.add(knot);
+
+    const tieGeo = new THREE.BoxGeometry(0.075, 0.32, 0.022);
+    const tie = new THREE.Mesh(tieGeo, blackGlossMat);
+    tie.position.set(0, 0.23, 0.465);
+    tie.rotation.x = -0.09;
+    bodyDetails.add(tie);
+
+    // 3. Gold Tie Clip
+    const clipGeo = new THREE.BoxGeometry(0.085, 0.015, 0.012);
+    const clip = new THREE.Mesh(clipGeo, goldMat);
+    clip.position.set(0, 0.26, 0.48);
+    bodyDetails.add(clip);
+
+    // 4. Police Star Shield Badge on Left Chest
+    const chestBadgeGeo = new THREE.OctahedronGeometry(0.07, 0);
     const chestBadge = new THREE.Mesh(chestBadgeGeo, goldMat);
-    chestBadge.position.set(-0.18, 0.28, 0.46);
+    chestBadge.position.set(-0.18, 0.30, 0.46);
     chestBadge.scale.set(1, 1.2, 0.35);
     chestBadge.castShadow = true;
     bodyDetails.add(chestBadge);
 
-    // 2. Black Police Tie with Top Knot
-    const knotGeo = new THREE.BoxGeometry(0.09, 0.06, 0.03);
-    const knot = new THREE.Mesh(knotGeo, blackGlossMat);
-    knot.position.set(0, 0.35, 0.455);
-    bodyDetails.add(knot);
-
-    const tieGeo = new THREE.BoxGeometry(0.075, 0.34, 0.025);
-    const tie = new THREE.Mesh(tieGeo, blackGlossMat);
-    tie.position.set(0, 0.18, 0.465);
-    tie.rotation.x = -0.10;
-    bodyDetails.add(tie);
-
-    // 3. Shoulder Epaulets with Golden Stars
-    const epGeo = new THREE.BoxGeometry(0.15, 0.03, 0.22);
-    const epStarGeo = new THREE.OctahedronGeometry(0.03, 0);
+    // 5. Shoulder Epaulets with Golden Stars
+    const epGeo = new THREE.BoxGeometry(0.14, 0.025, 0.20);
+    const epStarGeo = new THREE.OctahedronGeometry(0.028, 0);
 
     const epL = new THREE.Mesh(epGeo, navyMat);
-    epL.position.set(-0.38, 0.36, 0.05);
+    epL.position.set(-0.37, 0.38, 0.04);
     epL.rotation.z = -0.32;
     bodyDetails.add(epL);
 
     const epStarL = new THREE.Mesh(epStarGeo, goldMat);
-    epStarL.position.set(-0.40, 0.38, 0.05);
+    epStarL.position.set(-0.39, 0.40, 0.04);
     bodyDetails.add(epStarL);
 
     const epR = new THREE.Mesh(epGeo, navyMat);
-    epR.position.set(0.38, 0.36, 0.05);
+    epR.position.set(0.37, 0.38, 0.04);
     epR.rotation.z = 0.32;
     bodyDetails.add(epR);
 
     const epStarR = new THREE.Mesh(epStarGeo, goldMat);
-    epStarR.position.set(0.40, 0.38, 0.05);
+    epStarR.position.set(0.39, 0.40, 0.04);
     bodyDetails.add(epStarR);
 
-    // 4. Walkie-Talkie on Left Shoulder
-    const radioGeo = new THREE.BoxGeometry(0.07, 0.13, 0.06);
+    // 6. Walkie-Talkie on Left Shoulder
+    const radioGeo = new THREE.BoxGeometry(0.065, 0.12, 0.055);
     const radio = new THREE.Mesh(radioGeo, blackGlossMat);
-    radio.position.set(-0.34, 0.44, 0.07);
+    radio.position.set(-0.33, 0.44, 0.07);
     radio.rotation.z = -0.15;
     bodyDetails.add(radio);
 
-    const antennaGeo = new THREE.CylinderGeometry(0.007, 0.007, 0.12, 8);
+    const antennaGeo = new THREE.CylinderGeometry(0.006, 0.006, 0.11, 8);
     const antenna = new THREE.Mesh(antennaGeo, blackGlossMat);
-    antenna.position.set(-0.35, 0.54, 0.07);
+    antenna.position.set(-0.34, 0.53, 0.07);
     bodyDetails.add(antenna);
 
-    // 5. Police Duty Belt with Silver Buckle
+    // 7. Police Duty Belt with Silver Buckle
     const beltGeo = new THREE.TorusGeometry(0.47, 0.035, 12, 32);
     const belt = new THREE.Mesh(beltGeo, blackGlossMat);
     belt.position.set(0, -0.06, 0.02);
@@ -370,8 +422,8 @@ export class BeanCustomization {
     buckle.position.set(0, -0.06, 0.49);
     bodyDetails.add(buckle);
 
-    // 6. Mini Police Baton (Matraque) on Right Hip
-    const batonGeo = new THREE.CylinderGeometry(0.016, 0.016, 0.26, 8);
+    // 8. Mini Police Baton on Right Hip
+    const batonGeo = new THREE.CylinderGeometry(0.015, 0.015, 0.25, 8);
     const baton = new THREE.Mesh(batonGeo, blackGlossMat);
     baton.position.set(0.46, -0.10, 0.05);
     baton.rotation.z = 0.25;
@@ -507,9 +559,10 @@ export class BeanCustomization {
   }
 
   /**
-   * Per-frame breathing and skeletal synchronization (Part 0221-0230)
-   * Dynamically tracks head bone oscillation so accessories naturally breathe
-   * and move with the 3D Fall Guy skeleton with 0 clipping!
+   * Per-frame breathing and skeletal synchronization
+   * Kinematically tracks head & chest bones transformed into bean mesh space.
+   * All accessories (cap, aviators, tie, badge, epaulets) breathe, nod,
+   * tilt, and sprint in 100% mechanical lockstep with the skeleton!
    * @param {number} dt
    * @param {import('./BeanBody.js').BeanBody} beanBody
    */
@@ -518,14 +571,51 @@ export class BeanCustomization {
       return;
     }
 
-    const { cap, aviators, bodyDetails, capBaseY, aviatorsBaseY, bodyDetailsBaseY } = beanBody.officerAccessories;
+    const acc = beanBody.officerAccessories;
+    const { cap, aviators, bodyDetails } = acc;
 
+    // 1. Kinematic Head Tracking (Peaked Cap & Aviators)
     if (beanBody.headBone) {
-      // Track real skeleton head bone relative to initial rest pose
-      const dy = (beanBody.headBone.position.y - beanBody.initialHeadBoneY) * 0.65;
-      cap.position.y = capBaseY + dy;
-      aviators.position.y = aviatorsBaseY + dy;
-      bodyDetails.position.y = bodyDetailsBaseY + dy * 0.40;
+      beanBody.headBone.getWorldPosition(this._vPos);
+      beanBody.mesh.worldToLocal(this._vPos);
+      beanBody.headBone.getWorldQuaternion(this._qRot);
+      this._eRot.setFromQuaternion(this._qRot, 'YXZ');
+
+      if (!acc.initHead) {
+        acc.initHead = { y: this._vPos.y, z: this._vPos.z, pitch: this._eRot.x };
+      }
+
+      const dyHead = this._vPos.y - acc.initHead.y;
+      const dzHead = this._vPos.z - acc.initHead.z;
+      const dPitchHead = this._eRot.x - acc.initHead.pitch;
+
+      cap.position.y = dyHead;
+      cap.position.z = dzHead;
+      cap.rotation.x = dPitchHead;
+
+      aviators.position.y = dyHead;
+      aviators.position.z = dzHead;
+      aviators.rotation.x = dPitchHead;
+    }
+
+    // 2. Kinematic Chest Tracking (Shirt Collar, Tie, Badge, Epaulets, Belt)
+    if (beanBody.chestBone) {
+      beanBody.chestBone.getWorldPosition(this._vPos);
+      beanBody.mesh.worldToLocal(this._vPos);
+      beanBody.chestBone.getWorldQuaternion(this._qRot);
+      this._eRot.setFromQuaternion(this._qRot, 'YXZ');
+
+      if (!acc.initChest) {
+        acc.initChest = { y: this._vPos.y, z: this._vPos.z, pitch: this._eRot.x };
+      }
+
+      const dyChest = this._vPos.y - acc.initChest.y;
+      const dzChest = this._vPos.z - acc.initChest.z;
+      const dPitchChest = this._eRot.x - acc.initChest.pitch;
+
+      bodyDetails.position.y = dyChest;
+      bodyDetails.position.z = dzChest;
+      bodyDetails.rotation.x = dPitchChest;
     }
   }
 
