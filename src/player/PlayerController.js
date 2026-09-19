@@ -22,7 +22,10 @@ export class PlayerController {
       jump: false
     };
 
-    this.availableSkins = ['OFFICER', 'MOL_FOQIYA', 'CLASSIC', 'KREUZBERG', 'BERGHAIN'];
+    this.availableSkins = [
+      'OFFICER', 'MOL_FOQIYA', 'CLASSIC', 'KREUZBERG',
+      'SAKURA', 'SPÄTI', 'U-BAHN', 'CYBERPUNK', 'BERGHAIN', 'SUNSET'
+    ];
     this.currentSkinIndex = 0;
 
     this.moveVector = new THREE.Vector3();
@@ -63,7 +66,7 @@ export class PlayerController {
         this.keys.jump = true;
         this.performJump();
         break;
-      // Quick skin switching shortcuts (Parts 0201-0240)
+      // Quick skin switching shortcuts (0-9 / C)
       case 'Digit1':
       case 'Numpad1':
         this.setSkin('OFFICER');
@@ -82,7 +85,27 @@ export class PlayerController {
         break;
       case 'Digit5':
       case 'Numpad5':
+        this.setSkin('SAKURA');
+        break;
+      case 'Digit6':
+      case 'Numpad6':
+        this.setSkin('SPÄTI');
+        break;
+      case 'Digit7':
+      case 'Numpad7':
+        this.setSkin('U-BAHN');
+        break;
+      case 'Digit8':
+      case 'Numpad8':
+        this.setSkin('CYBERPUNK');
+        break;
+      case 'Digit9':
+      case 'Numpad9':
         this.setSkin('BERGHAIN');
+        break;
+      case 'Digit0':
+      case 'Numpad0':
+        this.setSkin('SUNSET');
         break;
       case 'KeyC':
         this.cycleNextSkin();

@@ -201,11 +201,6 @@ export class BeanBody {
     if (this.pendingSkin) {
       this.applySkin(this.pendingSkin);
     }
-
-    // Attach Mol Foqiya accessories if created beforehand
-    if (this.molFoqiyaAccessories && this.molFoqiyaAccessories.group && !this.molFoqiyaAccessories.group.parent) {
-      this.characterRoot.add(this.molFoqiyaAccessories.group);
-    }
   }
 
   /**

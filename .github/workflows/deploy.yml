@@ -4,11 +4,10 @@ on:
   push:
     branches:
       - main
-      - vhs-learning-portal-3d-game-concept-21be9
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 

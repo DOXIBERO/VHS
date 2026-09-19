@@ -55,83 +55,40 @@ const bodyDetails = customization.createPoliceBodyDetails();
 assert(bodyDetails instanceof THREE.Group, 'createPoliceBodyDetails returns a THREE.Group');
 assert(bodyDetails.children.length >= 8, 'Body details has collar, tie, tie clip, badge, epaulets, radio, belt, baton');
 
-// Officer Kinematic Tracking test
-console.log('\n--- 2b. Testing Kinematic Bone Tracking ---');
-const mockHeadBone = new THREE.Bone();
-const mockChestBone = new THREE.Bone();
-const mockMesh = new THREE.Group();
-mockMesh.add(mockHeadBone);
-mockMesh.add(mockChestBone);
-
-const officerHeadGroup = new THREE.Group();
-const officerChestGroup = new THREE.Group();
-const mockOfficer = {
-  mesh: mockMesh,
-  characterRoot: mockMesh,
-  headBone: mockHeadBone,
-  chestBone: mockChestBone,
-  officerAccessories: {
-    group: new THREE.Group(),
-    headGroup: officerHeadGroup,
-    chestGroup: officerChestGroup,
-    loaded: true
-  }
-};
-mockOfficer.officerAccessories.group.visible = true;
-
-// Frame 0: initialize rest pose
-mockHeadBone.position.set(0, 0.20, 0.05);
-mockChestBone.position.set(0, 0.10, 0);
-mockMesh.updateMatrixWorld(true);
-customization.update(0.016, mockOfficer);
-assert(mockOfficer.officerAccessories.initHead !== undefined, 'Cached initHead rest pose');
-assert(mockOfficer.officerAccessories.initChest !== undefined, 'Cached initChest rest pose');
-
-// Frame 1: simulate skeletal head nod & chest breathing motion
-mockHeadBone.position.y += 0.025; // +2.5cm up
-mockHeadBone.position.z += 0.010; // +1.0cm forward
-mockHeadBone.rotation.x += 0.08;  // head nod
-mockChestBone.position.y += 0.012; // +1.2cm chest breath
-mockMesh.updateMatrixWorld(true);
-customization.update(0.016, mockOfficer);
-
-assert(Math.abs(officerHeadGroup.position.y - 0.025) < 0.001, `Officer headGroup followed head Y translation (+0.025m, got ${officerHeadGroup.position.y.toFixed(4)})`);
-assert(Math.abs(officerHeadGroup.position.z - 0.010) < 0.001, `Officer headGroup followed head Z translation (+0.010m, got ${officerHeadGroup.position.z.toFixed(4)})`);
-assert(Math.abs(officerChestGroup.position.y - 0.012) < 0.001, `Officer chestGroup followed chest Y translation (+0.012m, got ${officerChestGroup.position.y.toFixed(4)})`);
-
-// Mol Foqiya skin application and kinematic bone tracking
-const mockFoqiyaBean = {
-  id: 'test_foqiya',
-  mesh: mockMesh,
-  characterRoot: mockMesh,
+// 2b. Testing Pure Color Skin Application (Zero external meshes per directive)
+console.log('\n--- 2b. Testing Pure Color Skin Application ---');
+const mockOfficerBean = {
+  id: 'test_officer',
   isModelLoaded: true,
   bodyMesh: new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial()),
   handMesh: new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial()),
   legMesh: new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial()),
   eyeMesh: new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial()),
-  headBone: mockHeadBone,
-  chestBone: mockChestBone
+  accessoriesGroup: new THREE.Group()
+};
+mockOfficerBean.accessoriesGroup.add(new THREE.Mesh());
+
+customization.applySkin('OFFICER', mockOfficerBean);
+assert(mockOfficerBean.customBodyMaterial.color.getHex() === 0x1E3A8A, 'Officer torso colored royal police navy 0x1E3A8A');
+assert(mockOfficerBean.customHandMaterial.color.getHex() === 0xF8FAFC, 'Officer hands colored parade white 0xF8FAFC');
+assert(mockOfficerBean.customLegMaterial.color.getHex() === 0x0A0A0A, 'Officer shoes colored black 0x0A0A0A');
+assert(mockOfficerBean.accessoriesGroup.visible === false, 'Accessories group hidden (no external objects on body)');
+assert(mockOfficerBean.accessoriesGroup.children.length === 0, 'Accessories group emptied of all external meshes');
+
+// Mol Foqiya skin application
+const mockFoqiyaBean = {
+  id: 'test_foqiya',
+  isModelLoaded: true,
+  bodyMesh: new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial()),
+  handMesh: new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial()),
+  legMesh: new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial()),
+  eyeMesh: new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial())
 };
 customization.applySkin('MOL_FOQIYA', mockFoqiyaBean);
-assert(mockFoqiyaBean.customBodyMaterial.color.getHex() === 0xFAF7F2, 'Foqiya torso colored 0xFAF7F2');
+assert(mockFoqiyaBean.customBodyMaterial.color.getHex() === 0xFAF7F2, 'Foqiya torso colored authentic ivory 0xFAF7F2');
+assert(mockFoqiyaBean.customHandMaterial.color.getHex() === 0xD4A373, 'Foqiya hands colored warm tan 0xD4A373');
+assert(mockFoqiyaBean.customLegMaterial.color.getHex() === 0xF59E0B, 'Foqiya shoes colored Moroccan yellow babouche 0xF59E0B');
 assert(mockFoqiyaBean.customEyeMaterial.color.getHex() === 0x111111, 'Foqiya eyes colored dark glossy 0x111111');
-assert(mockFoqiyaBean.molFoqiyaAccessories.group.visible === true, 'Mol Foqiya accessories visible');
-
-mockFoqiyaBean.molFoqiyaAccessories.loaded = true;
-const fHeadMesh = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial());
-mockFoqiyaBean.molFoqiyaAccessories.headGroup.add(fHeadMesh);
-const fChestMesh = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial());
-mockFoqiyaBean.molFoqiyaAccessories.chestGroup.add(fChestMesh);
-
-mockMesh.updateMatrixWorld(true);
-customization.update(0.016, mockFoqiyaBean); // cache rest pose
-mockHeadBone.position.y += 0.020;
-mockChestBone.position.y += 0.015;
-mockMesh.updateMatrixWorld(true);
-customization.update(0.016, mockFoqiyaBean);
-
-assert(Math.abs(mockFoqiyaBean.molFoqiyaAccessories.headGroup.position.y - 0.020) < 0.001, 'Mol Foqiya headGroup followed head Y');
-assert(Math.abs(mockFoqiyaBean.molFoqiyaAccessories.chestGroup.position.y - 0.015) < 0.001, 'Mol Foqiya chestGroup followed chest Y');
 
 // Legacy accessories
 const goldChain = customization.createGoldChain();
@@ -199,11 +156,11 @@ assert(scene.children.includes(bean1.mesh), 'Bean mesh added to scene');
 assert(factory.activeCount === 1, 'Factory tracks 1 active bean');
 assert(factory.availableCount === initialCount - 1, `Pool decremented available beans (got ${factory.availableCount})`);
 
-// Apply skin and check accessories visibility
-bean1.applySkin('KREUZBERG');
-assert(bean1.goldChain && bean1.goldChain.visible === true, 'KREUZBERG skin equips visible gold chain');
-bean1.applySkin('CLASSIC');
-assert(bean1.goldChain && bean1.goldChain.visible === false, 'CLASSIC skin hides gold chain');
+// Apply skin and check palette application
+const pKreuz = bean1.applySkin('KREUZBERG');
+assert(pKreuz.id === 'KREUZBERG', 'KREUZBERG skin applied successfully');
+const pClassic = bean1.applySkin('CLASSIC');
+assert(pClassic.id === 'CLASSIC', 'CLASSIC skin applied successfully');
 
 // Acceptance: destroyBean() removes it cleanly (no memory leaks)
 console.log('\n--- 5. Testing destroyBean() Recycling ---');
