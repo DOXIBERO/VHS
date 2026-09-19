@@ -4,6 +4,7 @@ import { Ground } from '../levels/Ground.js';
 import { Lighting } from './Lighting.js';
 import { PhysicsWorld } from '../physics/PhysicsWorld.js';
 import { CameraController } from './CameraController.js';
+import { BeanBody } from '../player/BeanBody.js';
 import { eventBus } from './EventBus.js';
 
 export class Engine {
@@ -44,12 +45,12 @@ export class Engine {
     // 5. Physics World with Cannon-es & Materials (Parts 0083-0100)
     this.physicsWorld = new PhysicsWorld();
 
-    // 6. Test Physics Sphere dropped from height (Part 0083-0090 Acceptance Criteria)
-    this.initTestPhysicsSphere();
+    // 6. Player Bean Character (Parts 0201-0210 | PHASE 2: PLAYER MODEL)
+    this.initPlayerBean();
 
-    // 7. Camera Controller (Parts 0121-0150)
-    this.cameraController = new CameraController(this.camera, this.testSphereMesh, {
-      offset: new THREE.Vector3(0, 8, 12),
+    // 7. Camera Controller following Player Bean (Parts 0121-0150)
+    this.cameraController = new CameraController(this.camera, this.playerBean.mesh, {
+      offset: new THREE.Vector3(0, 3.5, 7),
       lerpSpeed: 0.05,
       lookAhead: 2.0,
       minY: 2.0
@@ -72,30 +73,15 @@ export class Engine {
     console.log('Engine initialized');
   }
 
-  initTestPhysicsSphere() {
-    // Visual Three.js Mesh
-    const sphereGeo = new THREE.SphereGeometry(0.8, 24, 24);
-    const sphereMat = new THREE.MeshStandardMaterial({
-      color: 0xFF3333, // Vibrant red
-      roughness: 0.3,
-      metalness: 0.1
+  initPlayerBean() {
+    this.playerBean = new BeanBody({
+      id: 'player_main',
+      position: new THREE.Vector3(0, 3.5, 0),
+      physicsMaterial: this.physicsWorld.materials.BEAN
     });
-    this.testSphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
-    this.testSphereMesh.position.set(0, 12, 0);
-    this.testSphereMesh.castShadow = true;
-    this.scene.add(this.testSphereMesh);
 
-    // Physical Cannon.js Body with BEAN bouncy material
-    this.testSphereBody = new CANNON.Body({
-      mass: 1.0,
-      shape: new CANNON.Sphere(0.8),
-      position: new CANNON.Vec3(0, 12, 0),
-      material: this.physicsWorld.materials.BEAN
-    });
-    this.testSphereBody.userData = { type: 'bean', id: 'test_sphere_bean' };
-
-    // Register with sync pair in PhysicsWorld
-    this.physicsWorld.addBody(this.testSphereBody, this.testSphereMesh);
+    this.scene.add(this.playerBean.mesh);
+    this.physicsWorld.addBody(this.playerBean.body, this.playerBean.mesh);
   }
 
   onWindowResize() {
