@@ -48,18 +48,20 @@ export class BeanBody {
 
     const loader = new GLTFLoader();
     const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath(`${baseUrl}draco/gltf/`);
+    // Use official Google CDN for Draco decoder to guarantee worker compatibility
+    dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
     loader.setDRACOLoader(dracoLoader);
 
     const modelPath = `${baseUrl}models/characters/fall_guy.glb`;
+    console.log('[BeanBody] Loading authentic Fall Guy model from:', modelPath);
 
     loader.load(
       modelPath,
       (gltf) => {
         this.characterRoot = gltf.scene;
-        const scale = 0.28;
+        // Perfect Fall Guys scale for 3rd person camera
+        const scale = 0.65;
         this.characterRoot.scale.set(scale, scale, scale);
-        // Position character so its feet touch the bottom of the physics sphere (radius 0.6)
         this.characterRoot.position.set(0, -0.6, 0);
 
         this.characterRoot.traverse((child) => {
@@ -68,7 +70,7 @@ export class BeanBody {
             child.receiveShadow = true;
             if (child.name === 'eye') {
               this.eyeMesh = child;
-              this.eyeMesh.visible = true; // Authentic cute Fall Guy eyes
+              this.eyeMesh.visible = true; // Authentic Fall Guy eyes
             }
           }
         });
@@ -88,9 +90,14 @@ export class BeanBody {
         this.isModelLoaded = true;
         console.log(`[BeanBody] Authentic Fall Guy 3D model loaded successfully with ${gltf.animations.length} animations!`);
       },
-      undefined,
+      (progress) => {
+        if (progress.total > 0) {
+          const pct = Math.round((progress.loaded / progress.total) * 100);
+          console.log(`[BeanBody] Download progress: ${pct}%`);
+        }
+      },
       (err) => {
-        console.warn('[BeanBody] Could not load fall_guy.glb, error:', err);
+        console.error('[BeanBody] Error loading fall_guy.glb:', err);
       }
     );
   }
