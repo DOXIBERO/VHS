@@ -18,6 +18,17 @@ export const BEAN_SKINS = {
     metalness: 0.08,
     isOfficer: true
   },
+  MOL_FOQIYA: {
+    id: 'MOL_FOQIYA',
+    name: 'مول الفوقية المتدين (Mol Foqiya)',
+    bodyColor: 0xFAF7F2, // Authentic Moroccan Ivory Foqiya fabric
+    handColor: 0xD4A373, // Moroccan light tan skin tone
+    shoeColor: 0xF59E0B, // Vibrant Moroccan Yellow Babouche (البلغة الفاسية الصفراء)
+    roughness: 0.72,     // Natural woven fabric texture
+    metalness: 0.04,
+    isMolFoqiya: true,
+    isOfficer: false
+  },
   CLASSIC: {
     id: 'CLASSIC',
     name: 'Classic Fall Bean',
@@ -482,7 +493,60 @@ export class BeanCustomization {
       }
     }
 
-    // 2. Manage Gold Chain (Kreuzberg backwards compat)
+    // 2. Manage Mol Foqiya Accessories (Blender 3D Sculpted GLB)
+    if (palette.isMolFoqiya) {
+      if (!beanBody.molFoqiyaAccessories) {
+        const molGroup = new THREE.Group();
+        molGroup.name = 'MolFoqiyaAccessories';
+        const headGroup = new THREE.Group();
+        headGroup.name = 'MolFoqiya_HeadGroup';
+        const chestGroup = new THREE.Group();
+        chestGroup.name = 'MolFoqiya_ChestGroup';
+        molGroup.add(headGroup);
+        molGroup.add(chestGroup);
+
+        if (beanBody.characterRoot) {
+          beanBody.characterRoot.add(molGroup);
+        }
+
+        beanBody.molFoqiyaAccessories = {
+          group: molGroup,
+          headGroup,
+          chestGroup,
+          loaded: false
+        };
+
+        const loader = beanBody.gltfLoader;
+        if (loader && typeof window !== 'undefined') {
+          const baseUrl = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL)
+            ? (import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`)
+            : '/VHS/';
+          const modelUrl = `${baseUrl}models/accessories/mol_foqiya_accessories.glb`;
+          loader.load(
+            modelUrl,
+            (gltf) => {
+              const headKeywords = ['Taqiya', 'Apex', 'Beard', 'SoulPatch', 'Moustache'];
+              const children = [...gltf.scene.children];
+              children.forEach((child) => {
+                if (headKeywords.some(kw => child.name.includes(kw))) {
+                  headGroup.add(child);
+                } else {
+                  chestGroup.add(child);
+                }
+              });
+              beanBody.molFoqiyaAccessories.loaded = true;
+            },
+            undefined,
+            (err) => console.warn('[BeanCustomization] Mol Foqiya GLB load error:', err)
+          );
+        }
+      }
+      beanBody.molFoqiyaAccessories.group.visible = true;
+    } else if (beanBody.molFoqiyaAccessories) {
+      beanBody.molFoqiyaAccessories.group.visible = false;
+    }
+
+    // 3. Manage Gold Chain (Kreuzberg backwards compat)
     if (palette.hasGoldChain) {
       if (!beanBody.goldChain) {
         beanBody.goldChain = this.createGoldChain();
@@ -493,7 +557,7 @@ export class BeanCustomization {
       beanBody.goldChain.visible = false;
     }
 
-    // 3. Manage Berlin Flat Cap (backwards compat)
+    // 4. Manage Berlin Flat Cap (backwards compat)
     if (palette.hasCap) {
       if (!beanBody.berlinCap) {
         beanBody.berlinCap = this.createBerlinCap(palette.capColor || 0x333333);
@@ -544,6 +608,24 @@ export class BeanCustomization {
         beanBody.customLegMaterial.metalness = palette.isOfficer ? 0.85 : palette.metalness;
         beanBody.customLegMaterial.needsUpdate = true;
       }
+
+      // Eyes / Faceplate
+      if (beanBody.eyeMesh) {
+        if (!beanBody.customEyeMaterial) {
+          beanBody.customEyeMaterial = beanBody.eyeMesh.material.clone();
+          beanBody.eyeMesh.material = beanBody.customEyeMaterial;
+        }
+        if (palette.isMolFoqiya) {
+          beanBody.customEyeMaterial.color.setHex(0x111111);
+          beanBody.customEyeMaterial.roughness = 0.15;
+          beanBody.customEyeMaterial.metalness = 0.90;
+        } else {
+          beanBody.customEyeMaterial.color.setHex(0xFFFFFF);
+          beanBody.customEyeMaterial.roughness = 0.40;
+          beanBody.customEyeMaterial.metalness = 0.05;
+        }
+        beanBody.customEyeMaterial.needsUpdate = true;
+      }
     } else {
       beanBody.pendingSkin = skinName;
     }
@@ -567,55 +649,91 @@ export class BeanCustomization {
    * @param {import('./BeanBody.js').BeanBody} beanBody
    */
   update(dt, beanBody) {
-    if (!beanBody || !beanBody.officerAccessories || !beanBody.officerAccessories.group.visible) {
-      return;
-    }
+    if (!beanBody) return;
 
-    const acc = beanBody.officerAccessories;
-    const { cap, aviators, bodyDetails } = acc;
+    // 1. Officer Accessories Kinematic Tracking
+    if (beanBody.officerAccessories && beanBody.officerAccessories.group.visible) {
+      const acc = beanBody.officerAccessories;
+      const { cap, aviators, bodyDetails } = acc;
 
-    // 1. Kinematic Head Tracking (Peaked Cap & Aviators)
-    if (beanBody.headBone) {
-      beanBody.headBone.getWorldPosition(this._vPos);
-      beanBody.mesh.worldToLocal(this._vPos);
-      beanBody.headBone.getWorldQuaternion(this._qRot);
-      this._eRot.setFromQuaternion(this._qRot, 'YXZ');
+      if (beanBody.headBone) {
+        beanBody.headBone.getWorldPosition(this._vPos);
+        beanBody.mesh.worldToLocal(this._vPos);
+        beanBody.headBone.getWorldQuaternion(this._qRot);
+        this._eRot.setFromQuaternion(this._qRot, 'YXZ');
 
-      if (!acc.initHead) {
-        acc.initHead = { y: this._vPos.y, z: this._vPos.z, pitch: this._eRot.x };
+        if (!acc.initHead) {
+          acc.initHead = { y: this._vPos.y, z: this._vPos.z, pitch: this._eRot.x };
+        }
+
+        const dyHead = this._vPos.y - acc.initHead.y;
+        const dzHead = this._vPos.z - acc.initHead.z;
+        const dPitchHead = this._eRot.x - acc.initHead.pitch;
+
+        cap.position.y = dyHead;
+        cap.position.z = dzHead;
+        cap.rotation.x = dPitchHead;
+
+        aviators.position.y = dyHead;
+        aviators.position.z = dzHead;
+        aviators.rotation.x = dPitchHead;
       }
 
-      const dyHead = this._vPos.y - acc.initHead.y;
-      const dzHead = this._vPos.z - acc.initHead.z;
-      const dPitchHead = this._eRot.x - acc.initHead.pitch;
+      if (beanBody.chestBone) {
+        beanBody.chestBone.getWorldPosition(this._vPos);
+        beanBody.mesh.worldToLocal(this._vPos);
+        beanBody.chestBone.getWorldQuaternion(this._qRot);
+        this._eRot.setFromQuaternion(this._qRot, 'YXZ');
 
-      cap.position.y = dyHead;
-      cap.position.z = dzHead;
-      cap.rotation.x = dPitchHead;
+        if (!acc.initChest) {
+          acc.initChest = { y: this._vPos.y, z: this._vPos.z, pitch: this._eRot.x };
+        }
 
-      aviators.position.y = dyHead;
-      aviators.position.z = dzHead;
-      aviators.rotation.x = dPitchHead;
+        const dyChest = this._vPos.y - acc.initChest.y;
+        const dzChest = this._vPos.z - acc.initChest.z;
+        const dPitchChest = this._eRot.x - acc.initChest.pitch;
+
+        bodyDetails.position.y = dyChest;
+        bodyDetails.position.z = dzChest;
+        bodyDetails.rotation.x = dPitchChest;
+      }
     }
 
-    // 2. Kinematic Chest Tracking (Shirt Collar, Tie, Badge, Epaulets, Belt)
-    if (beanBody.chestBone) {
-      beanBody.chestBone.getWorldPosition(this._vPos);
-      beanBody.mesh.worldToLocal(this._vPos);
-      beanBody.chestBone.getWorldQuaternion(this._qRot);
-      this._eRot.setFromQuaternion(this._qRot, 'YXZ');
+    // 2. Mol Foqiya Accessories Kinematic Tracking (Taqiya, Beard, Moustache, Sfifa, Aqqad, Misbaha)
+    if (beanBody.molFoqiyaAccessories && beanBody.molFoqiyaAccessories.group.visible && beanBody.molFoqiyaAccessories.loaded) {
+      const acc = beanBody.molFoqiyaAccessories;
 
-      if (!acc.initChest) {
-        acc.initChest = { y: this._vPos.y, z: this._vPos.z, pitch: this._eRot.x };
+      // Kinematic Head Tracking (Taqiya cap, 3D Beard, Moustache, Soul Patch)
+      if (beanBody.headBone && acc.headGroup && beanBody.characterRoot) {
+        beanBody.headBone.getWorldPosition(this._vPos);
+        beanBody.characterRoot.worldToLocal(this._vPos);
+        beanBody.headBone.getWorldQuaternion(this._qRot);
+        this._eRot.setFromQuaternion(this._qRot, 'YXZ');
+
+        if (!acc.initHead) {
+          acc.initHead = { y: this._vPos.y, z: this._vPos.z, pitch: this._eRot.x };
+        }
+
+        acc.headGroup.position.y = this._vPos.y - acc.initHead.y;
+        acc.headGroup.position.z = this._vPos.z - acc.initHead.z;
+        acc.headGroup.rotation.x = this._eRot.x - acc.initHead.pitch;
       }
 
-      const dyChest = this._vPos.y - acc.initChest.y;
-      const dzChest = this._vPos.z - acc.initChest.z;
-      const dPitchChest = this._eRot.x - acc.initChest.pitch;
+      // Kinematic Chest Tracking (Sfifa ribbon, 8 Aqqad buttons, Amber Misbaha & Silk Tassel)
+      if (beanBody.chestBone && acc.chestGroup && beanBody.characterRoot) {
+        beanBody.chestBone.getWorldPosition(this._vPos);
+        beanBody.characterRoot.worldToLocal(this._vPos);
+        beanBody.chestBone.getWorldQuaternion(this._qRot);
+        this._eRot.setFromQuaternion(this._qRot, 'YXZ');
 
-      bodyDetails.position.y = dyChest;
-      bodyDetails.position.z = dzChest;
-      bodyDetails.rotation.x = dPitchChest;
+        if (!acc.initChest) {
+          acc.initChest = { y: this._vPos.y, z: this._vPos.z, pitch: this._eRot.x };
+        }
+
+        acc.chestGroup.position.y = this._vPos.y - acc.initChest.y;
+        acc.chestGroup.position.z = this._vPos.z - acc.initChest.z;
+        acc.chestGroup.rotation.x = this._eRot.x - acc.initChest.pitch;
+      }
     }
   }
 

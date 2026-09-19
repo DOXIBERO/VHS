@@ -18,6 +18,24 @@ export class BeanBody {
   static loadingPromise = null;
   static sharedSphereShape = new CANNON.Sphere(0.6);
   static sharedCustomization = null;
+  static sharedLoader = null;
+
+  /**
+   * Get shared GLTFLoader configured with local Draco decoders
+   * @returns {GLTFLoader}
+   */
+  static getGLTFLoader() {
+    if (!BeanBody.sharedLoader) {
+      const baseUrl = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL)
+        ? (import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`)
+        : '/VHS/';
+      BeanBody.sharedLoader = new GLTFLoader();
+      const dracoLoader = new DRACOLoader();
+      dracoLoader.setDecoderPath(`${baseUrl}draco/gltf/`);
+      BeanBody.sharedLoader.setDRACOLoader(dracoLoader);
+    }
+    return BeanBody.sharedLoader;
+  }
 
   /**
    * Preload and cache the Fall Guy GLTF model once
@@ -35,11 +53,7 @@ export class BeanBody {
       ? (import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`)
       : '/VHS/';
 
-    const loader = new GLTFLoader();
-    const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath(`${baseUrl}draco/gltf/`);
-    loader.setDRACOLoader(dracoLoader);
-
+    const loader = BeanBody.getGLTFLoader();
     const modelPath = `${baseUrl}models/characters/fall_guy.glb`;
     console.log('[BeanBody] Preloading authentic Fall Guy GLB from:', modelPath);
 
@@ -96,13 +110,15 @@ export class BeanBody {
     this.customHandMaterial = null;
     this.customLegMaterial = null;
 
-    // Skin Customization & Accessories (Skin 1: Officer)
+    // Skin Customization & Accessories (Skin 1: Officer, Skin 2: Mol Foqiya)
     this.customization = BeanBody.sharedCustomization || (BeanBody.sharedCustomization = new BeanCustomization());
     this.pendingSkin = options.skin || 'OFFICER';
     this.accessoriesGroup = null;
     this.officerAccessories = null;
+    this.molFoqiyaAccessories = null;
     this.headBone = null;
     this.initialHeadBoneY = 0;
+    this.gltfLoader = BeanBody.getGLTFLoader();
 
     // ObjectPool active state
     this.active = true;
@@ -184,6 +200,11 @@ export class BeanBody {
     // Apply pending or default skin
     if (this.pendingSkin) {
       this.applySkin(this.pendingSkin);
+    }
+
+    // Attach Mol Foqiya accessories if created beforehand
+    if (this.molFoqiyaAccessories && this.molFoqiyaAccessories.group && !this.molFoqiyaAccessories.group.parent) {
+      this.characterRoot.add(this.molFoqiyaAccessories.group);
     }
   }
 

@@ -28,6 +28,10 @@ const skinKeys = Object.keys(BEAN_SKINS);
 assert(skinKeys.length >= 5, `Expected >= 5 skins, found ${skinKeys.length}`);
 assert(BEAN_SKINS.OFFICER && BEAN_SKINS.OFFICER.isOfficer === true, 'OFFICER skin is registered');
 assert(BEAN_SKINS.OFFICER.bodyColor === 0x1E3A8A, 'OFFICER has deep police navy body');
+assert(BEAN_SKINS.MOL_FOQIYA && BEAN_SKINS.MOL_FOQIYA.isMolFoqiya === true, 'MOL_FOQIYA skin is registered');
+assert(BEAN_SKINS.MOL_FOQIYA.bodyColor === 0xFAF7F2, 'MOL_FOQIYA has authentic Moroccan Ivory Foqiya body');
+assert(BEAN_SKINS.MOL_FOQIYA.handColor === 0xD4A373, 'MOL_FOQIYA has Moroccan light tan hands');
+assert(BEAN_SKINS.MOL_FOQIYA.shoeColor === 0xF59E0B, 'MOL_FOQIYA has Moroccan Yellow Babouche shoes');
 assert(BEAN_SKINS.CLASSIC.bodyColor === 0xFFD700 && BEAN_SKINS.CLASSIC.shoeColor === 0xFF3333, 'CLASSIC has yellow body and red shoes');
 assert(BEAN_SKINS.KREUZBERG.bodyColor === 0x18181B && BEAN_SKINS.KREUZBERG.shoeColor === 0x22C55E, 'KREUZBERG has black body and green shoes');
 assert(BEAN_SKINS['SPÄTI'].bodyColor === 0xF8FAFC && BEAN_SKINS['SPÄTI'].shoeColor === 0x06B6D4, 'SPÄTI has white body and cyan shoes');
@@ -92,6 +96,40 @@ assert(Math.abs(policeCap.position.y - 0.025) < 0.001, `Cap followed head Y tran
 assert(Math.abs(policeCap.position.z - 0.010) < 0.001, `Cap followed head Z translation (+0.010m, got ${policeCap.position.z.toFixed(4)})`);
 assert(Math.abs(aviators.position.y - 0.025) < 0.001, `Aviators followed head Y translation (+0.025m, got ${aviators.position.y.toFixed(4)})`);
 assert(Math.abs(bodyDetails.position.y - 0.012) < 0.001, `Body details followed chest Y translation (+0.012m, got ${bodyDetails.position.y.toFixed(4)})`);
+
+// Mol Foqiya skin application and kinematic bone tracking
+const mockFoqiyaBean = {
+  id: 'test_foqiya',
+  mesh: mockMesh,
+  characterRoot: mockMesh,
+  isModelLoaded: true,
+  bodyMesh: new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial()),
+  handMesh: new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial()),
+  legMesh: new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial()),
+  eyeMesh: new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial()),
+  headBone: mockHeadBone,
+  chestBone: mockChestBone
+};
+customization.applySkin('MOL_FOQIYA', mockFoqiyaBean);
+assert(mockFoqiyaBean.customBodyMaterial.color.getHex() === 0xFAF7F2, 'Foqiya torso colored 0xFAF7F2');
+assert(mockFoqiyaBean.customEyeMaterial.color.getHex() === 0x111111, 'Foqiya eyes colored dark glossy 0x111111');
+assert(mockFoqiyaBean.molFoqiyaAccessories.group.visible === true, 'Mol Foqiya accessories visible');
+
+mockFoqiyaBean.molFoqiyaAccessories.loaded = true;
+const fHeadMesh = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial());
+mockFoqiyaBean.molFoqiyaAccessories.headGroup.add(fHeadMesh);
+const fChestMesh = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshStandardMaterial());
+mockFoqiyaBean.molFoqiyaAccessories.chestGroup.add(fChestMesh);
+
+mockMesh.updateMatrixWorld(true);
+customization.update(0.016, mockFoqiyaBean); // cache rest pose
+mockHeadBone.position.y += 0.020;
+mockChestBone.position.y += 0.015;
+mockMesh.updateMatrixWorld(true);
+customization.update(0.016, mockFoqiyaBean);
+
+assert(Math.abs(mockFoqiyaBean.molFoqiyaAccessories.headGroup.position.y - 0.020) < 0.001, 'Mol Foqiya headGroup followed head Y');
+assert(Math.abs(mockFoqiyaBean.molFoqiyaAccessories.chestGroup.position.y - 0.015) < 0.001, 'Mol Foqiya chestGroup followed chest Y');
 
 // Legacy accessories
 const goldChain = customization.createGoldChain();
