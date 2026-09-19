@@ -63,15 +63,18 @@ const mockMesh = new THREE.Group();
 mockMesh.add(mockHeadBone);
 mockMesh.add(mockChestBone);
 
+const officerHeadGroup = new THREE.Group();
+const officerChestGroup = new THREE.Group();
 const mockOfficer = {
   mesh: mockMesh,
+  characterRoot: mockMesh,
   headBone: mockHeadBone,
   chestBone: mockChestBone,
   officerAccessories: {
     group: new THREE.Group(),
-    cap: policeCap,
-    aviators: aviators,
-    bodyDetails: bodyDetails
+    headGroup: officerHeadGroup,
+    chestGroup: officerChestGroup,
+    loaded: true
   }
 };
 mockOfficer.officerAccessories.group.visible = true;
@@ -92,10 +95,9 @@ mockChestBone.position.y += 0.012; // +1.2cm chest breath
 mockMesh.updateMatrixWorld(true);
 customization.update(0.016, mockOfficer);
 
-assert(Math.abs(policeCap.position.y - 0.025) < 0.001, `Cap followed head Y translation (+0.025m, got ${policeCap.position.y.toFixed(4)})`);
-assert(Math.abs(policeCap.position.z - 0.010) < 0.001, `Cap followed head Z translation (+0.010m, got ${policeCap.position.z.toFixed(4)})`);
-assert(Math.abs(aviators.position.y - 0.025) < 0.001, `Aviators followed head Y translation (+0.025m, got ${aviators.position.y.toFixed(4)})`);
-assert(Math.abs(bodyDetails.position.y - 0.012) < 0.001, `Body details followed chest Y translation (+0.012m, got ${bodyDetails.position.y.toFixed(4)})`);
+assert(Math.abs(officerHeadGroup.position.y - 0.025) < 0.001, `Officer headGroup followed head Y translation (+0.025m, got ${officerHeadGroup.position.y.toFixed(4)})`);
+assert(Math.abs(officerHeadGroup.position.z - 0.010) < 0.001, `Officer headGroup followed head Z translation (+0.010m, got ${officerHeadGroup.position.z.toFixed(4)})`);
+assert(Math.abs(officerChestGroup.position.y - 0.012) < 0.001, `Officer chestGroup followed chest Y translation (+0.012m, got ${officerChestGroup.position.y.toFixed(4)})`);
 
 // Mol Foqiya skin application and kinematic bone tracking
 const mockFoqiyaBean = {

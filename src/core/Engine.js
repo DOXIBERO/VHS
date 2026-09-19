@@ -6,6 +6,7 @@ import { PhysicsWorld } from '../physics/PhysicsWorld.js';
 import { CameraController } from './CameraController.js';
 import { BeanBody } from '../player/BeanBody.js';
 import { BeanFactory } from '../player/BeanFactory.js';
+import { PlayerController } from '../player/PlayerController.js';
 import { eventBus } from './EventBus.js';
 
 export class Engine {
@@ -84,7 +85,12 @@ export class Engine {
       this.cameraController.shake(0.6, 0.4);
     });
 
-    // 8. Window resize listener
+    // 8. Player Controller for WASD movement, Space jump, and skin shortcuts
+    this.playerController = new PlayerController(this.playerBean, this.camera);
+    window.playerController = this.playerController;
+    window.playerBean = this.playerBean;
+
+    // 9. Window resize listener
     window.addEventListener('resize', this.onWindowResize.bind(this));
 
     console.log('Engine initialized');
@@ -118,6 +124,10 @@ export class Engine {
     // Update CameraController follow & shake (Parts 0121-0150)
     if (this.cameraController) {
       this.cameraController.update(dt);
+    }
+    // Update PlayerController movement & rotation
+    if (this.playerController) {
+      this.playerController.update(dt);
     }
   }
 

@@ -461,30 +461,57 @@ export class BeanCustomization {
       beanBody.mesh.add(beanBody.accessoriesGroup);
     }
 
-    // 1. Manage Officer Accessories
+    // 1. Manage Officer Accessories (Studio 3D Blender GLB)
     if (palette.isOfficer) {
       if (!beanBody.officerAccessories) {
-        const cap = this.createPoliceCap();
-        const aviators = this.createPoliceAviators();
-        const bodyDetails = this.createPoliceBodyDetails();
-
         const officerGroup = new THREE.Group();
         officerGroup.name = 'OfficerAccessories';
-        officerGroup.add(cap);
-        officerGroup.add(aviators);
-        officerGroup.add(bodyDetails);
+        const headGroup = new THREE.Group();
+        headGroup.name = 'Officer_HeadGroup';
+        const chestGroup = new THREE.Group();
+        chestGroup.name = 'Officer_ChestGroup';
+        officerGroup.add(headGroup);
+        officerGroup.add(chestGroup);
 
-        beanBody.accessoriesGroup.add(officerGroup);
+        if (beanBody.characterRoot) {
+          beanBody.characterRoot.add(officerGroup);
+        } else if (beanBody.accessoriesGroup) {
+          beanBody.accessoriesGroup.add(officerGroup);
+        }
 
         beanBody.officerAccessories = {
           group: officerGroup,
-          cap,
-          aviators,
-          bodyDetails,
-          capBaseY: 0,
-          aviatorsBaseY: 0,
-          bodyDetailsBaseY: 0
+          headGroup,
+          chestGroup,
+          loaded: false
         };
+
+        const loader = beanBody.gltfLoader;
+        if (loader && typeof window !== 'undefined') {
+          const baseUrl = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.BASE_URL)
+            ? (import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`)
+            : '/VHS/';
+          const modelUrl = `${baseUrl}models/accessories/officer_accessories.glb`;
+          loader.load(
+            modelUrl,
+            (gltf) => {
+              const headKeywords = ['CapCrown', 'CapBand', 'CapVisor', 'CapCord', 'CapBadge', 'Aviator', 'Lens', 'Brow', 'Nose', 'Temple'];
+              const children = [...gltf.scene.children];
+              children.forEach((child) => {
+                if (child.name.includes('ChestBadge')) {
+                  chestGroup.add(child);
+                } else if (headKeywords.some(kw => child.name.includes(kw))) {
+                  headGroup.add(child);
+                } else {
+                  chestGroup.add(child);
+                }
+              });
+              beanBody.officerAccessories.loaded = true;
+            },
+            undefined,
+            (err) => console.warn('[BeanCustomization] Officer GLB load error:', err)
+          );
+        }
       }
       beanBody.officerAccessories.group.visible = true;
     } else {
@@ -651,14 +678,14 @@ export class BeanCustomization {
   update(dt, beanBody) {
     if (!beanBody) return;
 
-    // 1. Officer Accessories Kinematic Tracking
-    if (beanBody.officerAccessories && beanBody.officerAccessories.group.visible) {
+    // 1. Officer Accessories Kinematic Tracking (Cap, Visor, Aviators, Tie, Epaulets, Belt)
+    if (beanBody.officerAccessories && beanBody.officerAccessories.group.visible && beanBody.officerAccessories.loaded) {
       const acc = beanBody.officerAccessories;
-      const { cap, aviators, bodyDetails } = acc;
 
-      if (beanBody.headBone) {
+      // Kinematic Head Tracking (Peaked Cap, Visor, Aviators)
+      if (beanBody.headBone && acc.headGroup && beanBody.characterRoot) {
         beanBody.headBone.getWorldPosition(this._vPos);
-        beanBody.mesh.worldToLocal(this._vPos);
+        beanBody.characterRoot.worldToLocal(this._vPos);
         beanBody.headBone.getWorldQuaternion(this._qRot);
         this._eRot.setFromQuaternion(this._qRot, 'YXZ');
 
@@ -666,22 +693,15 @@ export class BeanCustomization {
           acc.initHead = { y: this._vPos.y, z: this._vPos.z, pitch: this._eRot.x };
         }
 
-        const dyHead = this._vPos.y - acc.initHead.y;
-        const dzHead = this._vPos.z - acc.initHead.z;
-        const dPitchHead = this._eRot.x - acc.initHead.pitch;
-
-        cap.position.y = dyHead;
-        cap.position.z = dzHead;
-        cap.rotation.x = dPitchHead;
-
-        aviators.position.y = dyHead;
-        aviators.position.z = dzHead;
-        aviators.rotation.x = dPitchHead;
+        acc.headGroup.position.y = this._vPos.y - acc.initHead.y;
+        acc.headGroup.position.z = this._vPos.z - acc.initHead.z;
+        acc.headGroup.rotation.x = this._eRot.x - acc.initHead.pitch;
       }
 
-      if (beanBody.chestBone) {
+      // Kinematic Chest Tracking (Collar, Tie, Tie Clip, Chest Badge, Epaulets, Belt, Walkie-Talkie)
+      if (beanBody.chestBone && acc.chestGroup && beanBody.characterRoot) {
         beanBody.chestBone.getWorldPosition(this._vPos);
-        beanBody.mesh.worldToLocal(this._vPos);
+        beanBody.characterRoot.worldToLocal(this._vPos);
         beanBody.chestBone.getWorldQuaternion(this._qRot);
         this._eRot.setFromQuaternion(this._qRot, 'YXZ');
 
@@ -689,13 +709,9 @@ export class BeanCustomization {
           acc.initChest = { y: this._vPos.y, z: this._vPos.z, pitch: this._eRot.x };
         }
 
-        const dyChest = this._vPos.y - acc.initChest.y;
-        const dzChest = this._vPos.z - acc.initChest.z;
-        const dPitchChest = this._eRot.x - acc.initChest.pitch;
-
-        bodyDetails.position.y = dyChest;
-        bodyDetails.position.z = dzChest;
-        bodyDetails.rotation.x = dPitchChest;
+        acc.chestGroup.position.y = this._vPos.y - acc.initChest.y;
+        acc.chestGroup.position.z = this._vPos.z - acc.initChest.z;
+        acc.chestGroup.rotation.x = this._eRot.x - acc.initChest.pitch;
       }
     }
 
