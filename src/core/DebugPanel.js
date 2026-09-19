@@ -52,13 +52,13 @@ export class DebugPanel {
         this.toggle();
       }
 
-      // Skin switching hotkeys 1-5 (Parts 0211-0230)
+      // Skin switching hotkeys 1-5
       const skinMap = {
-        'Digit1': 'CLASSIC',
-        'Digit2': 'KREUZBERG',
-        'Digit3': 'SPÄTI',
-        'Digit4': 'U-BAHN',
-        'Digit5': 'BERGHAIN'
+        'Digit1': 'OFFICER',
+        'Digit2': 'CLASSIC',
+        'Digit3': 'KREUZBERG',
+        'Digit4': 'SPÄTI',
+        'Digit5': 'U-BAHN'
       };
       if (skinMap[e.code]) {
         const playerBean = window.game?.engine?.playerBean;
@@ -103,7 +103,7 @@ export class DebugPanel {
   updateContent() {
     const state = this.gameState ? this.gameState.current : 'UNKNOWN';
     const srsDue = this.dataManager && this.dataManager.srsEngine ? this.dataManager.srsEngine.getDueWords(100).length : 0;
-    const currentSkin = this.dataManager?.playerProfile?.currentSkin || window.game?.engine?.playerBean?.customization?.currentSkin || 'CLASSIC';
+    const currentSkin = this.dataManager?.playerProfile?.currentSkin || window.game?.engine?.playerBean?.customization?.currentSkin || 'OFFICER';
     const activeBeans = window.game?.engine?.beanFactory?.activeCount ?? 1;
     const pooledBeans = window.game?.engine?.beanFactory?.availableCount ?? 0;
     const roundInfo = this.dataManager && this.dataManager.roundConfig ? 'Round 1 (Colors)' : 'None';

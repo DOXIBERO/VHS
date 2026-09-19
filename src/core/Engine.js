@@ -10,6 +10,10 @@ import { eventBus } from './EventBus.js';
 
 export class Engine {
   constructor() {
+    // Expose global libraries for dev/debug
+    window.THREE = THREE;
+    window.CANNON = CANNON;
+
     this.canvas = document.getElementById('game-canvas');
     if (!this.canvas) {
       throw new Error('[Engine] Canvas element #game-canvas not found');
@@ -63,10 +67,10 @@ export class Engine {
 
     // 7. Camera Controller following Player Bean (Parts 0121-0150)
     this.cameraController = new CameraController(this.camera, this.playerBean.mesh, {
-      offset: new THREE.Vector3(0, 3.5, 7),
+      offset: new THREE.Vector3(0, 2.8, 5.2),
       lerpSpeed: 0.05,
       lookAhead: 2.0,
-      minY: 2.0
+      minY: 1.8
     });
 
     // Wire camera shake triggers
@@ -90,7 +94,7 @@ export class Engine {
     this.playerBean = this.beanFactory.createBean({
       id: 'player_main',
       position: new THREE.Vector3(0, 3.5, 0),
-      skin: 'CLASSIC'
+      skin: 'OFFICER'
     });
   }
 

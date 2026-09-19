@@ -96,12 +96,13 @@ export class BeanBody {
     this.customHandMaterial = null;
     this.customLegMaterial = null;
 
-    // Skin Customization & Accessories (Parts 0211-0230)
+    // Skin Customization & Accessories (Skin 1: Officer)
     this.customization = BeanBody.sharedCustomization || (BeanBody.sharedCustomization = new BeanCustomization());
-    this.pendingSkin = options.skin || 'CLASSIC';
+    this.pendingSkin = options.skin || 'OFFICER';
     this.accessoriesGroup = null;
-    this.goldChain = null;
-    this.berlinCap = null;
+    this.officerAccessories = null;
+    this.headBone = null;
+    this.initialHeadBoneY = 0;
 
     // ObjectPool active state
     this.active = true;
@@ -157,6 +158,10 @@ export class BeanBody {
         }
       }
     });
+
+    // Cache skeletal bones for accessory tracking
+    this.headBone = this.characterRoot.getObjectByName('Head_C_nub_07') || this.characterRoot.getObjectByName('Head_C_jnt01_04');
+    this.initialHeadBoneY = this.headBone ? this.headBone.position.y : 0;
 
     // Dedicated Animation Mixer for this instance
     this.mixer = new THREE.AnimationMixer(this.characterRoot);
@@ -270,7 +275,7 @@ export class BeanBody {
       this.body.quaternion.set(0, 0, 0, 1);
     }
 
-    const skin = config.skin || 'CLASSIC';
+    const skin = config.skin || 'OFFICER';
     this.applySkin(skin);
 
     if (this.actions['idle']) {
@@ -296,6 +301,9 @@ export class BeanBody {
       this.mixer.update(dt);
     }
     this.syncWithPhysics();
+    if (this.customization && this.customization.update) {
+      this.customization.update(dt, this);
+    }
   }
 
   /**
