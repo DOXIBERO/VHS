@@ -95,6 +95,10 @@ export class Engine {
     if (this.physicsWorld) {
       this.physicsWorld.step(dt);
     }
+    // Update Player Bean animations & physics sync
+    if (this.playerBean) {
+      this.playerBean.update(dt);
+    }
     // Update CameraController follow & shake (Parts 0121-0150)
     if (this.cameraController) {
       this.cameraController.update(dt);
